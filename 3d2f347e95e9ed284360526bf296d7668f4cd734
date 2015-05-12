@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_b86df406",
+        "filename": "requirements/resource_management/03-arch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-05-12T20:45:03Z",
+      "side": 1,
+      "message": "* Update resource reservations, e.g. add/remove reserved resources",
+      "revId": "3d2f347e95e9ed284360526bf296d7668f4cd734",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_9511e1ae",
+        "filename": "requirements/resource_management/05-impl.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-05-12T20:45:03Z",
+      "side": 1,
+      "message": "typo: SubscribeReply",
+      "revId": "3d2f347e95e9ed284360526bf296d7668f4cd734",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_d868c0f7",
+        "filename": "requirements/resource_management/05-impl.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-05-12T20:45:03Z",
+      "side": 1,
+      "message": "\"notificationId\" should be replaced by \"subscriptionID\", as this is not a notification, but the SubscribeReply message",
+      "revId": "3d2f347e95e9ed284360526bf296d7668f4cd734",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_d57e49e4",
+        "filename": "requirements/resource_management/05-impl.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-05-12T20:45:03Z",
+      "side": 1,
+      "message": "should be \n\n\"capacityInformation\": {",
+      "revId": "3d2f347e95e9ed284360526bf296d7668f4cd734",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_987238e4",
+        "filename": "requirements/resource_management/05-impl.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-05-12T20:45:03Z",
+      "side": 1,
+      "message": "replace with \"Subscribe / Notify Reservation Event\"",
+      "revId": "3d2f347e95e9ed284360526bf296d7668f4cd734",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_78776cd5",
+        "filename": "requirements/resource_management/05-impl.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-05-12T20:45:03Z",
+      "side": 1,
+      "message": "Additional parameters needed (as specified in ETSI NFV IFA005):\n\n     + vimId [1]: Identifier\n     + eventType [1]: String\n     + eventDetails [1]: String",
+      "revId": "3d2f347e95e9ed284360526bf296d7668f4cd734",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
