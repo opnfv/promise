@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_f5ba65e0",
+        "filename": "requirements/resource_management/03-arch.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-05-12T06:58:12Z",
+      "side": 1,
+      "message": "Michael Brenner pointed out some inconsistency here -\u003e proposal to remove this bullet point",
+      "revId": "d2179e053d91ea4aabb7956de8c3ac20fdcd9409",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_7595353f",
+        "filename": "requirements/resource_management/05-impl.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-05-12T06:58:12Z",
+      "side": 1,
+      "message": "Proposal to change the title of this Chapter to \"Detailed northbound interface specification\" in order to address an issue raised by Michael Brenner in his evaluation, saying that we did not specify many of the details, but \"only\" list them in the detailed implementation plan. Changing the title/purpose of this Chapter would immediately solve many of the identified \"gaps\" between ETSI NFV IFA and OPNFV/Promise.",
+      "revId": "d2179e053d91ea4aabb7956de8c3ac20fdcd9409",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_b5abbd88",
+        "filename": "requirements/resource_management/05-impl.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-05-12T06:58:12Z",
+      "side": 1,
+      "message": "*Detailed northbound interface specification*\n(remove \"from ETSI NFV IFA\", as this is not true\").\n\nMake this the title of this Chapter, as we are specifying the NB I/F in detail in this Section. A specific implementation would e.g. be the YANG schema introduced later on.",
+      "revId": "d2179e053d91ea4aabb7956de8c3ac20fdcd9409",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_35768d3f",
+        "filename": "requirements/resource_management/05-impl.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-05-12T06:58:12Z",
+      "side": 1,
+      "message": "this shouldn\u0027t be a notificationId, but rather a \"subscriptionId\"",
+      "revId": "d2179e053d91ea4aabb7956de8c3ac20fdcd9409",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_75a3f59e",
+        "filename": "requirements/resource_management/05-impl.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-05-12T06:58:12Z",
+      "side": 1,
+      "message": "replace with:\n\n*subscriptionId (Identifier): Identifier of the created subscription to receive notifications about capacity change events.",
+      "revId": "d2179e053d91ea4aabb7956de8c3ac20fdcd9409",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_55923958",
+        "filename": "requirements/resource_management/05-impl.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-05-12T06:58:12Z",
+      "side": 1,
+      "message": "add another Identifier as follows:\n\n+ timePeriod [0..1]: DateTime",
+      "revId": "d2179e053d91ea4aabb7956de8c3ac20fdcd9409",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_359fad61",
+        "filename": "requirements/resource_management/05-impl.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-05-12T06:58:12Z",
+      "side": 1,
+      "message": "add: \"A timePeriod can be specified to narrow down the query to a certain period of time.\"",
+      "revId": "d2179e053d91ea4aabb7956de8c3ac20fdcd9409",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_15aa7170",
+        "filename": "requirements/resource_management/05-impl.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-05-12T06:58:12Z",
+      "side": 1,
+      "message": "add the following Identifiers:\n\n+ startTime [0..1]: Time\n+ endTime [0..1]: Time",
+      "revId": "d2179e053d91ea4aabb7956de8c3ac20fdcd9409",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_95b0c1f5",
+        "filename": "requirements/resource_management/05-impl.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-05-12T06:58:12Z",
+      "side": 1,
+      "message": "Move this Section to the Appendix, as discussed in last weeks Promise call.",
+      "revId": "d2179e053d91ea4aabb7956de8c3ac20fdcd9409",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
