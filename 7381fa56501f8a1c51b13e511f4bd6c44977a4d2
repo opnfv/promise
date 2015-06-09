@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "3a045101_0abda068",
+        "filename": "requirements/resource_management/05-impl.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-06-09T09:41:04Z",
+      "side": 1,
+      "message": "typo?",
+      "revId": "7381fa56501f8a1c51b13e511f4bd6c44977a4d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_2a905ceb",
+        "filename": "requirements/resource_management/05-impl.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-06-09T09:41:04Z",
+      "side": 1,
+      "message": "for the resource reservation part we had a list of information elements in our Word document similar to the above capacity management. This seems to be missing here, but only UML diagrams exist (which are not shown in the PDF version in the artifacts.opnfv.org)",
+      "revId": "7381fa56501f8a1c51b13e511f4bd6c44977a4d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_2a697c8b",
         "filename": "requirements/resource_management/index.rst",
         "patchSetId": 9
