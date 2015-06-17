@@ -36,6 +36,23 @@
     },
     {
       "key": {
+        "uuid": "1a014df3_fee6dd15",
+        "filename": "requirements/resource_management/glossary.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-06-17T08:02:02Z",
+      "side": 1,
+      "message": "There is an issue with this document. The PDF version in the artifacts only shows the intro section of the glossary, but not the list. However, the list is shown in the HTML version.\nhttp://artifacts.opnfv.org/promise/requirements/resource_management/glossary.pdf\nhttp://artifacts.opnfv.org/promise/requirements/resource_management/glossary.html",
+      "revId": "7381fa56501f8a1c51b13e511f4bd6c44977a4d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_2a697c8b",
         "filename": "requirements/resource_management/index.rst",
         "patchSetId": 9
