@@ -111,6 +111,144 @@
     },
     {
       "key": {
+        "uuid": "5a202591_15cf34b2",
+        "filename": "requirements/resource_management/04-gap.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2015-06-18T08:43:00Z",
+      "side": 1,
+      "message": "This is not a footnote",
+      "range": {
+        "startLine": 7,
+        "startChar": 33,
+        "endLine": 7,
+        "endChar": 37
+      },
+      "revId": "7381fa56501f8a1c51b13e511f4bd6c44977a4d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a202591_75d0a853",
+        "filename": "requirements/resource_management/04-gap.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2015-06-18T08:43:00Z",
+      "side": 1,
+      "message": "Ember.js",
+      "range": {
+        "startLine": 66,
+        "startChar": 11,
+        "endLine": 66,
+        "endChar": 18
+      },
+      "revId": "7381fa56501f8a1c51b13e511f4bd6c44977a4d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a202591_55d5ac41",
+        "filename": "requirements/resource_management/04-gap.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2015-06-18T08:43:00Z",
+      "side": 1,
+      "message": "Node.js",
+      "range": {
+        "startLine": 67,
+        "startChar": 15,
+        "endLine": 67,
+        "endChar": 21
+      },
+      "revId": "7381fa56501f8a1c51b13e511f4bd6c44977a4d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a202591_35ca30a2",
+        "filename": "requirements/resource_management/04-gap.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2015-06-18T08:43:00Z",
+      "side": 1,
+      "message": "RESTful",
+      "range": {
+        "startLine": 77,
+        "startChar": 37,
+        "endLine": 77,
+        "endChar": 44
+      },
+      "revId": "7381fa56501f8a1c51b13e511f4bd6c44977a4d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a202591_f5c39888",
+        "filename": "requirements/resource_management/04-gap.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2015-06-18T08:43:00Z",
+      "side": 1,
+      "message": "Promise",
+      "range": {
+        "startLine": 90,
+        "startChar": 68,
+        "endLine": 90,
+        "endChar": 75
+      },
+      "revId": "7381fa56501f8a1c51b13e511f4bd6c44977a4d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a202591_d5c09c7e",
+        "filename": "requirements/resource_management/04-gap.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2015-06-18T08:43:00Z",
+      "side": 1,
+      "message": "To be removed",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 45
+      },
+      "revId": "7381fa56501f8a1c51b13e511f4bd6c44977a4d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_0abda068",
         "filename": "requirements/resource_management/05-impl.rst",
         "patchSetId": 9
