@@ -249,6 +249,75 @@
     },
     {
       "key": {
+        "uuid": "5a202591_553c8c93",
+        "filename": "requirements/resource_management/05-impl.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2015-06-18T09:19:23Z",
+      "side": 1,
+      "message": "When specified, the",
+      "range": {
+        "startLine": 45,
+        "startChar": 34,
+        "endLine": 45,
+        "endChar": 51
+      },
+      "revId": "7381fa56501f8a1c51b13e511f4bd6c44977a4d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a202591_753788b1",
+        "filename": "requirements/resource_management/05-impl.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2015-06-18T09:19:23Z",
+      "side": 1,
+      "message": "will",
+      "range": {
+        "startLine": 46,
+        "startChar": 44,
+        "endLine": 46,
+        "endChar": 45
+      },
+      "revId": "7381fa56501f8a1c51b13e511f4bd6c44977a4d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a202591_95ba2409",
+        "filename": "requirements/resource_management/05-impl.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2015-06-18T09:19:23Z",
+      "side": 1,
+      "message": "To be replaced by: Identification of the created subscription to receive notifications about capacity change events",
+      "range": {
+        "startLine": 70,
+        "startChar": 31,
+        "endLine": 71,
+        "endChar": 32
+      },
+      "revId": "7381fa56501f8a1c51b13e511f4bd6c44977a4d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_0abda068",
         "filename": "requirements/resource_management/05-impl.rst",
         "patchSetId": 9
@@ -266,6 +335,29 @@
     },
     {
       "key": {
+        "uuid": "5a202591_d5477c1c",
+        "filename": "requirements/resource_management/05-impl.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2015-06-18T09:19:23Z",
+      "side": 1,
+      "message": "subscriptionId",
+      "range": {
+        "startLine": 80,
+        "startChar": 5,
+        "endLine": 80,
+        "endChar": 19
+      },
+      "revId": "7381fa56501f8a1c51b13e511f4bd6c44977a4d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_2a905ceb",
         "filename": "requirements/resource_management/05-impl.rst",
         "patchSetId": 9
@@ -277,6 +369,98 @@
       "writtenOn": "2015-06-09T09:41:04Z",
       "side": 1,
       "message": "for the resource reservation part we had a list of information elements in our Word document similar to the above capacity management. This seems to be missing here, but only UML diagrams exist (which are not shown in the PDF version in the artifacts.opnfv.org)",
+      "revId": "7381fa56501f8a1c51b13e511f4bd6c44977a4d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a202591_3558f0f9",
+        "filename": "requirements/resource_management/05-impl.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2015-06-18T09:19:23Z",
+      "side": 1,
+      "message": "start -\u003e startTime",
+      "range": {
+        "startLine": 234,
+        "startChar": 8,
+        "endLine": 234,
+        "endChar": 30
+      },
+      "revId": "7381fa56501f8a1c51b13e511f4bd6c44977a4d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a202591_155df4e9",
+        "filename": "requirements/resource_management/05-impl.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2015-06-18T09:19:23Z",
+      "side": 1,
+      "message": "end -\u003e endTime",
+      "range": {
+        "startLine": 235,
+        "startChar": 8,
+        "endLine": 235,
+        "endChar": 28
+      },
+      "revId": "7381fa56501f8a1c51b13e511f4bd6c44977a4d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a202591_f5715878",
+        "filename": "requirements/resource_management/05-impl.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2015-06-18T09:19:23Z",
+      "side": 1,
+      "message": "DateTime",
+      "range": {
+        "startLine": 270,
+        "startChar": 26,
+        "endLine": 270,
+        "endChar": 30
+      },
+      "revId": "7381fa56501f8a1c51b13e511f4bd6c44977a4d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a202591_d56e5c96",
+        "filename": "requirements/resource_management/05-impl.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2015-06-18T09:19:23Z",
+      "side": 1,
+      "message": "DateTime",
+      "range": {
+        "startLine": 271,
+        "startChar": 24,
+        "endLine": 271,
+        "endChar": 28
+      },
       "revId": "7381fa56501f8a1c51b13e511f4bd6c44977a4d2",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
