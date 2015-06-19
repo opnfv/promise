@@ -4,10 +4,10 @@ Gap analysis in upstream projects
 
 This section provides a list of gaps in upstream projects for realizing
 resource reservation and management. The gap analysis work focuses on the
-current OpenStack Blazar project [2]_ in this first release.
+current OpenStack Blazar project [2] in this first release.
 
-OpenStack Blazar
-================
+OpenStack
+=========
 
 Resource reservation for future use
 -----------------------------------
@@ -63,8 +63,8 @@ StormStack StormForge
 Stormify
 ^^^^^^^^
 * Stormify enables rapid web applications construction
-* Based on Emberjs style Data stores
-* Developed on Nodejs using coffeescript/javascript
+* Based on Ember.js style Data stores
+* Developed on Node.js using coffeescript/javascript
 * Auto RESTful API generation based on Data Models
 * Development starts with defining Data Models
 * Code hosted at github : http://github.com/stormstack/stormify
@@ -74,7 +74,7 @@ StormForge
 * Data Model driven management of Resource Providers
 * Based on Stormify Framework and implemented as per the OPNFV Promise
   requirements
-* Data Models are auto generated and RESTFul API code from YANG schema
+* Data Models are auto generated and RESTful API code from YANG schema
 * Currently planned key services include Resource Capacity Management Service
   and Resource Reservation Service
 * List of YANG schemas for Promise project is attached in the Appendix
@@ -87,13 +87,9 @@ Resource Discovery
 * Description
 
   * To-be: To be able to discover resources in real time from OpenStack
-    components. Planning to add OpenStack Project to interface with promise for
+    components. Planning to add OpenStack Project to interface with Promise for
     real time updates on capacity or any failures
   * As-is: Currently, resource capacity is learnt using NB APIs related to
     quota
 
 * Related Blueprints: N/A
-
-
-.. [2] OpenStack Blazar Project, [Online]. Available at
-       https://wiki.openstack.org/wiki/Blazar
