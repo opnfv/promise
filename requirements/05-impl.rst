@@ -42,8 +42,8 @@ Input Parameters:
 * Thresholds [0..N]: Lower/Upper limits for triggering change event for
   used/reserved/total capacity change for specified resource items
 * NotificationId [0..1]: Identification of existing capacity change event
-  notification issued by the VIM. When specified. The previously defined
-  conditions for change event notifications wil be re-used and notification
+  notification issued by the VIM. When specified, the previously defined
+  conditions for change event notifications will be re-used and notification
   sent to the additional requestor.
 
 Application/json::
@@ -67,17 +67,17 @@ Application/json::
 
 Reply Parameters:
 
-* subscriptionId (Identifier): Identification of the capacity change event
-  notification issued by the VIM.
+* subscriptionId (Identifier): Identification of the created subscription to
+  receive notifications about capacity change events
 * created (DateTime): Timestamp when subscription has been created
-* m	essage [0..1] (String): Output message that provides additional information
+* message [0..1] (String): Output message that provides additional information
   about the subscribe request
 
 Application/json::
 
   {
     "created": "2015-03-23T00:00:01Z",
-    "notificationId": "abcdef-ghijkl-123456789"
+    "subscriptionId": "abcdef-ghijkl-123456789"
   }
 
 Query Resource Capacity
@@ -231,8 +231,8 @@ ___________________________
 
    @startuml
    class CreateResourceReservationRequest {
-      + start [0..1]: DateTime
-      + end [0..1]: DateTime
+      + startTime [0..1]: DateTime
+      + endTime [0..1]: DateTime
       + expiry [0..1]: DateTime
       + virtualizationContainerReservation [0..N]: VirtualizationContainerReservationClass
       + computePoolReservation [0..1]: ComputePoolReservationClass
@@ -267,8 +267,8 @@ ___________________________
       + storagePoolReserved [0..1]: StoragePoolReservedClass
       + networkReserved [0..1]: NetworkReservedClass
       + reservationStatus [1]: String
-      + startTime [0..1]: Time
-      + endTime [0..1]: Time
+      + startTime [0..1]: DateTime
+      + endTime [0..1]: DateTime
       + message [0..1]: String
    }
 
