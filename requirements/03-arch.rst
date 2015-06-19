@@ -156,7 +156,7 @@ Name   Type       Description
 ====== ========== ==========================================================
 Flavor Identifier Identifier that is passed in the request to obtain
                   information of the number of virtual resources that can be
-                  instantiated according to this flavour with the available
+                  instantiated according to this flavor with the available
                   capacity
 ====== ========== ==========================================================
 
@@ -196,7 +196,7 @@ Start      Timestamp  Start time for consumption of the reserved resources
 End        Timestamp  End time for consumption of the reserved resources
 Expiry     Timestamp  If not all reserved resources are allocated between start
                       time and expiry, the VIM shall release the corresponding
-                      resources
+                      resources [#expiry]_
 Amount     Number     Amount of the resources per resource item type (i.e.
                       compute/network/storage) that need to be reserved
 Zone       Identifier The zone  where the resources need(s) to be reserved
@@ -207,6 +207,11 @@ Resources  List       Identifiers of existing resource items to be reserved
                       (such as images, flavors, virtual containers, networks,
                       physical machines, etc.)
 ========== ========== =========================================================
+
+.. [#expiry] Expiry is a period around start time within which, the allocation
+             process must take place. If allocation process does not start
+             within the expiry period, the reservation becomes invalid and VIM
+             should release the resources
 
 Create Resource Reservation Reply
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
