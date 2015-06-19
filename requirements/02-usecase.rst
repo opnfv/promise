@@ -90,8 +90,12 @@ implicit or explicit priority scheme:
 
   * A reservation request for future use may cancel another, not yet started,
     reservation with lower priority
-  * An allocation request without reservations and time-unbound  may be granted
-    resources and prevent a future reservation with lower priority from getting
-    resources at start time
+  * An allocation request without reservations and time-unbound [#unbound]_ may
+    be granted resources and prevent a future reservation with lower priority
+    from getting resources at start time
   * A reservation request may result in terminating resources allocated to a
     request with no reservation, if the latter has lower priority
+
+.. [#unbound] In this case, the consumer (VNFM or NFVO) requests to immediately
+              instantiate and assign virtualized resources without having
+              reserved the resources beforehand

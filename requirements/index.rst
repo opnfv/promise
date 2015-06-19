@@ -17,8 +17,15 @@ Promise: Resource Management
 :Authors: Ravi Chunduru (ClearPath Networks), Peter Lee (ClearPath Networks),
           Gerald Kunzmann (NTT DOCOMO), Ryota Mibu (NEC),
           Carlos Goncalves (NEC), Arturo Martin De Nicolas (Ericsson)
-:Project creation date: 2014-12-04
-:Submission date: 2015-04-XX
+
+:History:
+          ========== =====================================================
+          Date       Description
+          ========== =====================================================
+          19.06.2015 Stable version of the Promise deliverable
+          20.04.2015 Initial version of the deliverable uploaded to gerrit
+          04.12.2014 Project creation
+          ========== =====================================================
 
 :Abstract: Promise is an OPNFV requirement project. Its objective is to realize
            ETSI NFV defined resource reservation and NFVI capacity features
