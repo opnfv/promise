@@ -1,24 +1,12 @@
 BUILDDIR := build
 
-.PHONY: clean html pdf default
+.PHONY: default clean
 
-default: pdf
-
-clean:
-	rm -rf $(BUILDDIR) plantuml.jar
-
-html: plantuml.jar | $(BUILDDIR)
-	sphinx-build -b html -c etc -d $(BUILDDIR)/doctrees \
-	    requirements $(BUILDDIR)/requirements/html
-
-pdf: plantuml.jar | $(BUILDDIR)
-	sphinx-build -b latex -c etc -d $(BUILDDIR)/doctrees \
-	    requirements $(BUILDDIR)/requirements/latex
-	$(MAKE) -C $(BUILDDIR)/requirements/latex \
-	    LATEXOPTS='--interaction=nonstopmode' all-pdf
-
-$(BUILDDIR):
-	mkdir -p $(BUILDDIR)
+default: plantuml.jar
+	tox
 
 plantuml.jar:
 	wget 'http://downloads.sourceforge.net/project/plantuml/plantuml.jar'
+
+clean:
+	rm -rf .tox build plantuml.jar
