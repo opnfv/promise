@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a1a2d67_19408b55",
+        "filename": "requirements/01-intro.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 132
+      },
+      "writtenOn": "2015-06-29T09:06:51Z",
+      "side": 1,
+      "message": "Here as well",
+      "revId": "f1cca0a7ba8f11c91b444ee94ebe51c3d2bb5be4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a1a2d67_393b47ed",
+        "filename": "requirements/06-summary.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 132
+      },
+      "writtenOn": "2015-06-29T09:06:51Z",
+      "side": 1,
+      "message": "Same chmod here.",
+      "revId": "f1cca0a7ba8f11c91b444ee94ebe51c3d2bb5be4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a1a2d67_59360305",
+        "filename": "requirements/07-schemas.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 132
+      },
+      "writtenOn": "2015-06-29T09:06:51Z",
+      "side": 1,
+      "message": "Why changing from 644 to 755? This is not an executable file. Guessing you changed it inadvertently :-)",
+      "revId": "f1cca0a7ba8f11c91b444ee94ebe51c3d2bb5be4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
