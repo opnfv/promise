@@ -11,7 +11,7 @@ mapping/translating the OPNFV terms to terminology used in other contexts.
 
    Consumer
       User-side Manager; consumer of the interfaces produced by the VIM; VNFM,
-      NFVO, or Orchestrator in ETSI NFV [7] terminology.
+      NFVO, or Orchestrator in ETSI NFV [6] terminology.
 
    NFV
       Network Function Virtualization

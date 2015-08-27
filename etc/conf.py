@@ -2,20 +2,13 @@ import datetime
 import sys
 import os
 
-try:
-    __import__('imp').find_module('sphinx.ext.numfig')
-    extensions = ['sphinx.ext.numfig']
-except ImportError:
-    # 'pip install sphinx_numfig'
-    extensions = ['sphinx_numfig']
+needs_sphinx = '1.3'
 
 # plantuml
-extensions.append('sphinxcontrib.plantuml')
+extensions = ['sphinxcontrib.plantuml']
 plantuml = ['java', '-jar', 'plantuml.jar']
 
-# numfig:
-number_figures = True
-figure_caption_prefix = "Fig."
+numfig = True
 
 source_suffix = '.rst'
 master_doc = 'index'
