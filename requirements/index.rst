@@ -51,30 +51,9 @@ Promise: Resource Management
    04-gap.rst
    05-impl.rst
    06-summary.rst
+   07-schemas.rst
+   08-revision.rst
+   99-references.rst
 
-.. raw:: latex
-
-    \newpage
-
-.. rubric::  References and bibliography
-
-[1] OPNFV, "Promise" requirement project, [Online]. Available at
-https://wiki.opnfv.org/doctor
-
-[2] OpenStack Blazar Project, [Online]. Available at
-https://wiki.openstack.org/wiki/Blazar
-
-[3] Stormforge Project, [Online]. Available at
-https://github.com/stormstack/stormforge
-
-[4] Stormify Project, [Online]. Available at
-https://github.com/stormstack/stormify
-
-[5] ETSI GS NFV MAN 001, "Network Function Virtualisation (NFV); Management
-and Orchestration"
-
-[6] ETSI GS NFV 003, "Network Function Virtualisation (NFV); Terminology
-for Main Concepts in NFV"
-
-[7] ETSI NFV, [Online]. Available at
-http://www.etsi.org/technologies-clusters/technologies/nfv
+..
+  vim: set tabstop=4 expandtab textwidth=80:
