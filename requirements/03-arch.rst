@@ -6,15 +6,16 @@ Architecture Overview
 =====================
 
 .. figure:: images/figure1.png
+   :name: figure1
    :width: 90%
 
    Resource Reservation Architecture
 
-Figure 1 shows the high level architecture for the resource reservation use
-cases. Reserved resources are guaranteed for a given user/client for the period
-expressed by start and end time. User/client represents the requestor and the
-consequent consumer of the reserved resources and correspond to the NFVO or
-VNFM in ETSI NFV terminology.
+:numref:`figure1` shows the high level architecture for the resource
+reservation use cases. Reserved resources are guaranteed for a given
+user/client for the period expressed by start and end time. User/client
+represents the requestor and the consequent consumer of the reserved
+resources and correspond to the NFVO or VNFM in ETSI NFV terminology.
 
 Note: in this document only reservation requests from NFVO are considered.
 
@@ -62,38 +63,42 @@ Resource Capacity Management
 ----------------------------
 
 .. figure:: images/figure2.png
+   :name: figure2
    :width: 90%
 
    Resource capacity management message flow: notification of capacity change
 
-Figure 2 shows a high level flow for a use case of resource capacity
+:numref:`figure2` shows a high level flow for a use case of resource capacity
 management. In this example, the VIM notifies the NFVO of capacity change after
 having received an event regarding a change in capacity (e.g. a fault
 notification) from the NFVI. The NFVO can also retrieve detailed capacity
 information using the Query Capacity Request interface operation.
 
 .. figure:: images/figure3.png
+   :name: figure3
    :width: 90%
 
    Resource capacity management message flow: query of capacity density
 
-Figure 3 shows a high level flow for another use case of resource capacity
-management. In this example, the NFVO queries the VIM about the actual capacity
-to instantiate a certain resource according to a certain template, for example
-a VM according to a certain flavor. In this case the VIM responds with the
-number of VMs that could be instantiated according to that flavor with the
-currently available capacity.
+:numref:`figure3` shows a high level flow for another use case of resource
+capacity management. In this example, the NFVO queries the VIM about the
+actual capacity to instantiate a certain resource according to a certain
+template, for example a VM according to a certain flavor. In this case
+the VIM responds with the number of VMs that could be instantiated according
+to that flavor with the currently available capacity.
 
 Resource Reservation
 --------------------
 
 .. figure:: images/figure4.png
+   :name: figure4
    :width: 90%
 
    Resource reservation flow
 
-Figure 4 shows a high level flow for a use case of resource reservation. The
-main steps are:
+:numref:`figure4` shows a high level flow for a use case of resource
+reservation.
+The main steps are:
 
 * The NFVO sends a resource reservation request to the VIM using the Create
   Resource Reservation Request interface operation.

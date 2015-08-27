@@ -64,11 +64,11 @@ https://wiki.opnfv.org/doctor
 [2] OpenStack Blazar Project, [Online]. Available at
 https://wiki.openstack.org/wiki/Blazar
 
-[3] Stormforge Project, [Online]. Available at
-https://github.com/stormstack/stormforge
+[3] Promise reference implementation, [Online], Available at
+https://github.com/opnfv/promise
 
-[4] Stormify Project, [Online]. Available at
-https://github.com/stormstack/stormify
+[4] Yangforge Project, [Online]. Available at
+https://github.com/opnfv/yangforge
 
 [5] ETSI GS NFV MAN 001, "Network Function Virtualisation (NFV); Management
 and Orchestration"
@@ -76,5 +76,17 @@ and Orchestration"
 [6] ETSI GS NFV 003, "Network Function Virtualisation (NFV); Terminology
 for Main Concepts in NFV"
 
-[7] ETSI NFV, [Online]. Available at
+[7] ETSI GS NFV IFA 010, "Network Function Virtualisation (NFV); Management
+and Orchestration; Functional Requirements Specification"
+
+[8] ETSI GS NFV IFA 005, "Network Function Virtualisation (NFV); Management
+and Orchestration; Or-Vi reference point - Interface and Information Model Specification"
+
+[9] ETSI GS NFV IFA 006, "Network Function Virtualisation (NFV); Management
+and Orchestration; Vi-Vnfm reference point - Interface and Information Model Specification"
+
+[10] ETSI NFV, [Online]. Available at
 http://www.etsi.org/technologies-clusters/technologies/nfv
+
+..
+  vim: set tabstop=4 expandtab textwidth=80:

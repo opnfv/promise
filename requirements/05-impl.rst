@@ -469,12 +469,13 @@ Resource Capacity Management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. figure:: images/figure5.png
+   :name: figure5
    :width: 90%
 
    Capacity Management Scenario
 
-Figure 5 shows a detailed message flow between the consumers and the
-functionalblocks inside the VIM and has the following steps:
+:numref:`figure5` shows a detailed message flow between the consumers and the
+functional blocks inside the VIM and has the following steps:
 
 Step 1: The consumer subscribes to capacity change notifications
 
@@ -492,12 +493,13 @@ Resource Reservation
 ^^^^^^^^^^^^^^^^^^^^
 
 .. figure:: images/figure6.png
+   :name: figure6
    :width: 90%
 
    Resource Reservation for Future Use Scenario
 
-Figure 6 shows a detailed message flow between the consumers and the functional
-blocks inside the VIM and has the following steps:
+:numref:`figure6` shows a detailed message flow between the consumers and
+the functional blocks inside the VIM and has the following steps:
 
 Step 1: The consumer creates a resource reservation request for future use by
 setting a start and end time for the allocation

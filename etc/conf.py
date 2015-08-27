@@ -2,20 +2,13 @@ import datetime
 import sys
 import os
 
-try:
-    __import__('imp').find_module('sphinx.ext.numfig')
-    extensions = ['sphinx.ext.numfig']
-except ImportError:
-    # 'pip install sphinx_numfig'
-    extensions = ['sphinx_numfig']
+needs_sphinx = '1.3'
 
 # plantuml
-extensions.append('sphinxcontrib.plantuml')
+extensions = ['sphinxcontrib.plantuml']
 plantuml = ['java', '-jar', 'plantuml.jar']
 
-# numfig:
-number_figures = True
-figure_caption_prefix = "Fig."
+numfig = True
 
 source_suffix = '.rst'
 master_doc = 'index'
@@ -34,8 +27,8 @@ latex_elements = {
 
 project = u'Promise: Resource Management'
 copyright = u'%s, OPNFV' % datetime.date.today().year
-version = u'1.0.0'
-release = u'1.0.0'
+version = u'1.0.1'
+release = u'1.0.1'
 
 # TODO(r-mibu): remove the following line to index.rst
-latex_appendices = ['07-schemas']
+latex_appendices = ['07-schemas','08-revision']
