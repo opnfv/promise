@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_4d31b9a1",
+        "filename": "requirements/glossary.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-09-03T07:23:14Z",
+      "side": 1,
+      "message": "minor: could you also update the references to automatic references [6]_ or better [NFV]_ in order to avoid this issue in the future? See Doctor document.",
+      "revId": "343832f13e4ad151fbb4a612c4add912d6877b1b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
