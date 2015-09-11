@@ -1,25 +1,20 @@
-Resource Management (promise)
-Repo: promise
-Creation Date:
-Category: Requirements
-Lifecycle State:
-Primary Contact: plee@clearpathnet.com
-Project Lead: plee@clearpathnet.com
+Project: Resource Management (promise)
+Project Creation Date: December 4, 2014
+Project Category: Requirements
+Lifecycle State: Incubation
+Primary Contact: Peter K. Lee (plee@clearpathnet.com)
+Project Lead: Peter K. Lee (plee@clearpathnet.com)
 Jira Project Name: Resource Management
 Jira Project Prefix: PROMISE
 mailing list tag [promise]
+IRC: Server:freenode.net Channel:#opnfv-promise
+Repository: promise
 
-Submitters:
-khan@nttdocomo.com
-plee@clearpathnet.com
-r-mibu@cq.jp.nec.com
-rchunduru@clearpathnet.com
-serge.manning@sprint.com
-dirk.kutscher@neclab.eu
-sbusa@clearpathnet.com
-hmaeda@clearpathnet.com
-arturo.martin-de-nicolas@ericsson.com
-kunzmann@docomolab-euro.com
+Committers:
+Arturo Martin De Nicolas (Ericsson, arturo.martin-de-nicolas@ericsson.com)
+Ashiq Khan (DOCOMO, khan@nttdocomo.com)
+Gerald Kunzmann (DOCOMO, kunzmann@docomolab-euro.com)
+Ravi Chunduru (ClearPath, rchunduru@clearpathnet.com)
+Ryota Mibu (NEC, r-mibu@cq.jp.nec.com)
+Serge Manning (Sprint, Serge.Manning@sprint.com)
 
-Link to TSC approval: http://meetbot.opnfv.org/meetings/
-Link to approval of additional submitters:
