@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_bcfbad46",
+        "filename": "INFO",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 253
+      },
+      "writtenOn": "2015-09-11T09:08:00Z",
+      "side": 1,
+      "message": "Weak suggestion, but how about \"December 4, 2014\"?",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 32
+      },
+      "revId": "f8d81f4f83daeb4acf9cc8863397f37d4595a945",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_1ced218c",
+        "filename": "INFO",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 253
+      },
+      "writtenOn": "2015-09-11T09:08:00Z",
+      "side": 1,
+      "message": "We can set \"Incubation\" here.",
+      "range": {
+        "startLine": 4,
+        "startChar": 15,
+        "endLine": 4,
+        "endChar": 16
+      },
+      "revId": "f8d81f4f83daeb4acf9cc8863397f37d4595a945",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_7c9545e3",
+        "filename": "INFO",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 253
+      },
+      "writtenOn": "2015-09-11T09:08:00Z",
+      "side": 1,
+      "message": "\u0027,\u0027 seems to be better than \u0027:\u0027.\n\nhttps://wiki.opnfv.org/developers/project_page_template",
+      "range": {
+        "startLine": 14,
+        "startChar": 34,
+        "endLine": 14,
+        "endChar": 35
+      },
+      "revId": "f8d81f4f83daeb4acf9cc8863397f37d4595a945",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
