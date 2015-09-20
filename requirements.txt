@@ -1,3 +1,4 @@
 sphinx
 sphinx_numfig
 sphinxcontrib-plantuml
+sphinxcontrib-httpdomain

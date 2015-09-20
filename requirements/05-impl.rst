@@ -5,461 +5,248 @@ Detailed northbound interface specification
 -------------------------------------------
 
 .. Note::
-   Once the output of the work from ETSI NFV IFA has been made publicly
-   available, the UML diagrams and REST/JSON examples in this section will be
-   extended
+   This is Work in Progress
 
-Resource Capacity Management
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Virtualised Compute Resources
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Subscribe Capacity Change Event
-_______________________________
+ETSI NFV IFA Information Models
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**SubscribeRequest (Consumer -> VIM)**
+Compute Flavor
+______________
 
-.. uml::
-
-   @startuml
-   class SubscribeRequest {
-      + zone [0..N]: Identifier
-      + attributes [0..1]: String
-      + resourceItems [0..1]: String
-      + thresholds [0..N]: String
-      + notificationId [0..1]: Identifier
-   }
-   @enduml
-
-Subscription from Consumer to VIM to be notified about capacity changes.
-Input Parameters:
-
-* Zone [0..N]: Identification of the zone(s) to notify regarding capacity
-  change events
-* Attributes [0..1]: Attributes of resource items to be notified regarding
-  capacity change events
-* ResourceItems [0..1]: Identifiers of existing resource items to be notified
-  regarding capacity change events (such as images, flavors, virtual
-  containers, networks, physical machines, etc.)
-* Thresholds [0..N]: Lower/Upper limits for triggering change event for
-  used/reserved/total capacity change for specified resource items
-* NotificationId [0..1]: Identification of existing capacity change event
-  notification issued by the VIM. When specified, the previously defined
-  conditions for change event notifications will be re-used and notification
-  sent to the additional requestor.
-
-Application/json::
-
-  {
-    "zone": ["opnfv-JP8", "opnfv-JP9"],
-    "resourceitems": "numvcinstances"
-  }
-
-**SubscribeReply (VIM -> Consumer)**
+A compute flavor includes information about number of virtual CPUs, size of virtual memory,
+size of virtual storage, and virtual network interfaces [NFVIFA005]_
 
 .. uml::
 
    @startuml
-   class SubscribeReply {
-      + subscriptionId [1]: Identifier
-      + created [1]: DateTime
-      + message [0..1]: String
-   }
-   @enduml
-
-Reply Parameters:
-
-* subscriptionId (Identifier): Identification of the created subscription to
-  receive notifications about capacity change events
-* created (DateTime): Timestamp when subscription has been created
-* message [0..1] (String): Output message that provides additional information
-  about the subscribe request
-
-Application/json::
-
-  {
-    "created": "2015-03-23T00:00:01Z",
-    "subscriptionId": "abcdef-ghijkl-123456789"
-  }
-
-Query Resource Capacity
-_______________________
-
-**QueryRequest (NFVO -> VIM)**
-
-.. uml::
-
-   @startuml
-   class QueryCapacityRequest {
-      + capacityQueryFilter [0..1]: CapacityQueryFilterClass
+   class ComputeFlavor {
+     + flavorId [1]: Identifier
+     + virtualCpu [1]: VirtualCpu
+     + virtualMemory [1]: VirtualMemory
+     + virtualStorage [0..N]: VirtualStorage
+     + virtualNetworkInterface [0..N]: VirtualNetworkInterface
+     + accelerationCapabilities [0..N]:
    }
 
-   class CapacityQueryFilter {
-      + zone [0..1]: Identifier
-      + resourceItems [0..1]: String
-      + flavorID [0..1]: Identifier
-      + timePeriod [0..1]: DateTime
+   class VirtualCpu {
+     + cpuArchitecture [0..1]:
+     + numVirtualCpu [1|: Number
+     + virtualCpuClock [0..1]: Number
+     + virtualCpuOversubscriptionPolicy [0..1]:
+     + virtualCpuPinning [0..1]: VirtualCpuPinning
    }
 
-   QueryCapacityRequest "1" *- "0..1" CapacityQueryFilter : ""
+   class VirtualCpuPinning {
+     + cpuPinningPolicy [0..1]:
+     + cpuPinningMap [0..1]:
+   }
+
+   class VirtualMemory {
+     + virtualMemSize [1]: Number
+     + virtualMemOversubscriptionPolicy [0..1]:
+     + numaEnabled [0..1]: Boolean
+   }
+
+   class VirtualStorage {
+     + typeofStorage [1|:
+     + sizeOfStorage [1]: Number
+   }
+
+   class VirtualNetworkInterface {
+     + networkId [0..1]: Identifier
+     + networkPortId [0..1]: Identifier
+     + ipAddress [0..N]:
+     + typeVirtualNic [1]:
+     + typeConfiguration [0..N]:
+     + macAddress [0..1]:
+     + bandwidth [0..1]: Number
+     + nicAccelerationCapabilities [0..N]:
+     + metadata [0..N]: KeyValue
+   }
+
+   ComputeFlavor "1" *- "1" VirtualCpu : ""
+   ComputeFlavor "1" *- "1" VirtualMemory : ""
+   ComputeFlavor "1" *- "0..N" VirtualStorage : ""
+   ComputeFlavor "1" *- "0..N" VirtualNetworkInterface: ""
+   VirtualCpu "1" *- "0..1" VirtualCpuPinning : ""
    @enduml
 
 .. -*
 
-Request to find out about used, reserved and total capacity.
-A CapacityQueryFilter can be used to narrow down the capacity details returned
-in the response message.
+Virtualised Resources Capacity Management
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Input Parameters:
+Subscribe Compute Capacity Change Event
+_______________________________________
 
-* capacityQueryFilter (CapacityQueryFilterClass): Optional information to
-  narrow down the QueryCapacityRequest, for example to limit the query to given
-  resource items, or a given resource zone. The capacityQueryFilter can also
-  include a FlavorId or template ID. In this case, the QueryCapacity is a
-  request to obtain information of the number of virtual resources that can be
-  instantiated according to this flavor with the actual available capacity.
-  A timePeriod can be specified to narrow down the query to a certain period of time.
+Subscription from Consumer to VIM to be notified about compute capacity changes
 
-Application/json::
+.. http:post:: /capacity/compute/subscribe
+   :noindex:
 
-  {
-    "capacityqueryfilter": {
-      "resourceitems": "numvcinstances,virtualmemorysize",
-      "zone": "opnfv-JP7"
-    }
-  }
+   **Example request**:
 
-**QueryReply (VIM -> NFVO)**
+   .. sourcecode:: http
 
-.. uml::
+       POST /capacity/compute/subscribe HTTP/1.1
+       Accept: application/json
 
-   @startuml
-   class QueryCapacityReply {
-      + capacityInformation [0..N]: CapacityInformationClass
-      + zone [0..1]: Identifier
-      + lastUpdate [0..1]: DateTime
-      + message [0..1]: String
-   }
-
-   QueryCapacityReply "1" *- "0..N" CapacityInformationClass : ""
-   @enduml
-
-.. -*
-
-Reply Parameters:
-
-* capacityInformation [0..N] (CapacityInformationClass): Capacity information
-  matching the CapacityQueryFilter specified in the QueryCapacityRequest
-* Zone [0..1] (Identifier): Identification of the resource zone
-* lastUpdate [0..1] (DateTime): Timestamp of the capacity last update
-* message [0..1] (String): Output message that provides additional information
-  about the query capacity request
-
-Application/json::
-
-  {
-    "capacityInformation": {
-      "numvcinstances": {
-        "used": 5,
-        "reserved": 1,
-        "total": 10
-      },
-      "virtualmemorysize": {
-        "used": 4,
-        "reserved": 6,
-        "total": 16
+       {
+          "zoneId": "12345",
+          "resourceDescriptor": [
+              {
+                 "computeresourceTypeId": "vcinstances"
+              }
+          ],
+          "threshold": [
+              {
+                 "capacity_info": "available",
+                 "condition": "lt",
+                 "value": 5
+              }
+          ]
       }
-    },
-    "zone":"opnfv-JP7",
-    "lastUpdate":"2015-03-23T00:00:00Z"
-  }
 
-Notify Capacity Change Event
-____________________________
+   **Example response**:
 
-**CapacityChangeNotification (VIM -> Consumer)**
+   .. sourcecode:: http
 
-.. uml::
+       HTTP/1.1 201 CREATED
+       Content-Type: application/json
 
-   @startuml
-   class CapacityChangeNotification {
-      + capacityInformation [0..1]: CapacityInformationClass
-      + zone [0..1]: Identifier
-      + notificationTime [1]: DateTime
-      + notificationId [1]: Identifier
-   }
+       {
+          "created": "2015-09-21T00:00:00Z",
+          "capacityChangeSubscriptionId": "abcdef-ghijkl-123456789"
+       }
 
-   CapacityChangeNotification "1" *- "0..1" CapacityInformationClass : ""
-   @enduml
+   :statuscode 400: resourceDescriptor is missing
 
-.. -*
+Query Compute Capacity
+______________________
 
-Notification about capacity changes
+Request to find out about available, reserved, total and allocated compute capacity.
 
-Notify Parameters:
+.. http:get:: /capacity/compute/query
+   :noindex:
 
-* capacityInformation [0..1] (CapacityInformationClass): Capacity information
-  matching a given subscription request defined by the Consumer
-* zone [0..1] (Identifier): Identification of the resource zone
-* notificationTime [1] (DateTime): Timestamp when the capacity change is
-  detected
-* notificationId [1]: Identification of the capacity change event notification
-  issued by the VIM.
+   **Example request**:
 
-Application/json::
+   .. sourcecode:: http
 
-  {
-    "capacity": {
-      "numvcinstances": {
-        "used": 16,
-        "reserved": 2,
-        "total": 20
+      GET /capacity/compute/query HTTP/1.1
+      Accept: application/json
+
+      {
+        "zoneId": "12345",
+        "resourceDescriptor":  {
+             "computeresourceTypeId": "vcinstances"
+        },
+        "timePeriod":  {
+             "startTime": "2015-09-21T00:00:00Z",
+             "stopTime": "2015-09-21T00:05:30Z"
+        }
       }
-    },
-    "zone": "opnfv-JP8",
-    "notificationTime":"2015-03-23T12:00:05Z",
-    "notificationId":"abcdef-ghijkl-123456789"
-  }
 
-Resource Reservation
-^^^^^^^^^^^^^^^^^^^^
+   **Example response**:
 
-Create Resource Reservation
-___________________________
+   .. sourcecode:: http
 
-**CreateResourceReservationRequest (NFVO -> VIM)**
+       HTTP/1.1 200 OK
+       Content-Type: application/json
 
-.. uml::
+       {
+          "zoneId": "12345",
+          "lastUpdate": "2015-09-21T00:03:20Z",
+          "capacityInformation": {
+             "available": 4,
+             "reserved": 17,
+             "total": 50,
+             "allocated": 29
+          }
+       }
 
-   @startuml
-   class CreateResourceReservationRequest {
-      + startTime [0..1]: DateTime
-      + endTime [0..1]: DateTime
-      + expiry [0..1]: DateTime
-      + virtualizationContainerReservation [0..N]: VirtualizationContainerReservationClass
-      + computePoolReservation [0..1]: ComputePoolReservationClass
-      + storagePoolReservation [0..1]: StoragePoolReservationClass
-      + networkReservation [0..1]: NetworkReservationClass
-      + zone [0..1]: Identifier
-   }
+   :query limit: Default is 10.
+   :statuscode 404: resource zone unknown
 
-   class VirtualizationContainerReservationClass {
-      + containerId [1]: Identifier
-      + flavor [0..1]: FlavorClass
-   }
-
-   CreateResourceReservationRequest "1" *- "0..N" VirtualizationContainerReservationClass : ""
-   VirtualizationContainerReservationClass "1" *-- "0..1" FlavorClass
-   CreateResourceReservationRequest "1" *-- "0..1" ComputePoolReservationClass
-   CreateResourceReservationRequest "1" *-- "0..1" StoragePoolReservationClass
-   CreateResourceReservationRequest "1" *-- "0..1" NetworkReservationClass
-   @enduml
-
-.. -*
-
-**CreateResourceReservationReply (VIM -> NFVO)**
-
-.. uml::
-
-   @startuml
-   class CreateResourceReservationReply {
-      + reservationId [1]: Identifier
-      + virtualizationContainerReserved [0..N]: VirtualizationContainerReservedClass
-      + computePoolReserved [0..1]: ComputePoolReservedClass
-      + storagePoolReserved [0..1]: StoragePoolReservedClass
-      + networkReserved [0..1]: NetworkReservedClass
-      + reservationStatus [1]: String
-      + startTime [0..1]: DateTime
-      + endTime [0..1]: DateTime
-      + message [0..1]: String
-   }
-
-   class VirtualizationContainerReservedClass {
-      + containerId [1]: Identifier
-      + flavor [0..1]: FlavorClass
-   }
-
-   CreateResourceReservationReply "1" *- "0..N" VirtualizationContainerReservedClass : ""
-   VirtualizationContainerReservedClass "1" *-- "0..1" FlavorClass
-   CreateResourceReservationReply "1" *-- "0..1" ComputePoolReservedClass
-   CreateResourceReservationReply "1" *-- "0..1" StoragePoolReservedClass
-   CreateResourceReservationReply "1" *-- "0..1" NetworkReservedClass
-   @enduml
-
-.. -*
-
-Subscribe / Notify Reservation Event
+Notify Compute Capacity Change Event
 ____________________________________
 
-**SubscribeRequest (Consumer -> VIM)**
+Notification about compute capacity changes
 
-.. uml::
+.. http:post:: /capacity/compute/notification
+   :noindex:
 
-   @startuml
-   class SubscribeRequest {
-      + reservationId [1]: Identifier
-      + eventType [0..1]: String
-   }
-   @enduml
+   **Example notification**:
 
-**SubscribeReply (VIM -> Consumer)**
+   .. sourcecode:: http
 
-.. uml::
+      Content-Type: application/json
 
-   @startuml
-   class SubscribeReply {
-      + notificationId [1]: Identifier
-      + created [1]: DateTime
-      + message [0..1]: String
-   }
-   @enduml
+      {
+           "zoneId": "12345",
+           "notificationId": "zyxwvu-tsrqpo-987654321",
+           "capacityChangeTime": "2015-09-21T00:03:20Z",
+           "resourceDescriptor": {
+              "computeresourceTypeId": "vcinstances"
+           },
+           "capacityInformation": {
+              "available": 4,
+              "reserved": 17,
+              "total": 50,
+              "allocated": 29
+           }
+      }
 
-**NotifyReservationEvent (VIM -> Consumer)**
+Compute Resource Reservation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. uml::
+Create Compute Resource Reservation
+___________________________________
 
-   @startuml
-   class ReservationEventNotification {
-      + notificationId [1]: Identifier
-      + reservationId [1]: Identifier
-      + notificationTime [1]: DateTime
-      + vimId [1]: Identifier
-      + eventType [1]: String
-      + eventDetails [1]: String
-      + message [0..1]: String
-   }
-   @enduml
+Request the reservation of compute resource capacity and/or virtualized containers
 
-Query Resource Reservation
-__________________________
+.. http:post:: /reservation/compute/create
+   :noindex:
 
-**QueryResourceReservationRequest (Consumer -> VIM)**
+   **Example request**:
 
-.. uml::
+   .. sourcecode:: http
 
-   @startuml
-   class QueryResourceReservationRequest {
-      + reservationQueryFilter [0..1]: ReservationQueryFilterClass
-   }
+       POST /reservation/compute/create HTTP/1.1
+       Accept: application/json
 
-   QueryResourceReservationRequest "1" *- "0..1" ReservationQueryFilterClass : ""
-   @enduml
+       {
+           "startTime": "2015-09-21T01:00:00Z",
+           "computePoolReservation": {
+               "numCpuCores": 20,
+               "numVcInstances": 5,
+               "virtualMemSize": 10
+           }
+       }
 
-.. -*
+   **Example response**:
 
-**QueryResourceReservationReply (VIM -> Consumer)**
+   .. sourcecode:: http
 
-.. uml::
+       HTTP/1.1 201 CREATED
+       Content-Type: application/json
 
-   @startuml
-   class CreateResourceReservationReply {
-      + reservationId [1]: Identifier
-      + virtualizationContainerReserved [0..N]: VirtualizationContainerReservedClass
-      + computePoolReserved [0..1]: ComputePoolReservedClass
-      + storagePoolReserved [0..1]: StoragePoolReservedClass
-      + networkReserved [0..1]: NetworkReservedClass
-      + reservationStatus [1]: String
-      + message [0..1]: String
-   }
-
-   class VirtualizationContainerReservedClass {
-      + containerId [1]: Identifier
-      + flavor [0..1]: FlavorClass
-   }
-
-   CreateResourceReservationReply "1" *- "0..N" VirtualizationContainerReservedClass : ""
-   VirtualizationContainerReservedClass "1" *-- "0..1" FlavorClass
-   CreateResourceReservationReply "1" *-- "0..1" ComputePoolReservedClass
-   CreateResourceReservationReply "1" *-- "0..1" StoragePoolReservedClass
-   CreateResourceReservationReply "1" *-- "0..1" NetworkReservedClass
-   @enduml
-
-.. -*
-
-Update Resource Reservation
-___________________________
-
-**UpdateResourceReservationRequest (NFVO ->VIM)**
-
-.. uml::
-
-   @startuml
-   class UpdateResourceReservationRequest {
-      + reservationId [1]: Identifier
-      + start [0..1]: DateTime
-      + end [0..1]: DateTime
-      + expiry [0..1]: DateTime
-      + virtualizationContainerReservation [0..N]: VirtualizationContainerReservationClass
-      + computePoolReservation [0..1]: ComputePoolReservationClass
-      + storagePoolReservation [0..1]: StoragePoolReservationClass
-      + networkReservation [0..1]: NetworkReservationClass
-      + zone [0..1]: Identifier
-   }
-
-   class VirtualizationContainerReservationClass {
-      + containerId [1]: Identifier
-      + flavor [0..1]: FlavorClass
-   }
-
-   UpdateResourceReservationRequest "1" *- "0..N" VirtualizationContainerReservationClass : ""
-   VirtualizationContainerReservationClass "1" *-- "0..1" FlavorClass
-   UpdateResourceReservationRequest "1" *-- "0..1" ComputePoolReservationClass
-   UpdateResourceReservationRequest "1" *-- "0..1" StoragePoolReservationClass
-   UpdateResourceReservationRequest "1" *-- "0..1" NetworkReservationClass
-   @enduml
-
-.. -*
-
-**UpdateResourceReservationReply (VIM -> NFVO)**
-
-.. uml::
-
-   @startuml
-   class UpdateResourceReservationReply {
-      + reservationId [1]: Identifier
-      + virtualizationContainerReserved [0..N]: VirtualizationContainerReservedClass
-      + computePoolReserved [0..1]: ComputePoolReservedClass
-      + storagePoolReserved [0..1]: StoragePoolReservedClass
-      + networkReserved [0..1]: NetworkReservedClass
-      + reservationStatus [1]: String
-      + message [0..1]: String
-   }
-
-   class VirtualizationContainerReservedClass {
-      + containerId [1]: Identifier
-      + flavor [0..1]: FlavorClass
-   }
-
-   UpdateResourceReservationReply "1" *- "0..N" VirtualizationContainerReservedClass : ""
-   VirtualizationContainerReservedClass "1" *-- "0..1" FlavorClass
-   UpdateResourceReservationReply "1" *-- "0..1" ComputePoolReservedClass
-   UpdateResourceReservationReply "1" *-- "0..1" StoragePoolReservedClass
-   UpdateResourceReservationReply "1" *-- "0..1" NetworkReservedClass
-   @enduml
-
-.. -*
-
-Release Resource Reservation
-____________________________
-
-**ReleaseResourceReservationRequest (NFVO -> VIM)**
-
-.. uml::
-
-   @startuml
-   class ReleaseResourceReservationRequest {
-      + reservationId [1]: Identifier
-   }
-   @enduml
-
-**ReleaseResourceReservationReply (VIM -> NFVO)**
-
-.. uml::
-
-   @startuml
-   class ReleaseResourceReservationReply {
-      + reservationId [1]: Identifier
-      + message [0..1]: String
-   }
-   @enduml
+       {
+          "reservationData": {
+             "startTime": "2015-09-21T01:00:00Z",
+             "reservationStatus": "initialized",
+             "reservationId": "xxxx-yyyy-zzzz",
+             "computePoolReserved": {
+                 "numCpuCores": 20,
+                 "numVcInstance": 5,
+                 "virtualMemSize": 10,
+                 "zoneId": "23456"
+             }
+          }
+       }
 
 
 Detailed Message Flows
