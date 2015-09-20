@@ -4,6 +4,12 @@
 
  http://creativecommons.org/licenses/by/3.0/legalcode
 
+.. image:: images/opnfv-logo.png
+  :height: 40
+  :width: 200
+  :alt: OPNFV
+  :align: left
+
 .. title::
    Promise
 
