@@ -8,5 +8,9 @@ ANNEX B: DOCUMENT REVISION
 |         |  - Reference to YangForge Framework     |
 |         |  - Corrections to figure 3.1            |
 +---------+-----------------------------------------+
-|         |                                         |
+| 1.0.2   | JIRA: PROMISE-11                        |
+|         |  - OPNFV Logo Added                     |
+|         |  - Alignment to ETSI NFV Specs          |
++---------+-----------------------------------------+
+|         |                                         |
 +---------+-----------------------------------------+
