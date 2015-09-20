@@ -2,11 +2,8 @@ BUILDDIR := build
 
 .PHONY: default clean
 
-default: plantuml.jar
+default:
 	tox
 
-plantuml.jar:
-	wget 'http://downloads.sourceforge.net/project/plantuml/plantuml.jar'
-
 clean:
-	rm -rf .tox build plantuml.jar
+	rm -rf .tox build

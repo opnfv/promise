@@ -31,6 +31,11 @@ mapping/translating the OPNFV terms to terminology used in other contexts.
    Physical resource
       Actual resources in NFVI; not visible to Consumer.
 
+   Resource zone
+      A set of NFVI hardware and software resources logically grouped
+      according to physical isolation and redundancy capabilities or to
+      certain administrative policies for the NFVI [NFVIFA010]_
+
    VIM
       Virtualized Infrastructure Manager; functional block that is responsible
       for controlling and managing the NFVI compute, storage and network
