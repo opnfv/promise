@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da6255ed_120e3235",
+        "filename": "requirements/05-impl.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 253
+      },
+      "writtenOn": "2015-09-29T04:25:48Z",
+      "side": 1,
+      "message": "work in Progress in ETSI NFV?",
+      "range": {
+        "startLine": 8,
+        "startChar": 10,
+        "endLine": 8,
+        "endChar": 27
+      },
+      "revId": "69cb07c3bb4912dddefda6c21e0cb15085892d12",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_f2127e57",
+        "filename": "requirements/05-impl.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 253
+      },
+      "writtenOn": "2015-09-29T04:25:48Z",
+      "side": 1,
+      "message": "Isn\u0027t it endTime?",
+      "range": {
+        "startLine": 96,
+        "startChar": 14,
+        "endLine": 96,
+        "endChar": 22
+      },
+      "revId": "69cb07c3bb4912dddefda6c21e0cb15085892d12",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_72268ebc",
+        "filename": "requirements/05-impl.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 253
+      },
+      "writtenOn": "2015-09-29T04:25:48Z",
+      "side": 1,
+      "message": "Is this total number of resources offering by VIM to specific tenant? or does it include all resources?\n\nWhile some hosts down due to maintenance, only available resources decreased? I suppose that allocated resources won\u0027t be released but marked down and remain as unavailable.",
+      "range": {
+        "startLine": 113,
+        "startChar": 14,
+        "endLine": 113,
+        "endChar": 19
+      },
+      "revId": "69cb07c3bb4912dddefda6c21e0cb15085892d12",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_af2edda3",
+        "filename": "requirements/08-revision.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 253
+      },
+      "writtenOn": "2015-09-29T04:25:48Z",
+      "side": 1,
+      "message": "I think adding quick note regarding this change, since most reader may be not aware of JIRA as our internal task/issue tracker.",
+      "revId": "69cb07c3bb4912dddefda6c21e0cb15085892d12",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_8f2b1994",
+        "filename": "requirements/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 253
+      },
+      "writtenOn": "2015-09-29T04:25:48Z",
+      "side": 1,
+      "message": "This is good change to separate from this commit or to add note in commit message at least.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 14
+      },
+      "revId": "69cb07c3bb4912dddefda6c21e0cb15085892d12",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
