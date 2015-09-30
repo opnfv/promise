@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da6255ed_1df883e4",
+        "filename": "requirements/05-impl.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2015-09-30T14:34:34Z",
+      "side": 1,
+      "message": "Both here and in ETSI NFV.\n\nETSI NFV IFA WG is still working on IFA005/006/010. \n\nAlso I want to support in the near future other use cases such as the reservation of VMs based on compute flavours",
+      "parentUuid": "da6255ed_120e3235",
+      "range": {
+        "startLine": 8,
+        "startChar": 10,
+        "endLine": 8,
+        "endChar": 27
+      },
+      "revId": "69cb07c3bb4912dddefda6c21e0cb15085892d12",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da6255ed_f2127e57",
         "filename": "requirements/05-impl.rst",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2015-09-29T04:25:48Z",
       "side": 1,
       "message": "Isn\u0027t it endTime?",
+      "range": {
+        "startLine": 96,
+        "startChar": 14,
+        "endLine": 96,
+        "endChar": 22
+      },
+      "revId": "69cb07c3bb4912dddefda6c21e0cb15085892d12",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_ddd9cb84",
+        "filename": "requirements/05-impl.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2015-09-30T14:34:34Z",
+      "side": 1,
+      "message": "Fine for me... I can highlight the changes in bold, when we (as Promise team) propose to change the name of some of the attributes or add new attributes (Stage 3 specific).",
+      "parentUuid": "da6255ed_f2127e57",
       "range": {
         "startLine": 96,
         "startChar": 14,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "da6255ed_9dba3309",
+        "filename": "requirements/05-impl.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2015-09-30T14:34:34Z",
+      "side": 1,
+      "message": "ETSI NFV IFA005 states the following:\n- TotalCapacity is fixed over time.\n- CapacityInformation can be retrieved per resource zone (this example) or for all resources managed by the VIM / OpenStack.\n\nAs you know, you can assign quotas to tenant users in OpenStack. Let\u0027s keep thinks simple now and assume the following:\n- One single OpenStack availability zone per tenant user.\n- Do the following mapping: total (ETSI NFV) \u003d quota (Yangforge).\n\nDoes this make sense?\n\nWhen it comes to NFVI maintenance, the VIM may also decide to decrease the number of reserved resources by sending a notification event to the NFVO for \"non-active\" reservations (i.e. startTime in the future)",
+      "parentUuid": "da6255ed_72268ebc",
+      "range": {
+        "startLine": 113,
+        "startChar": 14,
+        "endLine": 113,
+        "endChar": 19
+      },
+      "revId": "69cb07c3bb4912dddefda6c21e0cb15085892d12",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da6255ed_af2edda3",
         "filename": "requirements/08-revision.rst",
         "patchSetId": 5
@@ -88,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "da6255ed_7d377fb1",
+        "filename": "requirements/08-revision.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2015-09-30T14:34:34Z",
+      "side": 1,
+      "message": "Will do",
+      "parentUuid": "da6255ed_af2edda3",
+      "revId": "69cb07c3bb4912dddefda6c21e0cb15085892d12",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da6255ed_8f2b1994",
         "filename": "requirements/index.rst",
         "patchSetId": 5
@@ -99,6 +189,30 @@
       "writtenOn": "2015-09-29T04:25:48Z",
       "side": 1,
       "message": "This is good change to separate from this commit or to add note in commit message at least.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 14
+      },
+      "revId": "69cb07c3bb4912dddefda6c21e0cb15085892d12",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_5d3cbb93",
+        "filename": "requirements/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2015-09-30T14:34:34Z",
+      "side": 1,
+      "message": "Will add a note in the commit message",
+      "parentUuid": "da6255ed_8f2b1994",
       "range": {
         "startLine": 7,
         "startChar": 0,
