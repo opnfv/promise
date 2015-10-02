@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "da6255ed_f8affd29",
+        "filename": "requirements/05-impl.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 253
+      },
+      "writtenOn": "2015-10-02T11:35:15Z",
+      "side": 1,
+      "message": "OK, thanks!",
+      "parentUuid": "da6255ed_1df883e4",
+      "range": {
+        "startLine": 8,
+        "startChar": 10,
+        "endLine": 8,
+        "endChar": 27
+      },
+      "revId": "69cb07c3bb4912dddefda6c21e0cb15085892d12",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da6255ed_f2127e57",
         "filename": "requirements/05-impl.rst",
         "patchSetId": 5
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "da6255ed_d8ac3938",
+        "filename": "requirements/05-impl.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 253
+      },
+      "writtenOn": "2015-10-02T11:35:15Z",
+      "side": 1,
+      "message": "So this could be part of the new item we\u0027ve created in JIRA.\n\n  https://jira.opnfv.org/browse/PROMISE-53\n\nI think we should use a parameter name similar to the information element in chapter 3.\n\n  http://artifacts.opnfv.org/promise/html/03-arch.html#id2\n\nBut, not so strong opinion, anyhow we can cover this by PROMISE-53 i guess.",
+      "parentUuid": "da6255ed_ddd9cb84",
+      "range": {
+        "startLine": 96,
+        "startChar": 14,
+        "endLine": 96,
+        "endChar": 22
+      },
+      "revId": "69cb07c3bb4912dddefda6c21e0cb15085892d12",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da6255ed_72268ebc",
         "filename": "requirements/05-impl.rst",
         "patchSetId": 5
@@ -131,6 +179,30 @@
       "side": 1,
       "message": "ETSI NFV IFA005 states the following:\n- TotalCapacity is fixed over time.\n- CapacityInformation can be retrieved per resource zone (this example) or for all resources managed by the VIM / OpenStack.\n\nAs you know, you can assign quotas to tenant users in OpenStack. Let\u0027s keep thinks simple now and assume the following:\n- One single OpenStack availability zone per tenant user.\n- Do the following mapping: total (ETSI NFV) \u003d quota (Yangforge).\n\nDoes this make sense?\n\nWhen it comes to NFVI maintenance, the VIM may also decide to decrease the number of reserved resources by sending a notification event to the NFVO for \"non-active\" reservations (i.e. startTime in the future)",
       "parentUuid": "da6255ed_72268ebc",
+      "range": {
+        "startLine": 113,
+        "startChar": 14,
+        "endLine": 113,
+        "endChar": 19
+      },
+      "revId": "69cb07c3bb4912dddefda6c21e0cb15085892d12",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_586849f5",
+        "filename": "requirements/05-impl.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 253
+      },
+      "writtenOn": "2015-10-02T11:35:15Z",
+      "side": 1,
+      "message": "Thank you for this clarification. Assuming one tenant in VIM can be acceptable as this level of example.\n\nMaybe we should define these capacity information in the information elements... But, it is different change.\n\nhttp://artifacts.opnfv.org/promise/html/03-arch.html#id2",
+      "parentUuid": "da6255ed_9dba3309",
       "range": {
         "startLine": 113,
         "startChar": 14,
