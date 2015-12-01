@@ -1,19 +1,3 @@
-..
- This work is licensed under a Creative Commons Attribution 3.0 Unported
- License.
-
- http://creativecommons.org/licenses/by/3.0/legalcode
-
-.. image:: images/opnfv-logo.png
-  :height: 40
-  :width: 200
-  :alt: OPNFV
-  :align: left
-
-.. title::
-   Promise
-
-
 ****************************
 Promise: Resource Management
 ****************************
@@ -60,6 +44,3 @@ Promise: Resource Management
    07-schemas.rst
    08-revision.rst
    99-references.rst
-
-..
-  vim: set tabstop=4 expandtab textwidth=80:
