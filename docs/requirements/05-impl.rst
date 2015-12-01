@@ -377,33 +377,33 @@ _______________________________________
 Susbcription from Consumer to VIM to be notified about network capacity changes
 
 .. http:post:: /capacity/network/subscribe
-   :noindex:
+    :noindex:
 
-   **Example request**:
+    **Example request**:
 
-   .. sourcecode:: http
+    .. sourcecode:: http
 
         POST /capacity/network/subscribe HTTP/1.1
         Accept: application/json
 
         {
-           "resourceDescriptor": [
+            "resourceDescriptor": [
                 {
                     "networkResourceTypeId": "publicIps"
                 }
-           ],
-           "threshold": [
-               {
-                  "capacity_info": "available",
-                  "condition": "lt",
-                  "value": 5
-               }
-           ]
-        }
+            ],
+            "threshold": [
+                {
+                    "capacity_info": "available",
+                    "condition": "lt",
+                    "value": 5
+                }
+            ]
+        }
 
-     **Example response**:
+    **Example response**:
 
-     .. sourcecode:: http
+    .. sourcecode:: http
 
         HTTP/1.1 201 CREATED
         Content-Type: application/json
@@ -419,41 +419,41 @@ ______________________
 Request to find out about available, reserved, total and allocated network capacity.
 
 .. http:get:: /capacity/network/query
-   :noindex:
+    :noindex:
 
-   **Example request**:
+    **Example request**:
 
-   .. sourcecode:: http
+    .. sourcecode:: http
 
-      GET /capacity/network/query HTTP/1.1
-      Accept: application/json
+        GET /capacity/network/query HTTP/1.1
+        Accept: application/json
 
-      {
-        "resourceDescriptor":  {
-            "networkResourceTypeId": "publicIps"
-        },
-        "timePeriod":  {
-            "startTime": "2015-09-28T00:00:00Z",
-            "stopTime": "2015-09-28T00:05:30Z"
+        {
+            "resourceDescriptor":  {
+                "networkResourceTypeId": "publicIps"
+            },
+            "timePeriod":  {
+                "startTime": "2015-09-28T00:00:00Z",
+                "stopTime": "2015-09-28T00:05:30Z"
+            }
         }
-     }
 
-   **Example response**:
+    **Example response**:
 
-   .. sourcecode:: http
+    .. sourcecode:: http
 
-      HTTP/1.1 200 OK
-      Content-Type: application/json
+        HTTP/1.1 200 OK
+        Content-Type: application/json
 
-      {
-        "lastUpdate": "2015-09-28T00:02:10Z",
-        "capacityInformation": {
-            "available": 4,
-            "reserved": 10,
-            "total": 64,
-            "allocated": 50
+        {
+            "lastUpdate": "2015-09-28T00:02:10Z",
+            "capacityInformation": {
+                "available": 4,
+                "reserved": 10,
+                "total": 64,
+                "allocated": 50
+            }
         }
-      }
 
 Notify Network Capacity Change Event
 ____________________________________
@@ -461,27 +461,27 @@ ____________________________________
 Notification about network capacity changes
 
 .. http:post:: /capacity/network/notification
-   :noindex:
+    :noindex:
 
-   **Example notification**:
+    **Example notification**:
 
-   .. sourcecode:: http
+    .. sourcecode:: http
 
-      Content-Type: application/json
+        Content-Type: application/json
 
-      {
-         "notificationId": "yxwvut-srqpon-876543210",
-         "capacityChangeTime": "2015-09-28T00:02:10Z",
-         "resourceDescriptor": {
-            "networkResourceTypeId": "publicIps"
-         },
-         "capacityInformation": {
-           "available": 4,
-           "reserved": 10,
-           "total": 64,
-           "allocated": 50
-         }
-     }
+        {
+            "notificationId": "yxwvut-srqpon-876543210",
+            "capacityChangeTime": "2015-09-28T00:02:10Z",
+            "resourceDescriptor": {
+                "networkResourceTypeId": "publicIps"
+            },
+            "capacityInformation": {
+                "available": 4,
+                "reserved": 10,
+                "total": 64,
+                "allocated": 50
+            }
+        }
 
 Network Resource Reservation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -492,42 +492,42 @@ ___________________________________
 Request the reservation of network resource capacity and/or virtual networks, network ports
 
 .. http:post:: /reservation/network/create
-   :noindex:
+    :noindex:
 
-   **Example request**:
+    **Example request**:
 
-   .. sourcecode:: http
+    .. sourcecode:: http
 
-      POST /reservation/network/create HTTP/1.1
-      Accept: application/json
+        POST /reservation/network/create HTTP/1.1
+        Accept: application/json
 
-      {
-         "startTime": "2015-09-28T01:00:00Z",
-         "networkReservation": {
-            "numPublicIps": 2
-         }
-      }
+        {
+            "startTime": "2015-09-28T01:00:00Z",
+            "networkReservation": {
+                "numPublicIps": 2
+            }
+        }
 
-   **Example response**:
+    **Example response**:
 
-   .. sourcecode:: http
+    .. sourcecode:: http
 
-       HTTP/1.1 201 CREATED
-       Content-Type: application/json
+        HTTP/1.1 201 CREATED
+        Content-Type: application/json
 
-       {
-          "reservationData": {
-              "startTime": "2015-09-28T01:00:00Z",
-              "reservationStatus": "initialized",
-              "reservationId": "wwww-xxxx-yyyy",
-              "networkReserved": {
-                  "publicIps": [
-                      "10.2.91.60",
-                      "10.2.91.61"
-                  ]
-              }
-          }
-       }
+        {
+            "reservationData": {
+                "startTime": "2015-09-28T01:00:00Z",
+                "reservationStatus": "initialized",
+                "reservationId": "wwww-xxxx-yyyy",
+                "networkReserved": {
+                    "publicIps": [
+                        "10.2.91.60",
+                        "10.2.91.61"
+                    ]
+                }
+            }
+        }
 
 Query Network Resource Reservation
 __________________________________
@@ -535,41 +535,41 @@ __________________________________
 Request to find out about reserved network resources that the consumer has access to.
 
 .. http:get:: /reservation/network/query
-   :noindex:
+    :noindex:
 
-   **Example request**:
+    **Example request**:
 
-   .. sourcecode:: http
+    .. sourcecode:: http
 
-      GET /reservation/network/query HTTP/1.1
-      Accept: application/json
+        GET /reservation/network/query HTTP/1.1
+        Accept: application/json
 
-      {
-        "queryReservationFilter": [
-           {
-              "reservationId": "wwww-xxxx-yyyy"
-           }
-        ]
-      }
-
-   **Example response**:
-
-   .. sourcecode:: http
-
-      HTTP/1.1 200 OK
-      Content-Type: application/json
-
-      {
-         "reservationData": {
-            "startTime": "2015-09-28T01:00:00Z",
-            "reservationStatus": "active",
-            "reservationId": "wwww-xxxx-yyyy",
-            "networkReserved": "publicIps": [
-              "10.2.91.60",
-              "10.2.91.61"
+        {
+            "queryReservationFilter": [
+                {
+                    "reservationId": "wwww-xxxx-yyyy"
+                }
             ]
-         }
-      }
+        }
+
+    **Example response**:
+
+    .. sourcecode:: http
+
+       HTTP/1.1 200 OK
+       Content-Type: application/json
+
+       {
+           "reservationData": {
+               "startTime": "2015-09-28T01:00:00Z",
+               "reservationStatus": "active",
+               "reservationId": "wwww-xxxx-yyyy",
+               "networkReserved": "publicIps": [
+                   "10.2.91.60",
+                   "10.2.91.61"
+               ]
+           }
+       }
 
 Update Network Resource Reservation
 ___________________________________
@@ -577,47 +577,47 @@ ___________________________________
 Request to update network resource reservation
 
 .. http:post:: /reservation/network/update
-   :noindex:
+    :noindex:
 
-   **Example request**:
+    **Example request**:
 
-   .. sourcecode:: http
+    .. sourcecode:: http
 
-        POST /reservation/network/update HTTP/1.1
-        Accept: application/json
+         POST /reservation/network/update HTTP/1.1
+         Accept: application/json
+
+         {
+             "startTime": "2015-09-21T16:00:00Z",
+             "reservationId": "wwww-xxxx-yyyy"
+         }
+
+    **Example response**:
+
+    .. sourcecode:: http
+
+        HTTP/1.1 201 CREATED
+        Content-Type: application/json
 
         {
-           "startTime": "2015-09-21T16:00:00Z",
-           "reservationId": "wwww-xxxx-yyyy"
+            "reservationData": {
+                "startTime": "2015-09-21T16:00:00Z",
+                "reservationStatus": "active",
+                "reservationId": "wwww-xxxx-yyyy",
+                "networkReserved": {
+                    "publicIps": [
+                        "10.2.91.60",
+                        "10.2.91.61"
+                     ]
+                }
+            }
         }
-
-   **Example response**:
-
-   .. sourcecode:: http
-
-       HTTP/1.1 201 CREATED
-       Content-Type: application/json
-
-       {
-          "reservationData": {
-              "startTime": "2015-09-21T16:00:00Z",
-              "reservationStatus": "active",
-              "reservationId": "wwww-xxxx-yyyy",
-              "networkReserved": {
-                  "publicIps": [
-                      "10.2.91.60",
-                      "10.2.91.61"
-                  ]
-              }
-          }
-       }
 
 Terminate Network Resource Reservation
 ______________________________________
 Request to terminate a network resource reservation
 
 .. http:delete:: /reservation/network/(reservation_id)
-   :noindex:
+    :noindex:
 
 Virtualised Storage Resources
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -642,16 +642,16 @@ Subscription from Consumer to VIM to be notified about storage capacity changes
 
         {
            "resourceDescriptor": [
-              {
-                 "storageResourceTypeId": "volumes"
-              }
+               {
+                   "storageResourceTypeId": "volumes"
+               }
            ],
            "threshold": [
-              {
-                "capacity_info": "available",
-                "condition": "lt",
-                "value": 3
-              }
+               {
+                   "capacity_info": "available",
+                   "condition": "lt",
+                   "value": 3
+               }
            ]
         }
 
@@ -659,13 +659,13 @@ Subscription from Consumer to VIM to be notified about storage capacity changes
 
     .. sourcecode:: http
 
-       HTTP/1.1 201 CREATED
-       Content-Type: application/json
+        HTTP/1.1 201 CREATED
+        Content-Type: application/json
 
-       {
-          "created": "2015-09-28T12:00:00Z",
-          "capacityChangeSubscriptionId": "cdefgh-ijklmn-345678901"
-       }
+        {
+            "created": "2015-09-28T12:00:00Z",
+            "capacityChangeSubscriptionId": "cdefgh-ijklmn-345678901"
+        }
 
 Query Storage Capacity
 ______________________
@@ -683,13 +683,13 @@ Request to find out about available, reserved, total and allocated storage capac
         Accept: application/json
 
         {
-           "resourceDescriptor": {
-              "storageResourceTypeId": "volumes"
-           },
-           "timePeriod":  {
-             "startTime": "2015-09-28T12:00:00Z",
-             "stopTime": "2015-09-28T12:04:45Z"
-           }
+            "resourceDescriptor": {
+                "storageResourceTypeId": "volumes"
+            },
+            "timePeriod":  {
+                "startTime": "2015-09-28T12:00:00Z",
+                "stopTime": "2015-09-28T12:04:45Z"
+            }
         }
 
     **Example response**:
@@ -702,10 +702,10 @@ Request to find out about available, reserved, total and allocated storage capac
        {
            "lastUpdate": "2015-09-28T12:01:35Z",
            "capacityInformation": {
-              "available": 2,
-              "reserved": 4,
-              "total": 10,
-              "allocated": 4
+               "available": 2,
+               "reserved": 4,
+               "total": 10,
+               "allocated": 4
            }
        }
 
@@ -715,26 +715,26 @@ ____________________________________
 Notification about storage capacity changes
 
 .. http:post:: /capacity/storage/notification
-   :noindex:
+    :noindex:
 
-   **Example notification**:
+    **Example notification**:
 
-   .. sourcecode:: http
+    .. sourcecode:: http
 
-       Content-Type: application/json
+        Content-Type: application/json
 
-       {
-          "notificationId": "xwvuts-rqponm-765432109",
-          "capacityChangeTime": "2015-09-28T12:01:35Z",
-          "resourceDescriptor": {
-              "storageResourceTypeId": "volumes"
-          },
-          "capacityInformation": {
-             "available": 2,
-             "reserved": 4,
-             "total": 10,
-             "allocated": 4
-          }
+        {
+            "notificationId": "xwvuts-rqponm-765432109",
+            "capacityChangeTime": "2015-09-28T12:01:35Z",
+            "resourceDescriptor": {
+                "storageResourceTypeId": "volumes"
+            },
+            "capacityInformation": {
+                "available": 2,
+                "reserved": 4,
+                "total": 10,
+                "allocated": 4
+            }
        }
 
 Storage Resource Reservation
@@ -746,85 +746,85 @@ ___________________________________
 Request the reservation of storage resource capacity
 
 .. http:post:: /reservation/storage/create
-   :noindex:
+    :noindex:
 
-   **Example request**:
+    **Example request**:
 
-   .. sourcecode:: http
+    .. sourcecode:: http
 
-      POST /reservation/storage/create HTTP/1.1
-      Accept: application/json
+        POST /reservation/storage/create HTTP/1.1
+        Accept: application/json
 
-      {
-          "startTime": "2015-09-28T13:00:00Z",
-          "storagePoolReservation": {
-             "storageSize": 10,
-             "numSnapshots": 3,
-             "numVolumes": 2
-          }
-      }
+        {
+            "startTime": "2015-09-28T13:00:00Z",
+            "storagePoolReservation": {
+                "storageSize": 10,
+                "numSnapshots": 3,
+                "numVolumes": 2
+            }
+        }
 
-   **Example response**:
+    **Example response**:
 
-   .. sourcecode:: http
+    .. sourcecode:: http
 
-      HTTP/1.1 201 CREATED
-      Content-Type: application/json
+        HTTP/1.1 201 CREATED
+        Content-Type: application/json
 
-      {
-          "reservationData": {
-              "startTime": "2015-09-28T13:00:00Z",
-              "reservationStatus": "initialized",
-              "reservationId": "vvvv-wwww-xxxx",
-              "storagePoolReserved": {
-                 "storageSize": 10,
-                 "numSnapshots": 3,
-                 "numVolumes": 2
-              }
-          }
-      }
+        {
+            "reservationData": {
+                "startTime": "2015-09-28T13:00:00Z",
+                "reservationStatus": "initialized",
+                "reservationId": "vvvv-wwww-xxxx",
+                "storagePoolReserved": {
+                    "storageSize": 10,
+                    "numSnapshots": 3,
+                    "numVolumes": 2
+                }
+            }
+        }
 
 Query Storage Resource Reservation
 __________________________________
 Request to find out about reserved storage resources that the consumer has access to.
 
 .. http:get:: /reservation/storage/query
-   :noindex:
+    :noindex:
 
-   **Example request**:
+    **Example request**:
 
-   .. sourcecode:: http
+    .. sourcecode:: http
 
-      GET /reservation/storage/query HTTP/1.1
-      Accept: application/json
+        GET /reservation/storage/query HTTP/1.1
+        Accept: application/json
 
-      {
-         "queryReservationFilter": [
-             {
-                "reservationId": "vvvv-wwww-xxxx"
-             }
-         ]
-      }
+        {
+            "queryReservationFilter": [
+                {
+                    "reservationId": "vvvv-wwww-xxxx"
+                }
+            ]
+        }
 
-   **Example response**:
+    **Example response**:
 
-   .. sourcecode:: http
+    .. sourcecode:: http
 
-      HTTP/1.1 200 OK
-      Content-Type: application/json
+        HTTP/1.1 200 OK
+        Content-Type: application/json
 
-      {
-         "reservationData": {
-            "startTime": "2015-09-28T13:00:00Z",
-            "reservationStatus": "active",
-            "reservationId": "vvvv-wwww-xxxx",
-            "storagePoolReserved": {
-                 "storageSize": 10,
-                 "numSnapshots": 3,
-                 "numVolumes": 2
+        {
+            "reservationData": {
+                "startTime": "2015-09-28T13:00:00Z",
+                "reservationStatus": "active",
+                "reservationId": "vvvv-wwww-xxxx",
+                "storagePoolReserved": {
+                    "storageSize": 10,
+                    "numSnapshots": 3,
+                    "numVolumes": 2
+                }
             }
-         }
-      }
+        }
 
 Update Storage Resource Reservation
 ___________________________________
@@ -832,58 +832,58 @@ ___________________________________
 Request to update storage resource reservation
 
 .. http:post:: /reservation/storage/update
-   :noindex:
+    :noindex:
 
-   **Example request**:
+    **Example request**:
 
-   .. sourcecode:: http
+    .. sourcecode:: http
 
-	POST /reservation/storage/update HTTP/1.1
+        POST /reservation/storage/update HTTP/1.1
         Accept: application/json
 
-	{
-           "startTime": "2015-09-20T23:00:00Z",
-           "reservationId": "vvvv-wwww-xxxx"
-	}
+	    {
+            "startTime": "2015-09-20T23:00:00Z",
+            "reservationId": "vvvv-wwww-xxxx"
+	    }
 
-   **Example response**:
+    **Example response**:
 
-   .. sourcecode:: http
+    .. sourcecode:: http
 
-       HTTP/1.1 201 CREATED
-       Content-Type: application/json
+        HTTP/1.1 201 CREATED
+        Content-Type: application/json
 
-       {
-          "reservationData": {
-              "startTime": "2015-09-20T23:00:00Z",
-	      "reservationStatus": "active",
-              "reservationId": "vvvv-wwww-xxxx",
-              "storagePoolReserved": {
-                  "storageSize": 10,
-                  "numSnapshots": 3,
-                  "numVolumes": 2
-              }
-          }
-       }
+        {
+            "reservationData": {
+                "startTime": "2015-09-20T23:00:00Z",
+	            "reservationStatus": "active",
+                "reservationId": "vvvv-wwww-xxxx",
+                "storagePoolReserved": {
+                    "storageSize": 10,
+                    "numSnapshots": 3,
+                    "numVolumes": 2
+                }
+            }
+        }
 
 Terminate Storage Resource Reservation
 ______________________________________
 Request to terminate a storage resource reservation
 
 .. http:delete:: /reservation/storage/(reservation_id)
-   :noindex:
+    :noindex:
 
 Detailed Message Flows
 ----------------------
 
 Resource Capacity Management
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. figure:: images/figure5.png
-   :name: figure5
-   :width: 90%
+    :name: figure5
+    :width: 90%
 
-   Capacity Management Scenario
+    Capacity Management Scenario
 
 :numref:`figure5` shows a detailed message flow between the consumers and the
 functional blocks inside the VIM and has the following steps:
@@ -901,13 +901,13 @@ Step 4: The consumer queries the Capacity Manager to retrieve capacity detailed
 information
 
 Resource Reservation
-^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~
 
 .. figure:: images/figure6.png
-   :name: figure6
-   :width: 90%
+    :name: figure6
+    :width: 90%
 
-   Resource Reservation for Future Use Scenario
+    Resource Reservation for Future Use Scenario
 
 :numref:`figure6` shows a detailed message flow between the consumers and
 the functional blocks inside the VIM and has the following steps:

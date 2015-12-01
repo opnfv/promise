@@ -1,4 +1,3 @@
-*.egg-info
-.tox
-build
-plantuml.jar
+/build/
+/output/
+/releng/
