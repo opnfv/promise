@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a5c5d37_d20f56e0",
+        "filename": "docs/requirements/02-usecase.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-12-09T12:49:57Z",
+      "side": 1,
+      "message": "okay.",
+      "parentUuid": "9a5c5d37_526c869c",
+      "revId": "d63bbcf49d53ddd07920721a5b9b12e9d9410036",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a5c5d37_9272fe7a",
         "filename": "docs/requirements/index.rst",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2015-12-09T12:41:10Z",
       "side": 1,
       "message": "Please revert these changes. I guess you accidentially messed this up by removing newlines and such :) This is affecting the built docs, both HTML and PDF formats.",
+      "revId": "d63bbcf49d53ddd07920721a5b9b12e9d9410036",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_f20a5ad1",
+        "filename": "docs/requirements/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-12-09T12:49:57Z",
+      "side": 1,
+      "message": "Seems this was caused by the Eclipse Rest Editor. Sorry.",
+      "parentUuid": "9a5c5d37_9272fe7a",
       "revId": "d63bbcf49d53ddd07920721a5b9b12e9d9410036",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
