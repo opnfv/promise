@@ -43,4 +43,6 @@ Promise: Resource Management
    06-summary.rst
    07-schemas.rst
    08-revision.rst
+
+.. include::
    99-references.rst

@@ -5,7 +5,7 @@ Detailed northbound interface specification
 -------------------------------------------
 
 .. Note::
-   This is Work in Progress.
+   This is Work in Progress
 
 ETSI NFV IFA Information Models
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -13,8 +13,9 @@ ETSI NFV IFA Information Models
 Compute Flavor
 ^^^^^^^^^^^^^^
 
-A compute flavor includes information about number of virtual CPUs, size of virtual memory,
-size of virtual storage, and virtual network interfaces [NFVIFA005]_
+A compute flavor includes information about number of virtual CPUs, size of
+virtual memory, size of virtual storage, and virtual network interfaces
+:ref:[NFVIFA005].
 
 .. figure:: images/computeflavor.png
    :name: computeflavor

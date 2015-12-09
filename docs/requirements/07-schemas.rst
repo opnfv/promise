@@ -34,9 +34,9 @@ ANNEX A: PROMISE YANG SCHEMA BASED ON YANGFORGE
       container usage { description 'Conceptual container that should be extended';
                         config false; }
       container reserved { description 'Conceptual container that should be extended';
-                        config false; }
+                           config false; }
       container available { description 'Conceptual container that should be extended';
-			config false; }
+                            config false; }
     }
   }
 
