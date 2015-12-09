@@ -35,7 +35,8 @@ Promise: Resource Management
    :maxdepth: 4
    :numbered:
 
-   01-intro.rst
+.. include:: 01-intro.rst
+
    02-usecase.rst
    03-arch.rst
    04-gap.rst
@@ -43,4 +44,6 @@ Promise: Resource Management
    06-summary.rst
    07-schemas.rst
    08-revision.rst
+
+.. include::
    99-references.rst

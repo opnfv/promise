@@ -13,8 +13,9 @@ ETSI NFV IFA Information Models
 Compute Flavor
 ^^^^^^^^^^^^^^
 
-A compute flavor includes information about number of virtual CPUs, size of virtual memory,
-size of virtual storage, and virtual network interfaces [NFVIFA005]_
+A compute flavor includes information about number of virtual CPUs, size of
+virtual memory, size of virtual storage, and virtual network interfaces
+:ref:[NFVIFA005].
 
 .. figure:: images/computeflavor.png
    :name: computeflavor
@@ -841,10 +842,10 @@ Request to update storage resource reservation
         POST /reservation/storage/update HTTP/1.1
         Accept: application/json
 
-	    {
+       {
             "startTime": "2015-09-20T23:00:00Z",
             "reservationId": "vvvv-wwww-xxxx"
-	    }
+       }
 
     **Example response**:
 
@@ -856,7 +857,7 @@ Request to update storage resource reservation
         {
             "reservationData": {
                 "startTime": "2015-09-20T23:00:00Z",
-	            "reservationStatus": "active",
+                "reservationStatus": "active",
                 "reservationId": "vvvv-wwww-xxxx",
                 "storagePoolReserved": {
                     "storageSize": 10,
