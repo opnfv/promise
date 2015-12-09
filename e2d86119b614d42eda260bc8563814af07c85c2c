@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_377ea4af",
+        "filename": "requirements/90-annex.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 132
+      },
+      "writtenOn": "2015-12-09T09:27:38Z",
+      "side": 1,
+      "message": "Please remove whitespaces and carriage returns.",
+      "revId": "e2d86119b614d42eda260bc8563814af07c85c2c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
