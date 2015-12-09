@@ -42,5 +42,6 @@ Promise: Resource Management
    05-impl.rst
    06-summary.rst
    07-schemas.rst
+   90-annex1.rst
    08-revision.rst
    99-references.rst

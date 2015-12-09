@@ -1,10 +1,10 @@
-ANNEX B: DOCUMENT REVISION
+ANNEX C: DOCUMENT REVISION
 ==========================
 
 +---------+-----------------------------------------+
 | Version |      Description                        |
 +---------+-----------------------------------------+
-| 1.0.1   | JIRA: PROMISE-23                        |
+| 1.0.1   | JIRA: PROMISE-23                        |
 |         |  - Reference to YangForge Framework     |
 |         |  - Corrections to figure 3.1            |
 +---------+-----------------------------------------+
@@ -12,5 +12,8 @@ ANNEX B: DOCUMENT REVISION
 |         |  - OPNFV Logo Added                     |
 |         |  - Alignment to ETSI NFV Specs          |
 +---------+-----------------------------------------+
-|         |                                         |
+| 1.0.3   | JIRA: PROMISE-54                        |
+|         |  - Use case for Brahmaputra             |
++---------+-----------------------------------------+
+|         |                                         |
 +---------+-----------------------------------------+
