@@ -4,7 +4,7 @@ Gap analysis in upstream projects
 
 This section provides a list of gaps in upstream projects for realizing
 resource reservation and management. The gap analysis work focuses on the
-current OpenStack Blazar project [BLAZAR]_ in this first release.
+current OpenStack Blazar project :ref:[BLAZAR] in this first release.
 
 OpenStack
 =========
