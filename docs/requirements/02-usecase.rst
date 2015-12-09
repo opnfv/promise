@@ -6,7 +6,8 @@ Resource reservation is a basic feature in any virtualization-based network
 operation. In order to perform such resource reservation from NFVO to VIM, NFVI
 capacity information is also necessary at the NFVO side. Below, four use cases
 to show typical requirements and solutions for capacity management and resource
-reservation is presented.
+reservation is presented. A typical use case as considered for the Brahmaputra
+release is described in :ref:`uc-brahmaputra`.
 
 #.  Resource capacity management
 #.  Resource reservation for immediate use
