@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_52580656",
+        "filename": "docs/requirements/05-impl.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 132
+      },
+      "writtenOn": "2015-12-09T15:00:28Z",
+      "side": 1,
+      "message": "Whitespaces here and there.",
+      "revId": "a0b4067c0cc3a461e54b6b010f8310764fb08d73",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_3255921d",
+        "filename": "docs/requirements/05a-shim_layer.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 132
+      },
+      "writtenOn": "2015-12-09T15:00:28Z",
+      "side": 1,
+      "message": "whitespace",
+      "revId": "a0b4067c0cc3a461e54b6b010f8310764fb08d73",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_d212b661",
+        "filename": "docs/requirements/05a-shim_layer.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 132
+      },
+      "writtenOn": "2015-12-09T15:00:28Z",
+      "side": 1,
+      "message": "Please use references instead. Example: add \":name: figure5\" in to the \"..figure\" and reference to it here with \":numref:`figure5`\"",
+      "revId": "a0b4067c0cc3a461e54b6b010f8310764fb08d73",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_b2174251",
+        "filename": "docs/requirements/05a-shim_layer.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 132
+      },
+      "writtenOn": "2015-12-09T15:00:28Z",
+      "side": 1,
+      "message": "Apply figure reference here too.",
+      "revId": "a0b4067c0cc3a461e54b6b010f8310764fb08d73",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_920c3e44",
+        "filename": "docs/requirements/05b-integrated.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 132
+      },
+      "writtenOn": "2015-12-09T15:00:28Z",
+      "side": 1,
+      "message": "whitespaces here and below",
+      "revId": "a0b4067c0cc3a461e54b6b010f8310764fb08d73",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
