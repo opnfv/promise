@@ -6,7 +6,8 @@ Resource reservation is a basic feature in any virtualization-based network
 operation. In order to perform such resource reservation from NFVO to VIM, NFVI
 capacity information is also necessary at the NFVO side. Below, four use cases
 to show typical requirements and solutions for capacity management and resource
-reservation is presented.
+reservation is presented. A typical use case as considered for the Brahmaputra
+release is described in uc-brahmaputra_.
 
 #.  Resource capacity management
 #.  Resource reservation for immediate use
@@ -16,26 +17,26 @@ reservation is presented.
 Resource capacity management
 ============================
 
-NFVO takes the first decision on in which NFVI it would instantiate a VNF.
-Along with NFVIs resource attributes (e.g. availability of hardware
-accelerators, particular CPU architectures etc.), NFVO needs to know available
-capacity of an NFVI in order to make an informed decision on selecting
-a particular NFVI. Such capacity information shall be in a coarser granularity
-than the respective VIM, as VIM maintains capacity information of its NFVI
-in fine details.  However a very coarse granularity, like simply the number of
-available virtual CPU cores, may not be sufficient. In order to allow the NFVO
-to make well founded allocation decisions, an appropriate level to expose the
-available capacity may be per flavor. Capacity information may be required for
-the complete NFVI, or per partition or availability zone, or other
-granularities. Therefore, VIM requires to inform the NFVO about available
-capacity information regarding its NFVI at a pre-determined abstraction, either
-by a query-response, or in an event-based, or in a periodical way.
+NFVO takes the first decision on in which NFVI it would instantiate a VNF. Along
+with NFVIs resource attributes (e.g. availability of hardware accelerators,
+particular CPU architectures etc.), NFVO needs to know available capacity of an
+NFVI in order to make an informed decision on selecting a particular NFVI. Such
+capacity information shall be in a coarser granularity than the respective VIM,
+as VIM maintains capacity information of its NFVI in fine details.  However a
+very coarse granularity, like simply the number of available virtual CPU cores,
+may not be sufficient. In order to allow the NFVO to make well founded
+allocation decisions, an appropriate level to expose the available capacity may
+be per flavor. Capacity information may be required for the complete NFVI, or
+per partition or availability zone, or other granularities. Therefore, VIM
+requires to inform the NFVO about available capacity information regarding its
+NFVI at a pre-determined abstraction, either by a query-response, or in an
+event-based, or in a periodical way.
 
 Resource reservation for immediate use
 ======================================
 
-Reservation is inherently for the future. Even if some reserved resources are
-to be consumed instantly, there is a network latency between the issuance of a
+Reservation is inherently for the future. Even if some reserved resources are to
+be consumed instantly, there is a network latency between the issuance of a
 resource reservation request from the NFVO, a response from the VIM, and actual
 allocation of the requested resources to a VNF/VNFM. Within such latency,
 resource capacity in the NFVI in question could change, e.g., due to failure,
@@ -88,11 +89,11 @@ implicit or explicit priority scheme:
   may be related to SLAs and contractual conditions between the tenant and the
   NFVI provider. Interactions may look like:
 
-  * A reservation request for future use may cancel another, not yet started,
-    reservation with lower priority
-  * An allocation request without reservations and time-unbound [#unbound]_ may
-    be granted resources and prevent a future reservation with lower priority
-    from getting resources at start time
+  * A reservation request for future use may cancel another, not yet
+    started, reservation with lower priority
+  * An allocation request without reservations and time-unbound [#unbound]_
+    may be granted resources and prevent a future reservation with lower
+    priority from getting resources at start time
   * A reservation request may result in terminating resources allocated to a
     request with no reservation, if the latter has lower priority
 
