@@ -22,6 +22,30 @@
       "revId": "447ca71ca5d42902742085b026463ffd25667893",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_ec26feb9",
+        "filename": "docs/requirements/05-impl.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-12-10T20:59:21Z",
+      "side": 1,
+      "message": "I introduced this section as there is another section at the same level \"Detailed NB interface specification\" which is independent of the choosen architectural option.",
+      "parentUuid": "9a5c5d37_1883cd57",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 21
+      },
+      "revId": "447ca71ca5d42902742085b026463ffd25667893",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
