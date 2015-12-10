@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_1883cd57",
+        "filename": "docs/requirements/05-impl.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 253
+      },
+      "writtenOn": "2015-12-10T13:31:15Z",
+      "side": 1,
+      "message": "This is my view, but it is not worth to be a section. How about emphasizing \u0027Architectural option\u0027 with ** and making lines 4-9 as just description for this chapter? Then we can reduce depth of (sub)sections in this chapter.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 21
+      },
+      "revId": "447ca71ca5d42902742085b026463ffd25667893",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
