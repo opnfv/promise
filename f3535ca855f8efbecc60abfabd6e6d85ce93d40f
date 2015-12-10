@@ -22,6 +22,30 @@
       "revId": "f3535ca855f8efbecc60abfabd6e6d85ce93d40f",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_ec4dde73",
+        "filename": "docs/requirements/02-usecase.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-12-10T21:07:10Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "9a5c5d37_78dac979",
+      "range": {
+        "startLine": 10,
+        "startChar": 24,
+        "endLine": 10,
+        "endChar": 39
+      },
+      "revId": "f3535ca855f8efbecc60abfabd6e6d85ce93d40f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
