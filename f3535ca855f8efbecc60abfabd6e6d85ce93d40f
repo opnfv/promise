@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_78dac979",
+        "filename": "docs/requirements/02-usecase.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 253
+      },
+      "writtenOn": "2015-12-10T13:42:50Z",
+      "side": 1,
+      "message": "This link is not properly generated. You can fix this by using :ref:`uc-brahmaputra` .",
+      "range": {
+        "startLine": 10,
+        "startChar": 24,
+        "endLine": 10,
+        "endChar": 39
+      },
+      "revId": "f3535ca855f8efbecc60abfabd6e6d85ce93d40f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
