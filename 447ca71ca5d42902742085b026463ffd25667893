@@ -46,6 +46,30 @@
       "revId": "447ca71ca5d42902742085b026463ffd25667893",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_2c909694",
+        "filename": "docs/requirements/05-impl.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 253
+      },
+      "writtenOn": "2015-12-11T04:39:40Z",
+      "side": 1,
+      "message": "Ah, OK. Yes, NB I/F should be agnostic to architecture of VIM. Then, make sense.",
+      "parentUuid": "9a5c5d37_ec26feb9",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 21
+      },
+      "revId": "447ca71ca5d42902742085b026463ffd25667893",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
