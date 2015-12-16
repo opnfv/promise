@@ -103,3 +103,6 @@ implicit or explicit priority scheme:
 
 Scenarios
 =========
+
+This section describes the expected behavior of the system in different
+scenarios.
