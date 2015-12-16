@@ -40,8 +40,9 @@ Promise: Resource Management
    03-arch.rst
    04-gap.rst
    05-impl.rst
-   06-summary.rst
-   07-schemas.rst
+   06-integrated_approach.rst
+   07-summary.rst
+   08-schemas.rst
    90-annex1.rst
-   08-revision.rst
+   09-revision.rst
    99-references.rst
