@@ -103,3 +103,16 @@ implicit or explicit priority scheme:
 .. [#unbound] In this case, the consumer (VNFM or NFVO) requests to immediately
               instantiate and assign virtualized resources without having
               reserved the resources beforehand
+
+Scenarios
+=========
+
+This section describes the expected behavior of the system in different
+scenarios.
+
+As we are targeting a cloud platform with the above use cases, it is crucial to
+keep the flexibility in the system. By this means it is hard to explicitely
+block hardware resources for the future and ensure their availablility for
+allocation therefore it can happen that the reservation plan cannot be fulfilled
+due to certain changes in the underlying environment. We need to ensure that we
+are prepared for error and edge cases during the design period.
