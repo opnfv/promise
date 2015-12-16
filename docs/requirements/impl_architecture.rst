@@ -93,6 +93,69 @@ Integrated architecture
 -----------------------
 
 The *integrated architecture* aims at full integration with OpenStack.
+This means that it is planned to use the already existing OpenStack APIs
+extended with the reservation capabilities.
+
+The advantage of this approach is that we don't need to re-model the
+complex resource structure we have for the virtual machines and the
+corresponding infrastructure.
+
+The atomic item is the virtual machine with the minimum set of resources
+it requires to be able to start it up. It is important to state that
+resource reservation is handled on VM instance level as opposed to standalone
+resources like CPU, memory and so forth. As the placement is an important
+aspect in order to be able to use the reserved resources it provides the
+constraint to handle resources in groups.
+
+The placement constraint also makes it impossible to use a quota management
+system to solve the base use case described earlier in this document.
+
+OpenStack had a project called Blazar, which was created in order to provide
+resource reservation functionality in cloud environments. It uses the Shelve
+API of Nova, which provides a sub-optimal solution. Due to the fact that this
+feature blocks the reserved resources this solution cannot be considered to
+be final. Further work is needed to reach a more optimal stage, where the
+Nova scheduler is intended to be used to schedule the resources for future
+use to make the reservations.
+
+Phases of the work
+^^^^^^^^^^^^^^^^^^
+
+The work has two main stages to reach the final solution. The following main work items
+are on the roadmap for this approach:
+
+#. Sub-optimal solution by using the shelve API of Nova through the Blazar project:
+
+   * Fix the code base of the Blazar project:
+
+     Due to integration difficulties the Blazar project got suspended. Since the last
+     activities in that repository the OpenStack code base and environment changed
+     significantly, which means that the project's code base needs to be updated to the
+     latest standards and has to be able to interact with the latest version of the
+     other OpenStack services.
+
+   * Update the Blazar API:
+
+     The REST API needs to be extended to contain the attributes for the reservation
+     defined in this document. This activity shall include testing towards the new API.
+
+#. Use Nova scheduler to avoid blocking the reserved resources:
+
+   * Analyze the Nova scheduler:
+
+     The status and the possible interface between the resource reservation system and
+     the Nova scheduler needs to be identified. It is crucial to achieve a much more
+     optimal solution than what the current version of Blazar can provide. The goal is
+     to be able to use the reserved resources before the reservation starts. In order to
+     be able to achieve this we need the scheduler to do scheduling for the future
+     considering the reservation intervals that are specified in the request.
+
+   * Define a new design based on the analysis and start the work on it:
+
+     The design for the more optimal solution can be defined only after analyzing the
+     structure and capabilities of the Nova scheduler.
+
+   * This phase can be started in parallel with the previous one.
 
 Detailed Message Flows
 ^^^^^^^^^^^^^^^^^^^^^^
