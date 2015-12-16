@@ -100,3 +100,6 @@ implicit or explicit priority scheme:
 .. [#unbound] In this case, the consumer (VNFM or NFVO) requests to immediately
               instantiate and assign virtualized resources without having
               reserved the resources beforehand
+
+Scenarios
+=========
