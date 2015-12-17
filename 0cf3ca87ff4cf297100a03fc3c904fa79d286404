@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a5c5d37_84e50eaa",
+        "filename": "docs/requirements/05-impl.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 253
+      },
+      "writtenOn": "2015-12-17T14:17:22Z",
+      "side": 1,
+      "message": "I cannot see any change in the latest patch set (#7). You mean update in another patch?",
+      "parentUuid": "9a5c5d37_2488a270",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 21
+      },
+      "revId": "0cf3ca87ff4cf297100a03fc3c904fa79d286404",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a5c5d37_e4816a4b",
         "filename": "docs/requirements/05-impl.rst",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2015-12-17T10:34:31Z",
       "side": 1,
       "message": "Will fix \"Tabulation used for indentation\"",
+      "range": {
+        "startLine": 951,
+        "startChar": 0,
+        "endLine": 951,
+        "endChar": 5
+      },
+      "revId": "0cf3ca87ff4cf297100a03fc3c904fa79d286404",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_a4d812f0",
+        "filename": "docs/requirements/05-impl.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 951,
+      "author": {
+        "id": 253
+      },
+      "writtenOn": "2015-12-17T14:17:22Z",
+      "side": 1,
+      "message": "thanks",
+      "parentUuid": "9a5c5d37_e4816a4b",
       "range": {
         "startLine": 951,
         "startChar": 0,
