@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_040d9e90",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-12-17T13:56:12Z",
+      "side": 1,
+      "message": "I will submit a new patch to address some other warnings (not related to PROMISE-57) with an additional patch, but will not address them as part of this patch.",
+      "range": {
+        "startLine": 12,
+        "startChar": 6,
+        "endLine": 12,
+        "endChar": 16
+      },
+      "revId": "9aa485c97755fa927ff950a32b6e6327ae81c8b8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
