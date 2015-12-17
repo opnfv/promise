@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_2488a270",
+        "filename": "docs/requirements/05-impl.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-12-17T10:34:31Z",
+      "side": 1,
+      "message": "Will update to \"official\" sphinx section formatting:\nhttp://stackoverflow.com/questions/24504301/what-does-title-level-inconsistent-mean",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 21
+      },
+      "revId": "0cf3ca87ff4cf297100a03fc3c904fa79d286404",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_e4816a4b",
+        "filename": "docs/requirements/05-impl.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 951,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-12-17T10:34:31Z",
+      "side": 1,
+      "message": "Will fix \"Tabulation used for indentation\"",
+      "range": {
+        "startLine": 951,
+        "startChar": 0,
+        "endLine": 951,
+        "endChar": 5
+      },
+      "revId": "0cf3ca87ff4cf297100a03fc3c904fa79d286404",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_047d9e6e",
+        "filename": "docs/requirements/05-impl.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 981,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-12-17T10:34:31Z",
+      "side": 1,
+      "message": "will fix \"no empty line at EOF\"",
+      "range": {
+        "startLine": 981,
+        "startChar": 12,
+        "endLine": 981,
+        "endChar": 13
+      },
+      "revId": "0cf3ca87ff4cf297100a03fc3c904fa79d286404",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
