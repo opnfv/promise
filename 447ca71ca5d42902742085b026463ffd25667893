@@ -70,6 +70,52 @@
       "revId": "447ca71ca5d42902742085b026463ffd25667893",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_8462aed6",
+        "filename": "docs/requirements/05-impl.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-12-17T10:20:58Z",
+      "side": 1,
+      "message": "reservation and allocation",
+      "range": {
+        "startLine": 15,
+        "startChar": 37,
+        "endLine": 15,
+        "endChar": 48
+      },
+      "revId": "447ca71ca5d42902742085b026463ffd25667893",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_a465b2e2",
+        "filename": "docs/requirements/05-impl.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-12-17T10:20:58Z",
+      "side": 1,
+      "message": "I will remove the \"Editor\u0027s Note\" text, as it is already shown/highlighted as \"Note\"",
+      "range": {
+        "startLine": 21,
+        "startChar": 10,
+        "endLine": 21,
+        "endChar": 12
+      },
+      "revId": "447ca71ca5d42902742085b026463ffd25667893",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
