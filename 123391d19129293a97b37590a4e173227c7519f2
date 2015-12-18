@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_2a6989f9",
+        "filename": "docs/requirements/01-intro.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 253
+      },
+      "writtenOn": "2015-12-18T11:47:36Z",
+      "side": 1,
+      "message": "I cannot see the link here in generated doc.\n\ncan you try :ref:`NFVMAN` instead?",
+      "range": {
+        "startLine": 18,
+        "startChar": 62,
+        "endLine": 18,
+        "endChar": 75
+      },
+      "revId": "123391d19129293a97b37590a4e173227c7519f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_0a6ec501",
+        "filename": "docs/requirements/04-gap.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 253
+      },
+      "writtenOn": "2015-12-18T11:47:36Z",
+      "side": 1,
+      "message": "same as ref in 01-intro",
+      "range": {
+        "startLine": 7,
+        "startChar": 33,
+        "endLine": 7,
+        "endChar": 45
+      },
+      "revId": "123391d19129293a97b37590a4e173227c7519f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_ea7251e4",
+        "filename": "docs/requirements/05-impl.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 253
+      },
+      "writtenOn": "2015-12-18T11:47:36Z",
+      "side": 1,
+      "message": "this too",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 16
+      },
+      "revId": "123391d19129293a97b37590a4e173227c7519f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
