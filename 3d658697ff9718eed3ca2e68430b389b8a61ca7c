@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_deed0e8d",
+        "filename": "docs/requirements/05-impl.rst",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-12-18T15:11:12Z",
+      "side": 1,
+      "message": "This is the only way I could make the references work... Seems we have to just ignore the warning...",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 12
+      },
+      "revId": "3d658697ff9718eed3ca2e68430b389b8a61ca7c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
