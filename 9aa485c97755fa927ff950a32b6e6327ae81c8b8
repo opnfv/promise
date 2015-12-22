@@ -22,6 +22,29 @@
       "revId": "9aa485c97755fa927ff950a32b6e6327ae81c8b8",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_2d5f5ee7",
+        "filename": "docs/requirements/05-impl.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2015-12-22T07:38:59Z",
+      "side": 1,
+      "message": "will move this out of this section",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 22
+      },
+      "revId": "9aa485c97755fa927ff950a32b6e6327ae81c8b8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
