@@ -1,6 +1,6 @@
 .. _uc-brahmaputra:
 
-ANNEX B: Use case for OPNFV Brahmaputra
+ANNEX A: Use case for OPNFV Brahmaputra
 =======================================
 
 A basic resource reservation use case to be realized for OPNFV B-release may
