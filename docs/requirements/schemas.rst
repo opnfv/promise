@@ -1,4 +1,4 @@
-ANNEX A: PROMISE YANG SCHEMA BASED ON YANGFORGE
+ANNEX B: Promise YANG schema based on YangForge
 ===============================================
 
 .. code::
@@ -303,4 +303,3 @@ ANNEX A: PROMISE YANG SCHEMA BASED ON YANGFORGE
   notification capacity-event;
   notification allocation-event;
   }
-
