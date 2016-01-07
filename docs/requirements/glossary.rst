@@ -1,4 +1,5 @@
-**Definition of terms**
+Definition of terms
+===================
 
 Different SDOs and communities use different terminology related to
 NFV/Cloud/SDN. This list tries to define an OPNFV terminology,
@@ -53,8 +54,8 @@ mapping/translating the OPNFV terms to terminology used in other contexts.
 
    Virtual resource
       A Virtual Machine (VM), a virtual network, or virtualized storage; Offered
-      resources to "Consumer" as result of infrastructure virtualization; visible
-      to Consumer.
+      resources to "Consumer" as result of infrastructure virtualization;
+      visible to Consumer.
 
    Virtual Storage
       Virtualized non-volatile storage allocated to a VM.

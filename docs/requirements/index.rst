@@ -35,13 +35,16 @@ Promise: Resource Management
    :maxdepth: 4
    :numbered:
 
-   01-intro.rst
-   02-usecase.rst
-   03-arch.rst
-   04-gap.rst
-   05-impl.rst
-   06-summary.rst
-   07-schemas.rst
-   90-annex1.rst
-   08-revision.rst
-   99-references.rst
+   glossary.rst
+   intro.rst
+   usecase.rst
+   architecture.rst
+   gap_analysis.rst
+   impl_architecture.rst
+   NB_interface.rst
+   summary.rst
+   schemas.rst
+
+   references.rst
+   annex1.rst
+   revision.rst

@@ -303,4 +303,3 @@ ANNEX A: PROMISE YANG SCHEMA BASED ON YANGFORGE
   notification capacity-event;
   notification allocation-event;
   }
-
