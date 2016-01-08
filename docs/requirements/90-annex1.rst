@@ -32,3 +32,4 @@ look as follows:
 
 * Step 5: Consumer(VNFM) is requesting the allocation of virtualised resources
   using the reservation identifier in Step 3
+
