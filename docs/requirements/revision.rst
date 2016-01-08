@@ -22,3 +22,6 @@ ANNEX C: Document revision
 |         |  - Split shim-layer architecture and    |
 |         |    integrated architecture sections     |
 +---------+-----------------------------------------+
+| 1.0.5   | JIRA: PROMISE-61                        |
+|         |  - Updated Promise Yang Schema          |
++---------+-----------------------------------------+
