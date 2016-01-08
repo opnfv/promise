@@ -15,5 +15,6 @@ ANNEX C: DOCUMENT REVISION
 | 1.0.3   | JIRA: PROMISE-54                        |
 |         |  - Use case for Brahmaputra             |
 +---------+-----------------------------------------+
-|         |                                         |
+| 1.0.4   | JIRA: PROMISE-61                        |
+|         |  - Updated Promise Yang Schema          |
 +---------+-----------------------------------------+

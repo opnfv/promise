@@ -8,103 +8,230 @@ ANNEX A: PROMISE YANG SCHEMA BASED ON YANGFORGE
   prefix promise;
 
   import complex-types { prefix ct; }
-  import iana-crypt-hash { prefix ianach; }
-  import ietf-inet-types { prefix inet; }
   import ietf-yang-types { prefix yang; }
-  import opnfv-promise-vim { prefix vim; }
-
-  feature multi-provider {
-    description "";
-  }
+  import ietf-inet-types { prefix inet; }
+  import access-control-models { prefix acm; }
+  import nfv-infrastructure { prefix nfvi; }
+  import nfv-mano { prefix mano; }
 
   description
     "OPNFV Promise Resource Reservation/Allocation controller module";
 
-  revision 2015-04-16 {
-    description "Initial revision.";
+  revision 2015-10-05 {
+    description "Complete coverage of reservation related intents";
   }
 
   revision 2015-08-06 {
     description "Updated to incorporate YangForge framework";
   }
 
-  grouping resource-capacity {
+  revision 2015-04-16 {
+    description "Initial revision.";
+  }
+
+  feature reservation-service {
+    description "When enabled, provides resource reservation service";
+  }
+
+  feature multi-provider {
+    description "When enabled, provides resource management across multiple providers";
+  }
+
+  grouping resource-utilization {
     container capacity {
-      container quota { description 'Conceptual container that should be extended'; }
-      container usage { description 'Conceptual container that should be extended';
-                        config false; }
-      container reserved { description 'Conceptual container that should be extended';
-                           config false; }
+      container total     { description 'Conceptual container that should be extended'; }
+      container reserved  { description 'Conceptual container that should be extended';
+                            config false; }
+      container usage     { description 'Conceptual container that should be extended';
+                            config false; }
       container available { description 'Conceptual container that should be extended';
                             config false; }
     }
   }
 
-  grouping compute-capacity {
-    leaf cores { type number; }
-    leaf ram { type number; }
-    leaf instances { type number; }
-  }
-
-  grouping networking-capacity {
-    leaf network { type number; }
-    leaf port { type number; }
-    leaf router { type number; }
-    leaf subnet { type number; }
-    leaf address { type number; }
-  }
-
-  ct:complex-type ResourceReservation {
-    ct:extends vim:ResourceElement;
-
+  grouping temporal-resource-collection {
     description
-      "Contains the capacities of various resource services being reserved
-       along with any resource elements needed to be available at
-       the time of allocation(s).";
-
-    reference "OPNFV-PROMISE, Section 3.4.1";
+      "Information model capturing resource-collection with start/end time window";
 
     leaf start { type yang:date-and-time; }
     leaf end   { type yang:date-and-time; }
-    leaf expiry {
-      description "Duration in seconds from start when unallocated reserved resources
-                   will be released back into the pool";
-      type number; units "seconds";
-    }
-    leaf zone { type instance-identifier { ct:instance-type vim:AvailabilityZone; } }
-    container capacity {
-      uses vim:compute-capacity;
-      uses vim:networking-capcity;
-      uses vim:storage-capacity;
-    }
-    leaf-list resources {
-      description
-        "Reference to a collection of existing resource elements required by
-         this reservation. It can contain any instance derived from
-         ResourceElement, such as ServerInstances or even other
-         ResourceReservations. If the ResourceReservation request is
+
+    uses nfvi:resource-collection;
+  }
+
+  grouping resource-usage-request {
+    description
+      "Information model capturing available parameters to make a resource
+       usage request.";
+    reference "OPNFV-PROMISE, Section 3.4.1";
+
+    uses temporal-resource-collection {
+      refine elements {
+        description
+          "Reference to a list of 'pre-existing' resource elements that are
+         required for fulfillment of the resource-usage-request.
+
+         It can contain any instance derived from ResourceElement,
+         such as ServerInstances or even other
+         ResourceReservations. If the resource-usage-request is
          accepted, the ResourceElement(s) listed here will be placed
-         into 'protected' mode as to prevent accidental delete.";
-      type instance-identifier {
-        ct:instance-type vim:ResourceElement;
+         into 'protected' mode as to prevent accidental removal.
+
+         If any of these resource elements become 'unavailable' due to
+         environmental or administrative activity, a notification will
+         be issued informing of the issue.";
       }
+    }
+
+    leaf zone {
+      description "Optional identifier to an Availability Zone";
+      type instance-identifier { ct:instance-type nfvi:AvailabilityZone; }
+    }
+  }
+
+  grouping query-start-end-window {
+    container window {
+      description "Matches entries that are within the specified start/end time window";
+      leaf start { type yang:date-and-time; }
+      leaf end   { type yang:date-and-time; }
+      leaf scope {
+        type enumeration {
+          enum "exclusive" {
+            description "Matches entries that start AND end within the window";
+          }
+          enum "inclusive" {
+            description "Matches entries that start OR end within the window";
+          }
+        }
+        default "inclusive";
+      }
+    }
+  }
+
+  grouping query-resource-collection {
+    uses query-start-end-window {
+      description "Match for ResourceCollection(s) that are within the specified
+                   start/end time window";
+    }
+    leaf-list without {
+      description "Excludes specified collection identifiers from the result";
+      type instance-identifier { ct:instance-type ResourceCollection; }
+    }
+    leaf show-utilization { type boolean; default true; }
+    container elements {
+      leaf-list some {
+        description "Query for ResourceCollection(s) that contain some or more of
+                     these element(s)";
+        type instance-identifier { ct:instance-type nfvi:ResourceElement; }
+      }
+      leaf-list every {
+        description "Query for ResourceCollection(s) that contain all of
+                     these element(s)";
+        type instance-identifier { ct:instance-type nfvi:ResourceElement; }
+      }
+    }
+  }
+
+  grouping common-intent-output {
+    leaf result {
+      type enumeration {
+        enum "ok";
+        enum "conflict";
+        enum "error";
+      }
+    }
+    leaf message { type string; }
+  }
+
+  grouping utilization-output {
+    list utilization {
+      key 'timestamp';
+      leaf timestamp { type yang:date-and-time; }
+      leaf count { type int16; }
+      container capacity { uses nfvi:resource-capacity; }
+    }
+  }
+
+  ct:complex-type ResourceCollection {
+    ct:extends nfvi:ResourceContainer;
+    ct:abstract true;
+
+    description
+      "Describes an abstract ResourceCollection data model, which represents
+       a grouping of capacity and elements available during a given
+       window in time which must be extended by other resource
+       collection related models";
+
+    leaf start { type yang:date-and-time; }
+    leaf end   { type yang:date-and-time; }
+
+    leaf active {
+      config false;
+      description
+        "Provides current state of this record whether it is enabled and within
+         specified start/end time";
+      type boolean;
+    }
+  }
+
+  ct:complex-type ResourcePool {
+    ct:extends ResourceCollection;
+
+    description
+      "Describes an instance of an active ResourcePool record, which
+       represents total available capacity and elements from a given
+       source.";
+
+    leaf source {
+      type instance-identifier {
+        ct:instance-type nfvi:ResourceContainer;
+        require-instance true;
+      }
+      mandatory true;
+    }
+
+    refine elements {
       // following 'must' statement applies to each element
-      must "boolean(/provider/elements/*[@id=id])" {
+      // NOTE: just a non-working example for now...
+      must "boolean(/source/elements/*[@id=id])" {
         error-message "One or more of the ResourceElement(s) does not exist in
                        the provider to be reserved";
       }
     }
+  }
 
-    leaf provider {
-      if-feature multi-provider;
+  ct:complex-type ResourceReservation {
+    ct:extends ResourceCollection;
+
+    description
+      "Describes an instance of an accepted resource reservation request,
+       created usually as a result of 'create-reservation' request.
+
+       A ResourceReservation is a derived instance of a generic
+       ResourceCollection which has additional parameters to map the
+       pool(s) that were referenced to accept this reservation as well
+       as to track allocations made referencing this reservation.
+
+       Contains the capacities of various resource attributes being
+       reserved along with any resource elements that are needed to be
+       available at the time of allocation(s).";
+
+    reference "OPNFV-PROMISE, Section 3.4.1";
+
+    leaf created-on  { type yang:date-and-time; config false; }
+    leaf modified-on { type yang:date-and-time; config false; }
+
+    leaf-list pools {
       config false;
-
       description
-        "Reference to a specified existing provider from which this reservation
-         will be drawn if used in the context of multi-provider
-         environment.";
+        "Provides list of one or more pools that were referenced for providing
+         the requested resources for this reservation.  This is an
+         important parameter for informing how/where allocation
+         requests can be issued using this reservation since it is
+         likely that the total reserved resource capacity/elements are
+         made availble from multiple sources.";
       type instance-identifier {
-        ct:instance-type vim:ResourceProvider;
+        ct:instance-type ResourcePool;
         require-instance true;
       }
     }
@@ -116,9 +243,7 @@ ANNEX A: PROMISE YANG SCHEMA BASED ON YANGFORGE
          reservation based on allocations that took effect utilizing
          this reservation ID as a reference.";
 
-      uses vim:compute-capacity;
-      uses vim:networking-capcity;
-      uses vim:storage-capacity;
+      uses nfvi:resource-capacity;
     }
 
     leaf-list allocations {
@@ -128,22 +253,22 @@ ANNEX A: PROMISE YANG SCHEMA BASED ON YANGFORGE
          this reservation.";
       type instance-identifier {
         ct:instance-type ResourceAllocation;
+        require-instance true;
       }
     }
   }
 
   ct:complex-type ResourceAllocation {
-    ct:extends vim:ResourceElement;
+    ct:extends ResourceCollection;
 
     description
-       "Contains a list of resources to be allocated with optional reference
-       to an existing reservation.
+      "A ResourceAllocation record denotes consumption of resources from a
+       referenced ResourcePool.
 
-       If reservation is specified but this request is received prior
-       to reservation start timestamp, then it will be rejected unless
-       'allocate-on-start' is set to true.  'allocate-on-start' allows
-       the allocation to be auto-initiated and scheduled to run in the
-       future.
+       It does not reflect an accepted request but is created to
+       represent the actual state about the ResourcePool. It is
+       created once the allocation(s) have successfully taken effect
+       on the 'source' of the ResourcePool.
 
        The 'priority' state indicates the classification for dealing
        with resource starvation scenarios. Lower priority allocations
@@ -156,7 +281,7 @@ ANNEX A: PROMISE YANG SCHEMA BASED ON YANGFORGE
     reference "OPNFV-PROMISE, Section 3.4.3";
 
     leaf reservation {
-      description "Reference to an existing reservation identifier";
+      description "Reference to an existing reservation identifier (optional)";
 
       type instance-identifier {
         ct:instance-type ResourceReservation;
@@ -164,79 +289,309 @@ ANNEX A: PROMISE YANG SCHEMA BASED ON YANGFORGE
       }
     }
 
-    leaf allocate-on-start {
-      description
-       "If 'allocate-on-start' is set to true, the 'planned' allocations will
-       take effect automatically at the reservation 'start' date/time.";
-      type boolean; default false;
-    }
+    leaf pool {
+      description "Reference to an existing resource pool from which allocation is drawn";
 
-    ct:instance-list resources {
-      description "Contains list of new ResourceElements that will be allocated";
-      ct:instance-type vim:ResourceElement;
+      type instance-identifier {
+        ct:instance-type ResourcePool;
+        require-instance true;
+      }
     }
 
     leaf priority {
-      description
-        "Reflects current priority level of the allocation according to classification rules";
-      type number;
       config false;
+      description
+        "Reflects current priority level of the allocation according to
+         classification rules";
+      type enumeration {
+        enum "high"   { value 1; }
+        enum "normal" { value 2; }
+        enum "low"    { value 3; }
+      }
+      default "normal";
+    }
+  }
+
+  ct:complex-type ResourceProvider {
+    ct:extends nfvi:ResourceContainer;
+
+    key "name";
+    leaf token { type string; mandatory true; }
+
+    container services { // read-only
+      config false;
+      container compute {
+        leaf endpoint { type inet:uri; }
+        ct:instance-list flavors { ct:instance-type nfvi:ComputeFlavor; }
+      }
+    }
+
+    leaf-list pools {
+      config false;
+      description
+        "Provides list of one or more pools that are referencing this provider.";
+
+      type instance-identifier {
+        ct:instance-type ResourcePool;
+        require-instance true;
+      }
     }
   }
 
   // MAIN CONTAINER
   container promise {
+
+    uses resource-utilization {
+      description "Describes current state info about capacity utilization info";
+
+      augment "capacity/total"     { uses nfvi:resource-capacity; }
+      augment "capacity/reserved"  { uses nfvi:resource-capacity; }
+      augment "capacity/usage"     { uses nfvi:resource-capacity; }
+      augment "capacity/available" { uses nfvi:resource-capacity; }
+    }
+
     ct:instance-list providers {
-      description "Aggregate collection of all registered ResourceProvider instances";
-      ct:instance-type vim:ResourceProvider;
-      config false;
+      if-feature multi-provider;
+      description "Aggregate collection of all registered ResourceProvider instances
+                   for Promise resource management service";
+      ct:instance-type ResourceProvider;
+    }
 
-     // augment compute container with capacity elements
-     augment "compute" {
-       uses resource-capacity {
-         augment "capacity/quota" { uses compute-capacity; }
-         augment "capacity/usage" { uses compute-capacity; }
-         augment "capacity/reserved" { uses compute-capacity; }
-         augment "capacity/available" { uses compute-capacity; }
-       }
-     }
-
-     // augment networking container with capacity elements
-     augment "networking" {
-       uses resource-capacity {
-         if-feature has-networking-capacity;
-         augment "capacity/quota" { uses networking-capacity; }
-         augment "capacity/usage" { uses networking-capacity; }
-         augment "capacity/reserved" { uses networking-capacity; }
-         augment "capacity/available" { uses networking-capacity; }
-       }
-     }
-
-     // track references to reservations for this resource provider
-     leaf-list reservations {
-       type instance-identifier {
-         ct:instance-type ResourceReservation;
-       }
-     }
+    ct:instance-list pools {
+      if-feature reservation-service;
+      description "Aggregate collection of all ResourcePool instances";
+      ct:instance-type ResourcePool;
     }
 
     ct:instance-list reservations {
-      description "Aggregate collection of all registered ResourceReservation instances";
+      if-feature reservation-service;
+      description "Aggregate collection of all ResourceReservation instances";
       ct:instance-type ResourceReservation;
     }
 
     ct:instance-list allocations {
-      description "Aggregate collection of all active ResourceAllocation instances";
+      description "Aggregate collection of all ResourceAllocation instances";
       ct:instance-type ResourceAllocation;
+    }
+
+    container policy {
+      container reservation {
+        leaf max-future-start-range {
+          description
+            "Enforce reservation request 'start' time is within allowed range from now";
+          type uint16 { range 0..365; }
+          units "days";
+        }
+        leaf max-future-end-range {
+          description
+            "Enforce reservation request 'end' time is within allowed range from now";
+          type uint16 { range 0..365; }
+          units "days";
+        }
+        leaf max-duration {
+          description
+            "Enforce reservation duration (end-start) does not exceed specified threshold";
+          type uint16;
+          units "hours";
+          default 8760; // for now cap it at max one year as default
+        }
+        leaf expiry {
+          description
+            "Duration in minutes from start when unallocated reserved resources
+             will be released back into the pool";
+          type uint32;
+          units "minutes";
+        }
+      }
     }
   }
 
-  rpc add-provider {
-    description "This operation allows you to register a new ResourceProvider
-                 into promise management service";
+  //-------------------
+  // INTENT INTERFACE
+  //-------------------
+
+  // RESERVATION INTENTS
+  rpc create-reservation {
+    if-feature reservation-service;
+    description "Make a request to the reservation system to reserve resources";
     input {
-      leaf provider {
-        description "Select a specific resource provider";
+      uses resource-usage-request;
+    }
+    output {
+      uses common-intent-output;
+      leaf reservation-id {
+        type instance-identifier { ct:instance-type ResourceReservation; }
+      }
+    }
+  }
+
+  rpc update-reservation {
+    description "Update reservation details for an existing reservation";
+    input {
+      leaf reservation-id {
+        type instance-identifier {
+          ct:instance-type ResourceReservation;
+          require-instance true;
+        }
+        mandatory true;
+      }
+      uses resource-usage-request;
+    }
+    output {
+      uses common-intent-output;
+    }
+  }
+
+  rpc cancel-reservation {
+    description "Cancel the reservation and be a good steward";
+    input {
+      leaf reservation-id {
+        type instance-identifier { ct:instance-type ResourceReservation; }
+        mandatory true;
+      }
+    }
+    output {
+      uses common-intent-output;
+    }
+  }
+
+  rpc query-reservation {
+    if-feature reservation-service;
+    description "Query the reservation system to return matching reservation(s)";
+    input {
+      leaf zone { type instance-identifier { ct:instance-type nfvi:AvailabilityZone; } }
+      uses query-resource-collection;
+    }
+    output {
+      leaf-list reservations { type instance-identifier
+                               { ct:instance-type ResourceReservation; } }
+      uses utilization-output;
+    }
+  }
+
+  // CAPACITY INTENTS
+  rpc increase-capacity {
+    description "Increase total capacity for the reservation system
+                 between a window in time";
+    input {
+      uses temporal-resource-collection;
+      leaf source {
+        type instance-identifier {
+          ct:instance-type nfvi:ResourceContainer;
+        }
+      }
+    }
+    output {
+      uses common-intent-output;
+      leaf pool-id {
+        type instance-identifier { ct:instance-type ResourcePool; }
+      }
+    }
+  }
+
+  rpc decrease-capacity {
+    description "Decrease total capacity for the reservation system
+                 between a window in time";
+    input {
+      uses temporal-resource-collection;
+      leaf source {
+        type instance-identifier {
+          ct:instance-type nfvi:ResourceContainer;
+        }
+      }
+    }
+    output {
+      uses common-intent-output;
+      leaf pool-id {
+        type instance-identifier { ct:instance-type ResourcePool; }
+      }
+    }
+  }
+
+  rpc query-capacity {
+    description "Check available capacity information about a specified
+                 resource collection";
+    input {
+      leaf capacity {
+        type enumeration {
+          enum 'total';
+          enum 'reserved';
+          enum 'usage';
+          enum 'available';
+        }
+        default 'available';
+      }
+      leaf zone { type instance-identifier { ct:instance-type nfvi:AvailabilityZone; } }
+      uses query-resource-collection;
+      // TBD: additional parameters for query-capacity
+    }
+    output {
+      leaf-list collections { type instance-identifier
+                              { ct:instance-type ResourceCollection; } }
+      uses utilization-output;
+    }
+  }
+
+  // ALLOCATION INTENTS (should go into VIM module in the future)
+  rpc create-instance {
+    description "Create an instance of specified resource(s) utilizing capacity
+                 from the pool";
+    input {
+      leaf provider-id {
+        if-feature multi-provider;
+        type instance-identifier { ct:instance-type ResourceProvider;
+                                   require-instance true; }
+      }
+      leaf name   { type string; mandatory true; }
+      leaf image  {
+        type union {
+          type yang:uuid;
+          type inet:uri;
+        }
+        mandatory true;
+      }
+      leaf flavor {
+        type union {
+          type yang:uuid;
+          type inet:uri;
+        }
+        mandatory true;
+      }
+      // TODO: consider supporting a template-id (such as HEAT) for more complex instantiation
+
+      leaf reservation-id {
+        type instance-identifier { ct:instance-type ResourceReservation;
+                                   require-instance true; }
+      }
+    }
+    output {
+      uses common-intent-output;
+      leaf instance-id {
+        type instance-identifier { ct:instance-type ResourceAllocation; }
+      }
+    }
+  }
+
+  rpc destroy-instance {
+    description "Destroy an instance of resource utilization and release it
+                 back to the pool";
+    input {
+      leaf instance-id {
+        type instance-identifier { ct:instance-type ResourceAllocation;
+                                   require-instance true; }
+      }
+    }
+    output {
+      uses common-intent-output;
+    }
+  }
+
+  // PROVIDER INTENTS (should go into VIM module in the future)
+  rpc add-provider {
+    description "Register a new resource provider into reservation system";
+    input {
+      leaf provider-type {
+        description "Select a specific resource provider type";
         mandatory true;
         type enumeration {
           enum openstack;
@@ -252,53 +607,27 @@ ANNEX A: PROMISE YANG SCHEMA BASED ON YANGFORGE
             status planned;
           }
         }
+        default openstack;
       }
-      leaf username {
-        type string;
-        mandatory true;
+      uses mano:provider-credentials {
+        refine endpoint {
+          default "http://localhost:5000/v2.0/tokens";
+        }
       }
-      leaf password {
-        type ianach:crypt-hash;
-        mandatory true;
-      }
-      leaf endpoint {
-        type inet:uri;
-        description "The target URL endpoint for the resource provider";
-        mandatory true;
-      }
-      leaf region {
-        type string;
-        description "Optional specified regsion for the provider";
+      container tenant {
+        leaf id { type string; }
+        leaf name { type string; }
       }
     }
     output {
-      leaf id {
-        description "Unique identifier for the newly added provider found in /promise/providers";
-        type instance-identifier {
-          ct:instance-type ResourceProvider;
-        }
-      }
-      leaf result {
-        type enumeration {
-          enum success;
-          enum error;
-        }
+      uses common-intent-output;
+      leaf provider-id {
+        type instance-identifier { ct:instance-type ResourceProvider; }
       }
     }
   }
-  rpc remove-provider;
-  rpc list-providers;
 
-  rpc check-capacity;
-
-  rpc list-reservations;
-  rpc create-reservation;
-  rpc update-reservation;
-  rpc cancel-reservation;
-
-  rpc list-allocations;
-  rpc create-allocation;
-
+  // TODO...
   notification reservation-event;
   notification capacity-event;
   notification allocation-event;
