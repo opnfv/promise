@@ -1,4 +1,4 @@
-ANNEX C: Document revision
+ANNEX D: Document revision
 ==========================
 
 +---------+-----------------------------------------+
@@ -25,3 +25,7 @@ ANNEX C: Document revision
 | 1.0.5   | JIRA: PROMISE-61                        |
 |         |  - Updated Promise Yang Schema          |
 +---------+-----------------------------------------+
+| 1.0.6   | JIRA: PROMISE-62                        |
+|         |  - Supported APIs for Brahmaputra       |
++---------+-----------------------------------------+
+
