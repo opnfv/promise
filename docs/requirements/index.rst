@@ -44,5 +44,6 @@ Promise: Resource Management
 
    references.rst
    annex1.rst
+   supported_apis.rst
    schemas.rst
    revision.rst

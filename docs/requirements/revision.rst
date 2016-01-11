@@ -1,4 +1,8 @@
+<<<<<<< HEAD:docs/requirements/revision.rst
 ANNEX C: Document revision
+=======
+ANNEX D: DOCUMENT REVISION
+>>>>>>> e2792fd... Supported APIs for Brahmaputra:docs/requirements/08-revision.rst
 ==========================
 
 +---------+-----------------------------------------+
@@ -22,3 +26,7 @@ ANNEX C: Document revision
 |         |  - Split shim-layer architecture and    |
 |         |    integrated architecture sections     |
 +---------+-----------------------------------------+
+| 1.0.5   | JIRA: PROMISE-62                        |
+|         |  - Supported APIs for Brahmaputra       |
++---------+-----------------------------------------+
+
