@@ -29,19 +29,20 @@ Promise: Resource Management
 
     \newpage
 
-.. include:: glossary.rst
-
 .. toctree::
    :maxdepth: 4
    :numbered:
 
-   01-intro.rst
-   02-usecase.rst
-   03-arch.rst
-   04-gap.rst
-   05-impl.rst
-   06-summary.rst
-   07-schemas.rst
-   90-annex1.rst
-   08-revision.rst
-   99-references.rst
+   glossary.rst
+   intro.rst
+   usecase.rst
+   architecture.rst
+   gap_analysis.rst
+   impl_architecture.rst
+   NB_interface.rst
+   summary.rst
+
+   references.rst
+   annex1.rst
+   schemas.rst
+   revision.rst

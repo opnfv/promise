@@ -1,14 +1,11 @@
-Detailed architecture and message flows
-=======================================
-
 Detailed northbound interface specification
--------------------------------------------
+===========================================
 
 .. Note::
    This is Work in Progress.
 
 ETSI NFV IFA Information Models
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------
 
 Compute Flavor
 ^^^^^^^^^^^^^^
@@ -22,13 +19,13 @@ virtual memory, size of virtual storage, and virtual network interfaces
    :width: 90%
 
 Virtualised Compute Resources
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------
 
 Compute Capacity Management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Subscribe Compute Capacity Change Event
-_______________________________________
+"""""""""""""""""""""""""""""""""""""""
 
 Subscription from Consumer to VIM to be notified about compute capacity changes
 
@@ -73,9 +70,10 @@ Subscription from Consumer to VIM to be notified about compute capacity changes
    :statuscode 400: resourceDescriptor is missing
 
 Query Compute Capacity
-______________________
+""""""""""""""""""""""
 
-Request to find out about available, reserved, total and allocated compute capacity.
+Request to find out about available, reserved, total and allocated compute
+capacity.
 
 .. http:get:: /capacity/compute/query
    :noindex:
@@ -120,7 +118,7 @@ Request to find out about available, reserved, total and allocated compute capac
    :statuscode 404: resource zone unknown
 
 Notify Compute Capacity Change Event
-____________________________________
+""""""""""""""""""""""""""""""""""""
 
 Notification about compute capacity changes
 
@@ -152,7 +150,7 @@ Compute Resource Reservation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Create Compute Resource Reservation
-___________________________________
+"""""""""""""""""""""""""""""""""""
 
 Request the reservation of compute resource capacity
 
@@ -270,7 +268,7 @@ and/or virtualized containers
 
 
 Query Compute Resource Reservation
-__________________________________
+""""""""""""""""""""""""""""""""""
 
 Request to find out about reserved compute resources that the consumer has
 access to.
@@ -320,7 +318,8 @@ access to.
    :statuscode 404: reservation id unknown
 
 Update Compute Resource Reservation
-___________________________________
+"""""""""""""""""""""""""""""""""""
+
 Request to update compute resource reservation
 
 .. http:post:: /reservation/compute/update
@@ -360,20 +359,21 @@ Request to update compute resource reservation
        }
 
 Terminate Compute Resource Reservation
-______________________________________
+""""""""""""""""""""""""""""""""""""""
+
 Request to terminate a compute resource reservation
 
 .. http:delete:: /reservation/compute/(reservation_id)
    :noindex:
 
 Virtualised Network Resources
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------
 
 Network Capacity Management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Subscribe Network Capacity Change Event
-_______________________________________
+"""""""""""""""""""""""""""""""""""""""
 
 Susbcription from Consumer to VIM to be notified about network capacity changes
 
@@ -415,9 +415,10 @@ Susbcription from Consumer to VIM to be notified about network capacity changes
         }
 
 Query Network Capacity
-______________________
+""""""""""""""""""""""
 
-Request to find out about available, reserved, total and allocated network capacity.
+Request to find out about available, reserved, total and allocated network
+capacity.
 
 .. http:get:: /capacity/network/query
     :noindex:
@@ -457,7 +458,7 @@ Request to find out about available, reserved, total and allocated network capac
         }
 
 Notify Network Capacity Change Event
-____________________________________
+""""""""""""""""""""""""""""""""""""
 
 Notification about network capacity changes
 
@@ -488,9 +489,10 @@ Network Resource Reservation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Create Network Resource Reservation
-___________________________________
+"""""""""""""""""""""""""""""""""""
 
-Request the reservation of network resource capacity and/or virtual networks, network ports
+Request the reservation of network resource capacity and/or virtual networks,
+network ports
 
 .. http:post:: /reservation/network/create
     :noindex:
@@ -531,9 +533,10 @@ Request the reservation of network resource capacity and/or virtual networks, ne
         }
 
 Query Network Resource Reservation
-__________________________________
+""""""""""""""""""""""""""""""""""
 
-Request to find out about reserved network resources that the consumer has access to.
+Request to find out about reserved network resources that the consumer has
+access to.
 
 .. http:get:: /reservation/network/query
     :noindex:
@@ -573,7 +576,7 @@ Request to find out about reserved network resources that the consumer has acces
        }
 
 Update Network Resource Reservation
-___________________________________
+"""""""""""""""""""""""""""""""""""
 
 Request to update network resource reservation
 
@@ -614,20 +617,23 @@ Request to update network resource reservation
         }
 
 Terminate Network Resource Reservation
-______________________________________
+""""""""""""""""""""""""""""""""""""""
+
 Request to terminate a network resource reservation
 
 .. http:delete:: /reservation/network/(reservation_id)
     :noindex:
 
+
 Virtualised Storage Resources
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-----------------------------
 
 Storage Capacity Management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Subscribe Storage Capacity Change Event
-_______________________________________
+"""""""""""""""""""""""""""""""""""""""
 
 Subscription from Consumer to VIM to be notified about storage capacity changes
 
@@ -669,9 +675,10 @@ Subscription from Consumer to VIM to be notified about storage capacity changes
         }
 
 Query Storage Capacity
-______________________
+""""""""""""""""""""""
 
-Request to find out about available, reserved, total and allocated storage capacity.
+Request to find out about available, reserved, total and allocated storage
+capacity.
 
 .. http:get:: /capacity/storage/query
     :noindex:
@@ -711,7 +718,7 @@ Request to find out about available, reserved, total and allocated storage capac
        }
 
 Notify Storage Capacity Change Event
-____________________________________
+""""""""""""""""""""""""""""""""""""
 
 Notification about storage capacity changes
 
@@ -742,7 +749,7 @@ Storage Resource Reservation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Create Storage Resource Reservation
-___________________________________
+"""""""""""""""""""""""""""""""""""
 
 Request the reservation of storage resource capacity
 
@@ -786,8 +793,10 @@ Request the reservation of storage resource capacity
         }
 
 Query Storage Resource Reservation
-__________________________________
-Request to find out about reserved storage resources that the consumer has access to.
+""""""""""""""""""""""""""""""""""
+
+Request to find out about reserved storage resources that the consumer has
+access to.
 
 .. http:get:: /reservation/storage/query
     :noindex:
@@ -828,7 +837,7 @@ Request to find out about reserved storage resources that the consumer has acces
         }
 
 Update Storage Resource Reservation
-___________________________________
+"""""""""""""""""""""""""""""""""""
 
 Request to update storage resource reservation
 
@@ -842,10 +851,12 @@ Request to update storage resource reservation
         POST /reservation/storage/update HTTP/1.1
         Accept: application/json
 
-       {
+
+        {
             "startTime": "2015-09-20T23:00:00Z",
             "reservationId": "vvvv-wwww-xxxx"
-       }
+
+        }
 
     **Example response**:
 
@@ -868,81 +879,9 @@ Request to update storage resource reservation
         }
 
 Terminate Storage Resource Reservation
-______________________________________
+""""""""""""""""""""""""""""""""""""""
+
 Request to terminate a storage resource reservation
 
 .. http:delete:: /reservation/storage/(reservation_id)
     :noindex:
-
-Detailed Message Flows
-----------------------
-
-Resource Capacity Management
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. figure:: images/figure5.png
-    :name: figure5
-    :width: 90%
-
-    Capacity Management Scenario
-
-:numref:`figure5` shows a detailed message flow between the consumers and the
-functional blocks inside the VIM and has the following steps:
-
-Step 1: The consumer subscribes to capacity change notifications
-
-Step 2: The Capacity Manager monitors the capacity information for the various
-types of resources by querying the various Controllers (e.g. Nova, Neutron,
-Cinder), either periodically or on demand and updates capacity information in
-the Capacity Map
-
-Step 3: Capacity changes are notified to the consumer
-
-Step 4: The consumer queries the Capacity Manager to retrieve capacity detailed
-information
-
-Resource Reservation
-~~~~~~~~~~~~~~~~~~~~
-
-.. figure:: images/figure6.png
-    :name: figure6
-    :width: 90%
-
-    Resource Reservation for Future Use Scenario
-
-:numref:`figure6` shows a detailed message flow between the consumers and
-the functional blocks inside the VIM and has the following steps:
-
-Step 1: The consumer creates a resource reservation request for future use by
-setting a start and end time for the allocation
-
-Step 2: The consumer gets an immediate reply with a reservation status message
-"reservationStatus" and an identifier to be used with this reservation instance
-"reservationID"
-
-Step 3: The consumer subscribes to reservation notification events
-
-Step 4: The Resource Reservation Manager checks the feasibility of the
-reservation request by consulting the Capacity Manager
-
-Step 5: The Resource Reservation Manager reserves the resources and stores the
-list of reservations IDs generated by the Controllers (e.g. Nova, Neutron,
-Cinder) in the Reservation Map
-
-Step 6: Once the reservation process is completed, the VIM sends a notification
-message to the consumer with information on the reserved resources
-
-Step 7: When start time arrives, the consumer creates a resource allocation
-request.
-
-Step 8: The consumer gets an immediate reply with an allocation status message
-"allocationStatus".
-
-Step 9: The consumer subscribes to allocation notification events
-
-Step 10: The Resource Allocation Manager allocates the reserved resources. If
-not all reserved resources are allocated before expiry, the reserved resources
-are released and a notification is sent to the consumer
-
-Step 11: Once the allocation process is completed, the VIM sends a notification
-message to the consumer with information on the allocated resources

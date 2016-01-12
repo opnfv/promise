@@ -1,3 +1,6 @@
+References and bibliography
+===========================
+
 .. [PROMISE]   OPNFV, "Promise" requirements project, [Online]. Available at
                https://wiki.opnfv.org/promise
 .. [BLAZAR]    OpenStack Blazar Project, [Online]. Available at
