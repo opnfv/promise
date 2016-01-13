@@ -1,3 +1,5 @@
+.. _yang_schema:
+
 ANNEX B: Promise YANG schema based on YangForge
 ===============================================
 
