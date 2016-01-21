@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_55c6594a",
+        "filename": "docs/requirements/impl_architecture.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 978
+      },
+      "writtenOn": "2016-01-21T11:14:39Z",
+      "side": 1,
+      "message": "It also needs to monitor the resource reservation manager, this information can not be obtained from the VIM. Also, from the allocation flow, seems the capacity databases are updated directly when an allocation request is received in the Shim layer.\n\nIn the figure this step is shown as 5, should be changed to 4",
+      "revId": "3a168d48c0c0d2b68c6a5ff49b284810d5747207",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_15c0e128",
+        "filename": "docs/requirements/impl_architecture.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 978
+      },
+      "writtenOn": "2016-01-21T11:14:39Z",
+      "side": 1,
+      "message": "\"update its records and capacity utilization\". In Step 1b they were already updated, so I assume you only need to update them now if the allocation fails, or?",
+      "revId": "3a168d48c0c0d2b68c6a5ff49b284810d5747207",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
