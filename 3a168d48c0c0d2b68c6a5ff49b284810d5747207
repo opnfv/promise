@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a5c5d37_b02123a1",
+        "filename": "docs/requirements/impl_architecture.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2016-01-21T13:21:09Z",
+      "side": 1,
+      "message": "The capacity manager does not need to know about the reservations. The reservation manager on the other hand needs to check the available capacities when it receives a reservation request. For simplification, I will replace \"Capacity/Reservation/Allocation Manager\" with \"shim-layer\", as anyhow this is not distinguished in the current implementation.\n\nThe Figure will be corrected.",
+      "parentUuid": "9a5c5d37_55c6594a",
+      "revId": "3a168d48c0c0d2b68c6a5ff49b284810d5747207",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a5c5d37_15c0e128",
         "filename": "docs/requirements/impl_architecture.rst",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2016-01-21T11:14:39Z",
       "side": 1,
       "message": "\"update its records and capacity utilization\". In Step 1b they were already updated, so I assume you only need to update them now if the allocation fails, or?",
+      "revId": "3a168d48c0c0d2b68c6a5ff49b284810d5747207",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_503667e8",
+        "filename": "docs/requirements/impl_architecture.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2016-01-21T13:21:09Z",
+      "side": 1,
+      "message": "Hi Arturo. Not necessarily. In step 1b, the state of the instance to be allocated is set to \"INITIALIZED\", whereas now it can be updated to \"ACTIVE\" or \"ERROR\". I will update step 1b.",
+      "parentUuid": "9a5c5d37_15c0e128",
       "revId": "3a168d48c0c0d2b68c6a5ff49b284810d5747207",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
