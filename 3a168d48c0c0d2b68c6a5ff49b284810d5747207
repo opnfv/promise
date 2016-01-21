@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "9a5c5d37_503d47ba",
+        "filename": "docs/requirements/impl_architecture.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 978
+      },
+      "writtenOn": "2016-01-21T13:39:23Z",
+      "side": 1,
+      "message": "Ok, my point was that for responding to capacity queries, the shim layer also has to consider outstanding reservations.  With your proposal to replace \"Capacity/Reservation/Allocation Manager\" with \"shim-layer\", the issue is solved.",
+      "parentUuid": "9a5c5d37_b02123a1",
+      "revId": "3a168d48c0c0d2b68c6a5ff49b284810d5747207",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a5c5d37_15c0e128",
         "filename": "docs/requirements/impl_architecture.rst",
         "patchSetId": 4
