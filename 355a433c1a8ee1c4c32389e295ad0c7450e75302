@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a4e6583_51e707e5",
+        "filename": "docs/requirements/impl_architecture.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2016-01-27T10:18:31Z",
+      "side": 1,
+      "message": "Maybe some comment on the required order of the steps would be good. I don\u0027t necessarily see that we have to follow all steps in a sequential manner, but e.g. Step 3 could be done in parallel. Are the following really \"phases\" or more like \"tasks\"?",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 18
+      },
+      "revId": "355a433c1a8ee1c4c32389e295ad0c7450e75302",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_31b5abcd",
+        "filename": "docs/requirements/impl_architecture.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2016-01-27T10:18:31Z",
+      "side": 1,
+      "message": "typo: updated",
+      "range": {
+        "startLine": 131,
+        "startChar": 71,
+        "endLine": 131,
+        "endChar": 77
+      },
+      "revId": "355a433c1a8ee1c4c32389e295ad0c7450e75302",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_d1c3f736",
+        "filename": "docs/requirements/impl_architecture.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2016-01-27T10:18:31Z",
+      "side": 1,
+      "message": "I assume the Gantt chart is meant for visualization of the reservations, but not the inner datamodels. The goal of the project IMHO is not a Gantt chart-like visualization but providing the resource reservation functionality. Maybe some re-wording can help to clarify this phase.",
+      "range": {
+        "startLine": 145,
+        "startChar": 17,
+        "endLine": 145,
+        "endChar": 36
+      },
+      "revId": "355a433c1a8ee1c4c32389e295ad0c7450e75302",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
