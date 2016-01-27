@@ -1,3 +1,5 @@
+.. _northbound_API:
+
 Detailed northbound interface specification
 ===========================================
 
