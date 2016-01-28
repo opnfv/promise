@@ -1,0 +1,72 @@
+module openstack-compute {
+  prefix os-com;
+
+  import nfv-infrastructure { prefix nfvi; }
+  import complex-types { prefix ct; }
+
+  identity nova { base nvfi:compute; }
+  
+  feature availability-zone {
+    description "Specifies whether availability zone functionality is available.";
+  }
+  feature extended-status {
+    description "Specifies whether extended status functionality is available.";
+  }
+  feature security-groups {
+    description "Specifies whether security groups functionality is available.";
+  }
+
+  ct:complex-type ServerInstance {
+    ct:extends nfvi:ServerInstance;
+
+    leaf zone {
+      if-feature availability-zone;
+      type string;
+    }
+
+    leaf project {
+      type instance-identifier { ct:instance-type nfvi:ResourceProject; }
+      mandatory true;
+    }
+
+    container extended-status {
+      if-feature extended-status;
+      leaf locked-by;
+      leaf power;
+      leaf task;
+      leaf vm;
+    }
+
+    leaf-list security-groups {
+      if-feature security-groups;
+      type instance-identifier { ct:instance-type SecurityGroup; }
+    }
+
+  }
+
+  choice version {
+    case v2.1 {
+      ct:instance-list servers { ct:instance-type ServerInstance; }
+    }
+  }
+
+  // OpenStack Nova specific RPC calls
+  rpc resize {
+    input {
+      leaf server { type instance-type { ct:instance-type ServerInstance; } }
+      // other params for resize
+    }
+  }
+  rpc backup;
+  rpc migrate;
+  rpc restore;
+  rpc evacuate;
+  rpc lock;
+  rpc unlock;
+  rpc suspend;
+  rpc resume;
+  rpc pause;
+  rpc unpause;
+  rpc inject-network;
+  rpc reset-network;
+}

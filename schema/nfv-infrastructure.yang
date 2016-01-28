@@ -1,0 +1,322 @@
+module nfv-infrastructure {
+  namespace "urn:opnfv:promise:nfv:infrastructure";
+  prefix nfvi;
+
+  import access-control-models { prefix acm; }
+  import ietf-inet-types { prefix inet; }
+  import ietf-yang-types { prefix yang; }
+  import complex-types { prefix ct; }
+
+  description
+    "NFV Infrastructure Data Models with complex types and typed instance
+     identifiers representing the various ResourceElements available
+     in the infrastructure across compute, network, and storage.";
+
+  revision 2015-10-13 {
+    description
+      "Introduce capacity and element collection into NFVI models";
+  }
+  
+  revision 2015-08-07 {
+    description
+      "This YANG module is modeled using 'yangforge' which natively provides
+       complex types and typed instance identifiers.  This module
+       provides various collections of resource management data models
+       for instance based management";
+  }
+
+  identity manager {
+    description "used by specific modules implementing manager role for NFVI";
+  }
+  
+  grouping compute-capacity {
+    leaf cores     { type int16; default 0; }
+    leaf ram       { type int32; default 0; units 'MB'; }
+    leaf instances { type int16; default 0; }
+  }
+
+  grouping network-capacity {
+    leaf networks  { type int16; default 0; }
+    leaf ports     { type int16; default 0; }
+    leaf routers   { type int16; default 0; }
+    leaf subnets   { type int16; default 0; }
+    leaf addresses { type int32; default 0; }
+  }
+
+  grouping storage-capacity {
+    leaf gigabytes { type int32; default 0; units 'GB'; }
+    leaf snapshots { type int16; default 0; }
+    leaf volumes   { type int16; default 0; }
+  }
+
+  grouping resource-capacity {
+    uses compute-capacity;
+    uses network-capacity;
+    uses storage-capacity;
+  }
+  
+  grouping resource-collection {
+    description
+      "Information model capturing parameters for describing a collection of
+       resource capacity and resource elements";
+    
+    container capacity { uses resource-capacity; }
+    leaf-list elements {
+      type instance-identifier {
+        ct:instance-type nfvi:ResourceElement;
+        require-instance true;
+      }
+    }
+  }
+
+  grouping resource-stack {
+    description
+      "Information model describing a NFVI resource stack comprising of
+       various resource elements across compute, network, and storage";
+    
+    ct:instance-list hosts { ct:instance-type nfvi:PhysicalHost; }
+    ct:instance-list hypervisors { ct:instance-type nfvi:Hypervisor; }
+
+    container compute {
+      description "Contains compute related resources";
+
+      ct:instance-list servers { ct:instance-type nfvi:ServerInstance; }
+      ct:instance-list images { ct:instance-type nfvi:VirtualMachineImage; }
+      ct:instance-list flavors { ct:instance-type nfvi:ComputeFlavor; }
+    }
+
+    container network {
+      description "Contains networking related resources";
+        
+      ct:instance-list networks { ct:instance-type nfvi:Network; }
+      ct:instance-list subnets { ct:instance-type nfvi:SubNetwork; }
+      ct:instance-list ports { ct:instance-type nfvi:SwitchPort; }
+      //ct:instance-list routers { ct:instance-type Router; }
+    }
+  }
+  
+  /*********************************************
+   * Abstract Models (top-level)
+   *********************************************/
+
+  ct:complex-type ResourceElement {
+    ct:abstract true;
+
+    key "id";
+    leaf id { type yang:uuid; mandatory true; }
+    leaf name { type string; }
+    leaf enabled { type boolean; default true; }
+    leaf protected { type boolean; default false; }
+    leaf owner { type instance-identifier { ct:instance-type acm:Identity; } }
+    leaf visibility {
+      description "Specify visibility level available from the perspective of 'owner'";
+      type enumeration {
+        enum public;
+        enum domain;
+        enum project;
+        enum group;
+        enum user;
+      }
+      default user;
+    }
+    leaf-list tags { type string; }
+    
+    leaf-list members {
+      description "Optionally share with explicit list of members of AccessIdentity complex-type";
+      type instance-identifier {
+        ct:instance-type acm:Identity;
+      }
+    }
+  }
+
+  ct:complex-type ResourceInstance {
+    ct:extends ResourceElement;
+    ct:abstract true;
+
+    leaf status {
+      type enumeration {
+        enum active;
+        enum inactive;
+        enum pending;
+      }
+    }
+    leaf progress {
+      type uint8 { range 0..100; }
+      default 0;
+    }
+  }
+
+  ct:complex-type ResourceContainer {
+    ct:extends ResourceInstance;
+    ct:abstract true;
+
+    description
+      "An abstract resource instance which contains a collection of capacity
+       and elements.";
+
+    uses resource-collection;
+  }
+
+  /*********************************************
+   * Compute Models
+   *********************************************/
+
+  ct:complex-type AvailabilityZone {
+    ct:extends ResourceElement;
+  }
+  
+  ct:complex-type PhysicalHost {
+    ct:extends ResourceElement;
+
+    leaf type { type string; }
+    leaf version { type string; }
+
+    leaf cpu { type uint8; }
+    leaf workload { type uint8; default 0; }
+    leaf uptime { type string; }
+
+    container ram {
+      leaf total { type uint32; units 'MB'; }
+      leaf used { type uint32; units 'MB'; }
+      leaf free { type uint32; units 'MB'; }
+    }
+    container disk {
+      leaf total { type uint32; units 'GB'; }
+      leaf used { type uint32; units 'GB'; }
+      leaf free { type uint32; units 'GB'; }
+    }
+
+    leaf-list hypervisors { type instance-identifier { ct:instance-type Hypervisor; } }
+  }
+  
+  ct:complex-type Hypervisor {
+    ct:extends PhysicalHost;
+
+    leaf host {
+      type instance-identifier { ct:instance-type PhysicalHost; }
+      mandatory true;
+    }
+    container vcpu {
+      leaf total { type uint16; }
+      leaf used { type uint16; }
+      leaf free { type uint16; }
+    }
+    leaf-list servers { type instance-identifier { ct:instance-type ServerInstance; } }
+  }
+
+  ct:complex-type ComputeElement {
+    ct:extends ResourceElement;
+    ct:abstract true;
+
+    container constraint {
+      leaf disk { type uint32; units 'GB'; default 0; }
+      leaf ram { type uint32; units 'MB'; default 0; }
+      leaf vcpu { type uint16; default 0; }
+    }
+
+    leaf-list instances {
+      description "State info about instances currently using this resource element";
+      type instance-identifier {
+        ct:instance-type ResourceInstance;
+      }
+      config false;
+    }
+  }
+
+  ct:complex-type VirtualMachineImage {
+    ct:extends ComputeElement;
+
+    container data {
+      leaf checksum { type string; mandatory true; }
+      leaf size { type uint32; units 'Bytes'; mandatory true; }
+      
+      container format {
+        leaf container {
+          type enumeration { enum ami; enum ari; enum aki; enum bare; enum ovf; }
+          default bare;
+        }
+        leaf disk {
+          type enumeration { enum ami; enum ari; enum aki; enum vhd; enum vmdk; enum raw; enum qcow2; enum vdi; enum iso; }
+        }
+      }
+      leaf content {
+        description "should be a 'private' property so only direct access retrieves content";
+        type binary;
+      }
+    }
+  }
+
+  ct:complex-type ComputeFlavor {
+    ct:extends ResourceElement;
+
+    leaf disk  { type uint32; units 'GB'; default 0; }
+    leaf ram   { type uint32; units 'MB'; default 0; }
+    leaf vcpus { type uint16; default 0; }
+  }
+
+  ct:complex-type ServerInstance {
+    ct:extends ResourceInstance;
+
+    leaf flavor {
+      type instance-identifier { ct:instance-type ComputeFlavor; }
+      mandatory true;
+    }
+    leaf image {
+      type instance-identifier { ct:instance-type VirtualMachineImage; }
+      mandatory true;
+    }
+    
+    //ct:instance metadata { ct:instance-type MetaData; }
+
+    leaf host {
+      type instance-identifier { ct:instance-type PhysicalHost; }
+    }
+
+    leaf-list connections {
+      description
+        "References to collection of NetworkingElement class objects such as
+         Network, Subnet, Port, Router that this ServerInstance is
+         connected with.";
+      type instance-identifier { ct:instance-type NetworkElement; }
+    }
+  }
+
+  /*********************************************
+   * Network Models (Work-in-Progress)
+   *********************************************/
+
+  ct:complex-type NetworkElement {
+    ct:extends ResourceElement;
+    ct:abstract true;
+  }
+
+  ct:complex-type Network {
+    ct:extends NetworkElement;
+
+    leaf-list subnets {
+      type instance-identifier { ct:instance-type SubNetwork; }
+    }
+  }
+
+  ct:complex-type SubNetwork {
+    ct:extends NetworkElement;
+
+    leaf network { type instance-identifier { ct:instance-type Network; } }
+
+    leaf-list nameservers { type string; }
+    
+    container dhcp {
+      leaf enabled { type boolean; }
+      list pools {
+        leaf start { type inet:ip-address; }
+        leaf end   { type inet:ip-address; }
+      }
+    }
+  }
+
+  ct:complex-type SwitchPort {
+    ct:extends NetworkElement;
+
+    leaf subnet { type instance-identifier { ct:instance-type SubNetwork; } }
+  }
+}

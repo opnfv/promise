@@ -1,0 +1,21 @@
+# the following config is used when ENV is as follows:
+# NODE_ENV=test
+# NODE_APP_INSTANCE=intercloud
+openstack:
+  auth:
+    strategy: keystone
+    endpoint: http://vhub4.intercloud.net:5000/v2.0
+    tenant:
+      id: 62a2d90992114994977fd6707bac5758
+    username: peter
+    password: # set OS_PASSWORD=xxxx environmental variable
+  test:
+    image:  ee0fb445-0fc2-4fda-a2dc-175bf3cc3cb1
+    flavor: 2312fd98-369e-4361-b967-606373891c11
+
+opnfv-promise:
+  promise:
+    policy:
+      reservation:
+        max-future-start-range: 7
+        max-duration: 24

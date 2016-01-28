@@ -1,0 +1,41 @@
+{
+  "name": "@opnfv/promise",
+  "version": "1.0.0",
+  "description": "Resource Management for Virtualized Infrastructure",
+  "author": "Peter K. Lee <peter@intercloud.net>",
+  "license": "Apache-2.0",
+  "private": true,
+  "homepage": "http://wiki.opnfv.org/promise",
+  "repository": "opnfv/promise",
+  "keywords": [
+    "opnfv",
+    "promise",
+    "vim",
+    "nfvi",
+    "infrastructure",
+    "openstack",
+    "nbi",
+    "yangforge",
+    "resource",
+    "reservation",
+    "capacity",
+    "allocation"
+  ],
+  "engines": {
+    "yangforge": ">=0.11.0"
+  },
+  "devDependencies": {
+    "config": "^1.19.0",
+    "js-yaml": "^3.5.2",
+    "mocha": "~2.0.1",
+    "promise": "^7.1.1",
+    "should": "~3.1.3",
+    "yangforge": "^0.11.0"
+  },
+  "main": "./lib/index.js",
+  "scripts": {
+    "prepublish": "yfc build -o index.yaml promise.yaml",
+    "test": "mocha",
+    "start": "yfc run --express 5050 promise.yaml"
+  }
+}
