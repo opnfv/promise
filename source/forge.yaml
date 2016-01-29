@@ -1,0 +1,42 @@
+# YF 0.12.x forge manifest
+
+compilers:
+  yang: yangforge/register
+  coffee: coffee-script/register
+
+components:
+  nfvi:
+    - yangforge:common
+    - schema/access-control-models.yang
+    - schema/nfv-infrastructure.yang
+    - schema/nfv-mano.yang
+
+  # primary promise service
+  promise:
+    - nfvi
+    - schema/opnfv-promise.yang
+    - spec/promise.yaml
+
+  # base openstack composition
+  openstack:
+    - nfvi
+    - schema/openstack.yang
+    - schema/openstack-identity.yang
+    - schema/openstack-image.yang
+    - schema/openstack-compute.yang
+    - schema/openstack-storage.yang
+    - schema/openstack-network.yang
+    - spec/openstack.yaml
+
+  # openstack with promise augmentation
+  os-promise:
+    - promise
+    - openstack
+    - schema/openstack-promise.yang
+    - spec/openstack-promise.yaml
+
+  # test component for using with 'npm test'
+  test:
+    - os-promise
+    - schema/opnfv-functest.yang
+    - config/demo.json

@@ -1,0 +1,11 @@
+# default configuration for 'npm test'
+
+opnfv-promise:
+  promise:
+    policy:
+      reservation:
+        max-future-start-range: 
+        max-future-end-range: 
+        max-duration:
+        expiry: 600
+

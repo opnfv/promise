@@ -1,0 +1,23 @@
+# OPNFV FuncTest config (refer to schema/opnfv-functest.yang)
+opnfv-functest:
+  environment:
+    installer:
+      type: INSTALLER_TYPE
+      address: INSTALLER_IP
+    lab: NODE_NAME
+
+# OpenStack config (native)
+openstack:
+  auth:
+    endpoint: OS_AUTH_URL
+    strategy: OS_AUTH_STRATEGY
+    tenant:
+      id: OS_TENANT_ID
+      name: OS_TENANT_NAME
+    username: OS_USERNAME
+    password: OS_PASSWORD
+  test:
+    image:  OS_TEST_IMAGE
+    flavor: OS_TEST_FLAVOR
+    network: OS_TEST_NETWORK
+    

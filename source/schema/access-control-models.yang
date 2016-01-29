@@ -1,0 +1,92 @@
+module access-control-models {
+  prefix acm;
+  namespace "urn:opnfv:promise:acm";
+
+  import complex-types { prefix ct; }
+  import ietf-yang-types { prefix yang; }
+  import ietf-inet-types { prefix inet; }
+
+  typedef password {
+    type string {
+      length 1..255;
+    }
+  }
+
+  grouping access-credentials {
+    leaf strategy {
+      type enumeration {
+        enum oauth;
+        enum keystone;
+      }
+      default oauth;
+    }
+    leaf endpoint {
+      type inet:uri;
+      description "The target endpoint for authentication";
+      mandatory true;
+    }
+    leaf username {
+      type string;
+      mandatory true;
+    }
+    leaf password {
+      type acm:password;
+      mandatory true;
+    }
+  }
+  
+  /*********************************************
+   * Identity Models
+   *********************************************/
+
+  ct:complex-type Identity {
+    ct:abstract true;
+    description "Identity represents an administrative access model entity";
+
+    key "id";
+    leaf id { type yang:uuid; mandatory true; }
+    leaf name { type string; mandatory true; }
+    leaf description { type string; }
+    leaf enabled { type boolean; default true; }
+  }
+
+  ct:complex-type User {
+    ct:extends Identity;
+
+    leaf credential {
+      //type instance-identifier { ct:instance-type IdentityCredential; }
+      type string;
+      mandatory true;
+    }
+    
+    container contact {
+      leaf fullName { type string; }
+      leaf email { type string; }
+    }
+
+    leaf-list groups { type instance-identifer { ct:instance-type Group; } }
+    leaf domain { type instance-identifier { ct:instance-type Domain; } }
+  }
+
+  ct:complex-type Group {
+    ct:extends Identity;
+    
+    leaf-list users { type instance-identifier { ct:instance-type User; } }
+    leaf domain { type instance-identifier { ct:instance-type Domain; } }
+  }
+
+  ct:complex-type Domain {
+    ct:extends Identity;
+    description
+      "Domain represent a distinct administrative domain across
+       collection of users and groups.";
+
+    ct:instance-list users { ct:instance-type User; }
+    ct:instance-list groups { ct:instance-type Group; }
+  }
+
+  rpc create-user;
+  rpc remove-user;
+  rpc create-group;
+  rpc remove-group;
+}
