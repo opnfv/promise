@@ -1,0 +1,13 @@
+name: openstack
+description: OpenStack Management Module (WIP)
+author: Peter K. Lee <peter@intercloud.net>
+license: Apache-2.0
+yangforge: "0.11.x"
+
+schema: !yang schema/openstack.yang
+
+dependencies:
+  access-control-models: !yang schema/access-control-models.yang
+  nfv-infrastructure:    !yang schema/nfv-infrastructure.yang
+
+rpc: !require spec/openstack-intents.coffee

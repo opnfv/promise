@@ -1,0 +1,4120 @@
+synth: source
+name: opnfv-promise
+version: !<tag:yaml.org,2002:js/undefined> ''
+description: Resource Management for Virtualized Infrastructure
+license: Apache-2.0
+schema:
+  module:
+    opnfv-promise:
+      namespace: 'urn:opnfv:promise'
+      prefix: promise
+      import:
+        complex-types:
+          prefix: ct
+        ietf-yang-types:
+          prefix: yang
+        ietf-inet-types:
+          prefix: inet
+        access-control-models:
+          prefix: acm
+        nfv-infrastructure:
+          prefix: nfvi
+      description: OPNFV Promise Resource Reservation/Allocation controller module
+      revision:
+        '2015-10-05':
+          description: Complete coverage of reservation related intents
+        '2015-08-06':
+          description: Updated to incorporate YangForge framework
+        '2015-04-16':
+          description: Initial revision.
+      feature:
+        reservation-service:
+          description: 'When enabled, provides resource reservation service'
+        multi-provider:
+          description: 'When enabled, provides resource management across multiple providers'
+      grouping:
+        resource-utilization:
+          container:
+            capacity:
+              container:
+                total:
+                  description: Conceptual container that should be extended
+                reserved:
+                  description: Conceptual container that should be extended
+                  config: false
+                usage:
+                  description: Conceptual container that should be extended
+                  config: false
+                available:
+                  description: Conceptual container that should be extended
+                  config: false
+        temporal-resource-collection:
+          description: Information model capturing resource-collection with start/end time window
+          leaf:
+            start:
+              type: 'yang:date-and-time'
+            end:
+              type: 'yang:date-and-time'
+          container:
+            capacity:
+              uses: {}
+              leaf:
+                cores:
+                  type: int16
+                  default: '0'
+                ram:
+                  type: int32
+                  default: '0'
+                  units: MB
+                instances:
+                  type: int16
+                  default: '0'
+                networks:
+                  type: int16
+                  default: '0'
+                ports:
+                  type: int16
+                  default: '0'
+                routers:
+                  type: int16
+                  default: '0'
+                subnets:
+                  type: int16
+                  default: '0'
+                addresses:
+                  type: int32
+                  default: '0'
+                gigabytes:
+                  type: int32
+                  default: '0'
+                  units: GB
+                snapshots:
+                  type: int16
+                  default: '0'
+                volumes:
+                  type: int16
+                  default: '0'
+          leaf-list:
+            elements:
+              type:
+                instance-identifier:
+                  'ct:instance-type': 'nfvi:ResourceElement'
+                  require-instance: true
+        resource-usage-request:
+          description: |-
+            Information model capturing available parameters to make a resource
+            usage request.
+          reference: 'OPNFV-PROMISE, Section 3.4.1'
+          uses: {}
+          leaf:
+            zone:
+              description: Optional identifier to an Availability Zone
+              type:
+                instance-identifier:
+                  'ct:instance-type': 'nfvi:AvailabilityZone'
+            start:
+              type: 'yang:date-and-time'
+            end:
+              type: 'yang:date-and-time'
+          container:
+            capacity:
+              uses: {}
+              leaf:
+                cores:
+                  type: int16
+                  default: '0'
+                ram:
+                  type: int32
+                  default: '0'
+                  units: MB
+                instances:
+                  type: int16
+                  default: '0'
+                networks:
+                  type: int16
+                  default: '0'
+                ports:
+                  type: int16
+                  default: '0'
+                routers:
+                  type: int16
+                  default: '0'
+                subnets:
+                  type: int16
+                  default: '0'
+                addresses:
+                  type: int32
+                  default: '0'
+                gigabytes:
+                  type: int32
+                  default: '0'
+                  units: GB
+                snapshots:
+                  type: int16
+                  default: '0'
+                volumes:
+                  type: int16
+                  default: '0'
+          leaf-list:
+            elements:
+              type:
+                instance-identifier:
+                  'ct:instance-type': 'nfvi:ResourceElement'
+                  require-instance: true
+              description: |-
+                Reference to a list of 'pre-existing' resource elements that are
+                required for fulfillment of the resource-usage-request.
+
+                It can contain any instance derived from ResourceElement,
+                such as ServerInstances or even other
+                ResourceReservations. If the resource-usage-request is
+                accepted, the ResourceElement(s) listed here will be placed
+                into 'protected' mode as to prevent accidental removal.
+
+                If any of these resource elements become 'unavailable' due to
+                environmental or administrative activity, a notification will
+                be issued informing of the issue.
+        query-start-end-window:
+          container:
+            window:
+              description: Matches entries that are within the specified start/end time window
+              leaf:
+                start:
+                  type: 'yang:date-and-time'
+                end:
+                  type: 'yang:date-and-time'
+                scope:
+                  type:
+                    enumeration:
+                      enum:
+                        exclusive:
+                          description: Matches entries that start AND end within the window
+                          value: 0
+                        inclusive:
+                          description: Matches entries that start OR end within the window
+                          value: 1
+                  default: inclusive
+        query-resource-collection:
+          uses: {}
+          leaf-list:
+            without:
+              description: Excludes specified collection identifiers from the result
+              type:
+                instance-identifier:
+                  'ct:instance-type': ResourceCollection
+          leaf:
+            show-utilization:
+              type: boolean
+              default: 'true'
+          container:
+            elements:
+              leaf-list:
+                some:
+                  description: Query for ResourceCollection(s) that contain some or more of these element(s)
+                  type:
+                    instance-identifier:
+                      'ct:instance-type': 'nfvi:ResourceElement'
+                every:
+                  description: Query for ResourceCollection(s) that contain all of these element(s)
+                  type:
+                    instance-identifier:
+                      'ct:instance-type': 'nfvi:ResourceElement'
+            window:
+              description: Matches entries that are within the specified start/end time window
+              leaf:
+                start:
+                  type: 'yang:date-and-time'
+                end:
+                  type: 'yang:date-and-time'
+                scope:
+                  type:
+                    enumeration:
+                      enum:
+                        exclusive:
+                          description: Matches entries that start AND end within the window
+                          value: 0
+                        inclusive:
+                          description: Matches entries that start OR end within the window
+                          value: 1
+                  default: inclusive
+        common-intent-output:
+          leaf:
+            result:
+              type:
+                enumeration:
+                  enum:
+                    ok:
+                      value: 0
+                    conflict:
+                      value: 1
+                    error:
+                      value: 2
+            message:
+              type: string
+        utilization-output:
+          list:
+            utilization:
+              key: timestamp
+              leaf:
+                timestamp:
+                  type: 'yang:date-and-time'
+                count:
+                  type: int16
+              container:
+                capacity:
+                  uses: {}
+                  leaf:
+                    cores:
+                      type: int16
+                      default: '0'
+                    ram:
+                      type: int32
+                      default: '0'
+                      units: MB
+                    instances:
+                      type: int16
+                      default: '0'
+                    networks:
+                      type: int16
+                      default: '0'
+                    ports:
+                      type: int16
+                      default: '0'
+                    routers:
+                      type: int16
+                      default: '0'
+                    subnets:
+                      type: int16
+                      default: '0'
+                    addresses:
+                      type: int32
+                      default: '0'
+                    gigabytes:
+                      type: int32
+                      default: '0'
+                      units: GB
+                    snapshots:
+                      type: int16
+                      default: '0'
+                    volumes:
+                      type: int16
+                      default: '0'
+      'ct:complex-type':
+        ResourceCollection:
+          'ct:extends': 'nfvi:ResourceContainer'
+          'ct:abstract': 'true'
+          description: |-
+            Describes an abstract ResourceCollection data model, which represents
+            a grouping of capacity and elements available during a given
+            window in time which must be extended by other resource
+            collection related models
+          leaf:
+            start:
+              type: 'yang:date-and-time'
+            end:
+              type: 'yang:date-and-time'
+            active:
+              config: false
+              description: |-
+                Provides current state of this record whether it is enabled and within
+                specified start/end time
+              type: boolean
+        ResourcePool:
+          'ct:extends': ResourceCollection
+          description: |-
+            Describes an instance of an active ResourcePool record, which
+            represents total available capacity and elements from a given
+            source.
+          leaf:
+            source:
+              type:
+                instance-identifier:
+                  'ct:instance-type': 'nfvi:ResourceContainer'
+                  require-instance: true
+              mandatory: true
+          refine:
+            elements:
+              must:
+                'boolean(/source/elements/*[@id=id])':
+                  error-message: One or more of the ResourceElement(s) does not exist in the provider to be reserved
+        ResourceReservation:
+          'ct:extends': ResourceCollection
+          description: |-
+            Describes an instance of an accepted resource reservation request,
+            created usually as a result of 'create-reservation' request.
+
+            A ResourceReservation is a derived instance of a generic
+            ResourceCollection which has additional parameters to map the
+            pool(s) that were referenced to accept this reservation as well
+            as to track allocations made referencing this reservation.
+
+            Contains the capacities of various resource attributes being
+            reserved along with any resource elements that are needed to be
+            available at the time of allocation(s).
+          reference: 'OPNFV-PROMISE, Section 3.4.1'
+          leaf:
+            created-on:
+              type: 'yang:date-and-time'
+              config: false
+            modified-on:
+              type: 'yang:date-and-time'
+              config: false
+          leaf-list:
+            pools:
+              config: false
+              description: |-
+                Provides list of one or more pools that were referenced for providing
+                the requested resources for this reservation.  This is an
+                important parameter for informing how/where allocation
+                requests can be issued using this reservation since it is
+                likely that the total reserved resource capacity/elements are
+                made availble from multiple sources.
+              type:
+                instance-identifier:
+                  'ct:instance-type': ResourcePool
+                  require-instance: true
+            allocations:
+              config: false
+              description: |-
+                Reference to a collection of consumed allocations referencing
+                this reservation.
+              type:
+                instance-identifier:
+                  'ct:instance-type': ResourceAllocation
+                  require-instance: true
+          container:
+            remaining:
+              config: false
+              description: |-
+                Provides visibility into total remaining capacity for this
+                reservation based on allocations that took effect utilizing
+                this reservation ID as a reference.
+              uses: {}
+              leaf:
+                cores:
+                  type: int16
+                  default: '0'
+                ram:
+                  type: int32
+                  default: '0'
+                  units: MB
+                instances:
+                  type: int16
+                  default: '0'
+                networks:
+                  type: int16
+                  default: '0'
+                ports:
+                  type: int16
+                  default: '0'
+                routers:
+                  type: int16
+                  default: '0'
+                subnets:
+                  type: int16
+                  default: '0'
+                addresses:
+                  type: int32
+                  default: '0'
+                gigabytes:
+                  type: int32
+                  default: '0'
+                  units: GB
+                snapshots:
+                  type: int16
+                  default: '0'
+                volumes:
+                  type: int16
+                  default: '0'
+        ResourceAllocation:
+          'ct:extends': ResourceCollection
+          description: |-
+            A ResourceAllocation record denotes consumption of resources from a
+            referenced ResourcePool.
+
+            It does not reflect an accepted request but is created to
+            represent the actual state about the ResourcePool. It is
+            created once the allocation(s) have successfully taken effect
+            on the 'source' of the ResourcePool.
+
+            The 'priority' state indicates the classification for dealing
+            with resource starvation scenarios. Lower priority allocations
+            will be forcefully terminated to allow for higher priority
+            allocations to be fulfilled.
+
+            Allocations without reference to an existing reservation will
+            receive the lowest priority.
+          reference: 'OPNFV-PROMISE, Section 3.4.3'
+          leaf:
+            reservation:
+              description: Reference to an existing reservation identifier (optional)
+              type:
+                instance-identifier:
+                  'ct:instance-type': ResourceReservation
+                  require-instance: true
+            pool:
+              description: Reference to an existing resource pool from which allocation is drawn
+              type:
+                instance-identifier:
+                  'ct:instance-type': ResourcePool
+                  require-instance: true
+            priority:
+              config: false
+              description: Reflects current priority level of the allocation according to classification rules
+              type:
+                enumeration:
+                  enum:
+                    high:
+                      value: 1
+                    normal:
+                      value: 2
+                    low:
+                      value: 3
+              default: normal
+          container:
+            instance-ref:
+              config: false
+              description: Reference to actual instance identifier of the provider/server for this allocation
+              leaf:
+                provider:
+                  type:
+                    instance-identifier:
+                      'ct:instance-type': ResourceProvider
+                server:
+                  type: 'yang:uuid'
+        ResourceFlavor:
+          description: currently NOT an extension of ResourceElement.
+          key: id
+          leaf:
+            id:
+              type: string
+            name:
+              type: string
+            disk:
+              type: uint32
+              units: GB
+              default: '0'
+            ram:
+              type: uint32
+              units: MB
+              default: '0'
+            vcpus:
+              type: uint16
+              default: '0'
+        ResourceProvider:
+          'ct:extends': 'nfvi:ResourceContainer'
+          leaf:
+            token:
+              type: string
+              mandatory: true
+          container:
+            services:
+              config: false
+              container:
+                compute:
+                  leaf:
+                    endpoint:
+                      type: 'inet:uri'
+                  'ct:instance-list':
+                    flavors:
+                      'ct:instance-type': ResourceFlavor
+          leaf-list:
+            pools:
+              config: false
+              description: Provides list of one or more pools that are referencing this provider.
+              type:
+                instance-identifier:
+                  'ct:instance-type': ResourcePool
+                  require-instance: true
+      container:
+        promise:
+          uses: {}
+          'ct:instance-list':
+            providers:
+              if-feature: multi-provider
+              description: Aggregate collection of all registered ResourceProvider instances for Promise resource management service
+              'ct:instance-type': ResourceProvider
+              status: unavailable
+            pools:
+              if-feature: reservation-service
+              description: Aggregate collection of all ResourcePool instances
+              'ct:instance-type': ResourcePool
+              status: unavailable
+            reservations:
+              if-feature: reservation-service
+              description: Aggregate collection of all ResourceReservation instances
+              'ct:instance-type': ResourceReservation
+              status: unavailable
+            allocations:
+              description: Aggregate collection of all ResourceAllocation instances
+              'ct:instance-type': ResourceAllocation
+          container:
+            policy:
+              container:
+                reservation:
+                  leaf:
+                    max-future-start-range:
+                      description: "Enforce reservation request 'start' time is within allowed range from now"
+                      type:
+                        uint16:
+                          range: 0..365
+                      units: days
+                    max-future-end-range:
+                      description: "Enforce reservation request 'end' time is within allowed range from now"
+                      type:
+                        uint16:
+                          range: 0..365
+                      units: days
+                    max-duration:
+                      description: Enforce reservation duration (end-start) does not exceed specified threshold
+                      type: uint16
+                      units: hours
+                      default: '8760'
+                    expiry:
+                      description: |-
+                        Duration in minutes from start when unallocated reserved resources
+                        will be released back into the pool
+                      type: uint32
+                      units: minutes
+            capacity:
+              container:
+                total:
+                  description: Conceptual container that should be extended
+                  uses: {}
+                  leaf:
+                    cores:
+                      type: int16
+                      default: '0'
+                    ram:
+                      type: int32
+                      default: '0'
+                      units: MB
+                    instances:
+                      type: int16
+                      default: '0'
+                    networks:
+                      type: int16
+                      default: '0'
+                    ports:
+                      type: int16
+                      default: '0'
+                    routers:
+                      type: int16
+                      default: '0'
+                    subnets:
+                      type: int16
+                      default: '0'
+                    addresses:
+                      type: int32
+                      default: '0'
+                    gigabytes:
+                      type: int32
+                      default: '0'
+                      units: GB
+                    snapshots:
+                      type: int16
+                      default: '0'
+                    volumes:
+                      type: int16
+                      default: '0'
+                reserved:
+                  description: Conceptual container that should be extended
+                  config: false
+                  uses: {}
+                  leaf:
+                    cores:
+                      type: int16
+                      default: '0'
+                    ram:
+                      type: int32
+                      default: '0'
+                      units: MB
+                    instances:
+                      type: int16
+                      default: '0'
+                    networks:
+                      type: int16
+                      default: '0'
+                    ports:
+                      type: int16
+                      default: '0'
+                    routers:
+                      type: int16
+                      default: '0'
+                    subnets:
+                      type: int16
+                      default: '0'
+                    addresses:
+                      type: int32
+                      default: '0'
+                    gigabytes:
+                      type: int32
+                      default: '0'
+                      units: GB
+                    snapshots:
+                      type: int16
+                      default: '0'
+                    volumes:
+                      type: int16
+                      default: '0'
+                usage:
+                  description: Conceptual container that should be extended
+                  config: false
+                  uses: {}
+                  leaf:
+                    cores:
+                      type: int16
+                      default: '0'
+                    ram:
+                      type: int32
+                      default: '0'
+                      units: MB
+                    instances:
+                      type: int16
+                      default: '0'
+                    networks:
+                      type: int16
+                      default: '0'
+                    ports:
+                      type: int16
+                      default: '0'
+                    routers:
+                      type: int16
+                      default: '0'
+                    subnets:
+                      type: int16
+                      default: '0'
+                    addresses:
+                      type: int32
+                      default: '0'
+                    gigabytes:
+                      type: int32
+                      default: '0'
+                      units: GB
+                    snapshots:
+                      type: int16
+                      default: '0'
+                    volumes:
+                      type: int16
+                      default: '0'
+                available:
+                  description: Conceptual container that should be extended
+                  config: false
+                  uses: {}
+                  leaf:
+                    cores:
+                      type: int16
+                      default: '0'
+                    ram:
+                      type: int32
+                      default: '0'
+                      units: MB
+                    instances:
+                      type: int16
+                      default: '0'
+                    networks:
+                      type: int16
+                      default: '0'
+                    ports:
+                      type: int16
+                      default: '0'
+                    routers:
+                      type: int16
+                      default: '0'
+                    subnets:
+                      type: int16
+                      default: '0'
+                    addresses:
+                      type: int32
+                      default: '0'
+                    gigabytes:
+                      type: int32
+                      default: '0'
+                      units: GB
+                    snapshots:
+                      type: int16
+                      default: '0'
+                    volumes:
+                      type: int16
+                      default: '0'
+      rpc:
+        create-reservation:
+          if-feature: reservation-service
+          description: Make a request to the reservation system to reserve resources
+          input:
+            uses: {}
+            leaf:
+              zone:
+                description: Optional identifier to an Availability Zone
+                type:
+                  instance-identifier:
+                    'ct:instance-type': 'nfvi:AvailabilityZone'
+              start:
+                type: 'yang:date-and-time'
+              end:
+                type: 'yang:date-and-time'
+            container:
+              capacity:
+                uses: {}
+                leaf:
+                  cores:
+                    type: int16
+                    default: '0'
+                  ram:
+                    type: int32
+                    default: '0'
+                    units: MB
+                  instances:
+                    type: int16
+                    default: '0'
+                  networks:
+                    type: int16
+                    default: '0'
+                  ports:
+                    type: int16
+                    default: '0'
+                  routers:
+                    type: int16
+                    default: '0'
+                  subnets:
+                    type: int16
+                    default: '0'
+                  addresses:
+                    type: int32
+                    default: '0'
+                  gigabytes:
+                    type: int32
+                    default: '0'
+                    units: GB
+                  snapshots:
+                    type: int16
+                    default: '0'
+                  volumes:
+                    type: int16
+                    default: '0'
+            leaf-list:
+              elements:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': 'nfvi:ResourceElement'
+                    require-instance: true
+                description: |-
+                  Reference to a list of 'pre-existing' resource elements that are
+                  required for fulfillment of the resource-usage-request.
+
+                  It can contain any instance derived from ResourceElement,
+                  such as ServerInstances or even other
+                  ResourceReservations. If the resource-usage-request is
+                  accepted, the ResourceElement(s) listed here will be placed
+                  into 'protected' mode as to prevent accidental removal.
+
+                  If any of these resource elements become 'unavailable' due to
+                  environmental or administrative activity, a notification will
+                  be issued informing of the issue.
+          output:
+            leaf:
+              reservation-id:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': ResourceReservation
+              result:
+                type:
+                  enumeration:
+                    enum:
+                      ok:
+                        value: 0
+                      conflict:
+                        value: 1
+                      error:
+                        value: 2
+              message:
+                type: string
+          status: unavailable
+        update-reservation:
+          description: Update reservation details for an existing reservation
+          input:
+            leaf:
+              reservation-id:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': ResourceReservation
+                    require-instance: true
+                mandatory: true
+              zone:
+                description: Optional identifier to an Availability Zone
+                type:
+                  instance-identifier:
+                    'ct:instance-type': 'nfvi:AvailabilityZone'
+              start:
+                type: 'yang:date-and-time'
+              end:
+                type: 'yang:date-and-time'
+            uses: {}
+            container:
+              capacity:
+                uses: {}
+                leaf:
+                  cores:
+                    type: int16
+                    default: '0'
+                  ram:
+                    type: int32
+                    default: '0'
+                    units: MB
+                  instances:
+                    type: int16
+                    default: '0'
+                  networks:
+                    type: int16
+                    default: '0'
+                  ports:
+                    type: int16
+                    default: '0'
+                  routers:
+                    type: int16
+                    default: '0'
+                  subnets:
+                    type: int16
+                    default: '0'
+                  addresses:
+                    type: int32
+                    default: '0'
+                  gigabytes:
+                    type: int32
+                    default: '0'
+                    units: GB
+                  snapshots:
+                    type: int16
+                    default: '0'
+                  volumes:
+                    type: int16
+                    default: '0'
+            leaf-list:
+              elements:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': 'nfvi:ResourceElement'
+                    require-instance: true
+                description: |-
+                  Reference to a list of 'pre-existing' resource elements that are
+                  required for fulfillment of the resource-usage-request.
+
+                  It can contain any instance derived from ResourceElement,
+                  such as ServerInstances or even other
+                  ResourceReservations. If the resource-usage-request is
+                  accepted, the ResourceElement(s) listed here will be placed
+                  into 'protected' mode as to prevent accidental removal.
+
+                  If any of these resource elements become 'unavailable' due to
+                  environmental or administrative activity, a notification will
+                  be issued informing of the issue.
+          output:
+            leaf:
+              result:
+                type:
+                  enumeration:
+                    enum:
+                      ok:
+                        value: 0
+                      conflict:
+                        value: 1
+                      error:
+                        value: 2
+              message:
+                type: string
+        cancel-reservation:
+          description: Cancel the reservation and be a good steward
+          input:
+            leaf:
+              reservation-id:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': ResourceReservation
+                mandatory: true
+          output:
+            leaf:
+              result:
+                type:
+                  enumeration:
+                    enum:
+                      ok:
+                        value: 0
+                      conflict:
+                        value: 1
+                      error:
+                        value: 2
+              message:
+                type: string
+        query-reservation:
+          if-feature: reservation-service
+          description: Query the reservation system to return matching reservation(s)
+          input:
+            leaf:
+              zone:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': 'nfvi:AvailabilityZone'
+              show-utilization:
+                type: boolean
+                default: 'true'
+            uses: {}
+            leaf-list:
+              without:
+                description: Excludes specified collection identifiers from the result
+                type:
+                  instance-identifier:
+                    'ct:instance-type': ResourceCollection
+            container:
+              elements:
+                leaf-list:
+                  some:
+                    description: Query for ResourceCollection(s) that contain some or more of these element(s)
+                    type:
+                      instance-identifier:
+                        'ct:instance-type': 'nfvi:ResourceElement'
+                  every:
+                    description: Query for ResourceCollection(s) that contain all of these element(s)
+                    type:
+                      instance-identifier:
+                        'ct:instance-type': 'nfvi:ResourceElement'
+              window:
+                description: Matches entries that are within the specified start/end time window
+                leaf:
+                  start:
+                    type: 'yang:date-and-time'
+                  end:
+                    type: 'yang:date-and-time'
+                  scope:
+                    type:
+                      enumeration:
+                        enum:
+                          exclusive:
+                            description: Matches entries that start AND end within the window
+                            value: 0
+                          inclusive:
+                            description: Matches entries that start OR end within the window
+                            value: 1
+                    default: inclusive
+          output:
+            leaf-list:
+              reservations:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': ResourceReservation
+            list:
+              utilization:
+                key: timestamp
+                leaf:
+                  timestamp:
+                    type: 'yang:date-and-time'
+                  count:
+                    type: int16
+                container:
+                  capacity:
+                    uses: {}
+                    leaf:
+                      cores:
+                        type: int16
+                        default: '0'
+                      ram:
+                        type: int32
+                        default: '0'
+                        units: MB
+                      instances:
+                        type: int16
+                        default: '0'
+                      networks:
+                        type: int16
+                        default: '0'
+                      ports:
+                        type: int16
+                        default: '0'
+                      routers:
+                        type: int16
+                        default: '0'
+                      subnets:
+                        type: int16
+                        default: '0'
+                      addresses:
+                        type: int32
+                        default: '0'
+                      gigabytes:
+                        type: int32
+                        default: '0'
+                        units: GB
+                      snapshots:
+                        type: int16
+                        default: '0'
+                      volumes:
+                        type: int16
+                        default: '0'
+          status: unavailable
+        increase-capacity:
+          description: Increase total capacity for the reservation system between a window in time
+          input:
+            leaf:
+              source:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': 'nfvi:ResourceContainer'
+              start:
+                type: 'yang:date-and-time'
+              end:
+                type: 'yang:date-and-time'
+            container:
+              capacity:
+                uses: {}
+                leaf:
+                  cores:
+                    type: int16
+                    default: '0'
+                  ram:
+                    type: int32
+                    default: '0'
+                    units: MB
+                  instances:
+                    type: int16
+                    default: '0'
+                  networks:
+                    type: int16
+                    default: '0'
+                  ports:
+                    type: int16
+                    default: '0'
+                  routers:
+                    type: int16
+                    default: '0'
+                  subnets:
+                    type: int16
+                    default: '0'
+                  addresses:
+                    type: int32
+                    default: '0'
+                  gigabytes:
+                    type: int32
+                    default: '0'
+                    units: GB
+                  snapshots:
+                    type: int16
+                    default: '0'
+                  volumes:
+                    type: int16
+                    default: '0'
+            leaf-list:
+              elements:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': 'nfvi:ResourceElement'
+                    require-instance: true
+          output:
+            leaf:
+              pool-id:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': ResourcePool
+              result:
+                type:
+                  enumeration:
+                    enum:
+                      ok:
+                        value: 0
+                      conflict:
+                        value: 1
+                      error:
+                        value: 2
+              message:
+                type: string
+        decrease-capacity:
+          description: Decrease total capacity for the reservation system between a window in time
+          input:
+            leaf:
+              source:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': 'nfvi:ResourceContainer'
+              start:
+                type: 'yang:date-and-time'
+              end:
+                type: 'yang:date-and-time'
+            container:
+              capacity:
+                uses: {}
+                leaf:
+                  cores:
+                    type: int16
+                    default: '0'
+                  ram:
+                    type: int32
+                    default: '0'
+                    units: MB
+                  instances:
+                    type: int16
+                    default: '0'
+                  networks:
+                    type: int16
+                    default: '0'
+                  ports:
+                    type: int16
+                    default: '0'
+                  routers:
+                    type: int16
+                    default: '0'
+                  subnets:
+                    type: int16
+                    default: '0'
+                  addresses:
+                    type: int32
+                    default: '0'
+                  gigabytes:
+                    type: int32
+                    default: '0'
+                    units: GB
+                  snapshots:
+                    type: int16
+                    default: '0'
+                  volumes:
+                    type: int16
+                    default: '0'
+            leaf-list:
+              elements:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': 'nfvi:ResourceElement'
+                    require-instance: true
+          output:
+            leaf:
+              pool-id:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': ResourcePool
+              result:
+                type:
+                  enumeration:
+                    enum:
+                      ok:
+                        value: 0
+                      conflict:
+                        value: 1
+                      error:
+                        value: 2
+              message:
+                type: string
+        query-capacity:
+          description: Check available capacity information about a specified resource collection
+          input:
+            leaf:
+              capacity:
+                type:
+                  enumeration:
+                    enum:
+                      total:
+                        value: 0
+                      reserved:
+                        value: 1
+                      usage:
+                        value: 2
+                      available:
+                        value: 3
+                default: available
+              zone:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': 'nfvi:AvailabilityZone'
+              show-utilization:
+                type: boolean
+                default: 'true'
+            uses: {}
+            leaf-list:
+              without:
+                description: Excludes specified collection identifiers from the result
+                type:
+                  instance-identifier:
+                    'ct:instance-type': ResourceCollection
+            container:
+              elements:
+                leaf-list:
+                  some:
+                    description: Query for ResourceCollection(s) that contain some or more of these element(s)
+                    type:
+                      instance-identifier:
+                        'ct:instance-type': 'nfvi:ResourceElement'
+                  every:
+                    description: Query for ResourceCollection(s) that contain all of these element(s)
+                    type:
+                      instance-identifier:
+                        'ct:instance-type': 'nfvi:ResourceElement'
+              window:
+                description: Matches entries that are within the specified start/end time window
+                leaf:
+                  start:
+                    type: 'yang:date-and-time'
+                  end:
+                    type: 'yang:date-and-time'
+                  scope:
+                    type:
+                      enumeration:
+                        enum:
+                          exclusive:
+                            description: Matches entries that start AND end within the window
+                            value: 0
+                          inclusive:
+                            description: Matches entries that start OR end within the window
+                            value: 1
+                    default: inclusive
+          output:
+            leaf-list:
+              collections:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': ResourceCollection
+            list:
+              utilization:
+                key: timestamp
+                leaf:
+                  timestamp:
+                    type: 'yang:date-and-time'
+                  count:
+                    type: int16
+                container:
+                  capacity:
+                    uses: {}
+                    leaf:
+                      cores:
+                        type: int16
+                        default: '0'
+                      ram:
+                        type: int32
+                        default: '0'
+                        units: MB
+                      instances:
+                        type: int16
+                        default: '0'
+                      networks:
+                        type: int16
+                        default: '0'
+                      ports:
+                        type: int16
+                        default: '0'
+                      routers:
+                        type: int16
+                        default: '0'
+                      subnets:
+                        type: int16
+                        default: '0'
+                      addresses:
+                        type: int32
+                        default: '0'
+                      gigabytes:
+                        type: int32
+                        default: '0'
+                        units: GB
+                      snapshots:
+                        type: int16
+                        default: '0'
+                      volumes:
+                        type: int16
+                        default: '0'
+        create-instance:
+          description: Create an instance of specified resource(s) utilizing capacity from the pool
+          input:
+            leaf:
+              provider-id:
+                if-feature: multi-provider
+                type:
+                  instance-identifier:
+                    'ct:instance-type': ResourceProvider
+                    require-instance: true
+                status: unavailable
+              name:
+                type: string
+                mandatory: true
+              image:
+                type:
+                  union:
+                    type:
+                      'yang:uuid': null
+                      'inet:uri': null
+                mandatory: true
+              flavor:
+                type:
+                  union:
+                    type:
+                      'yang:uuid': null
+                      'inet:uri': null
+                mandatory: true
+              reservation-id:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': ResourceReservation
+                    require-instance: true
+          output:
+            leaf:
+              instance-id:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': ResourceAllocation
+              result:
+                type:
+                  enumeration:
+                    enum:
+                      ok:
+                        value: 0
+                      conflict:
+                        value: 1
+                      error:
+                        value: 2
+              message:
+                type: string
+        destroy-instance:
+          description: Destroy an instance of resource utilization and release it back to the pool
+          input:
+            leaf:
+              instance-id:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': ResourceAllocation
+                    require-instance: true
+          output:
+            leaf:
+              result:
+                type:
+                  enumeration:
+                    enum:
+                      ok:
+                        value: 0
+                      conflict:
+                        value: 1
+                      error:
+                        value: 2
+              message:
+                type: string
+        add-provider:
+          description: Register a new resource provider into reservation system
+          input:
+            leaf:
+              provider-type:
+                description: Select a specific resource provider type
+                mandatory: true
+                type:
+                  enumeration:
+                    enum:
+                      openstack:
+                        value: 0
+                      hp:
+                        value: 1
+                      rackspace:
+                        value: 2
+                      amazon:
+                        status: planned
+                        value: 3
+                      joyent:
+                        status: planned
+                        value: 4
+                      azure:
+                        status: planned
+                        value: 5
+                default: openstack
+              strategy:
+                type:
+                  enumeration:
+                    enum:
+                      oauth:
+                        value: 0
+                      keystone:
+                        value: 1
+                default: keystone
+              endpoint:
+                type: 'inet:uri'
+                description: The target endpoint for authentication
+                mandatory: true
+                default: 'http://localhost:5000/v2.0'
+              username:
+                type: string
+                mandatory: true
+              password:
+                type: 'acm:password'
+                mandatory: true
+            uses: {}
+            container:
+              tenant:
+                leaf:
+                  id:
+                    type: string
+                  name:
+                    type: string
+          output:
+            leaf:
+              provider-id:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': ResourceProvider
+              result:
+                type:
+                  enumeration:
+                    enum:
+                      ok:
+                        value: 0
+                      conflict:
+                        value: 1
+                      error:
+                        value: 2
+              message:
+                type: string
+      notification:
+        reservation-event: null
+        capacity-event: null
+        allocation-event: null
+dependencies:
+  access-control-models:
+    module:
+      access-control-models:
+        prefix: acm
+        namespace: 'urn:opnfv:promise:acm'
+        import:
+          complex-types:
+            prefix: ct
+          ietf-yang-types:
+            prefix: yang
+          ietf-inet-types:
+            prefix: inet
+        typedef:
+          password:
+            type:
+              string:
+                length: 1..255
+        grouping:
+          access-credentials:
+            leaf:
+              strategy:
+                type:
+                  enumeration:
+                    enum:
+                      oauth:
+                        value: 0
+                      keystone:
+                        value: 1
+                default: oauth
+              endpoint:
+                type: 'inet:uri'
+                description: The target endpoint for authentication
+                mandatory: true
+              username:
+                type: string
+                mandatory: true
+              password:
+                type: 'acm:password'
+                mandatory: true
+        'ct:complex-type':
+          Identity:
+            'ct:abstract': 'true'
+            description: Identity represents an administrative access model entity
+            key: id
+            leaf:
+              id:
+                type: 'yang:uuid'
+                mandatory: true
+              name:
+                type: string
+                mandatory: true
+              description:
+                type: string
+              enabled:
+                type: boolean
+                default: 'true'
+          User:
+            'ct:extends': Identity
+            leaf:
+              credential:
+                type: string
+                mandatory: true
+              domain:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': Domain
+            container:
+              contact:
+                leaf:
+                  fullName:
+                    type: string
+                  email:
+                    type: string
+            leaf-list:
+              groups:
+                type:
+                  instance-identifer:
+                    'ct:instance-type': Group
+          Group:
+            'ct:extends': Identity
+            leaf-list:
+              users:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': User
+            leaf:
+              domain:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': Domain
+          Domain:
+            'ct:extends': Identity
+            description: |-
+              Domain represent a distinct administrative domain across
+              collection of users and groups.
+            'ct:instance-list':
+              users:
+                'ct:instance-type': User
+              groups:
+                'ct:instance-type': Group
+        rpc:
+          create-user: null
+          remove-user: null
+          create-group: null
+          remove-group: null
+  nfv-infrastructure:
+    module:
+      nfv-infrastructure:
+        namespace: 'urn:opnfv:promise:nfv:infrastructure'
+        prefix: nfvi
+        import:
+          access-control-models:
+            prefix: acm
+          ietf-inet-types:
+            prefix: inet
+          ietf-yang-types:
+            prefix: yang
+          complex-types:
+            prefix: ct
+        description: |-
+          NFV Infrastructure Data Models with complex types and typed instance
+          identifiers representing the various ResourceElements available
+          in the infrastructure across compute, network, and storage.
+        revision:
+          '2015-10-13':
+            description: Introduce capacity and element collection into NFVI models
+          '2015-08-07':
+            description: |-
+              This YANG module is modeled using 'yangforge' which natively provides
+              complex types and typed instance identifiers.  This module
+              provides various collections of resource management data models
+              for instance based management
+        identity:
+          manager:
+            description: used by specific modules implementing manager role for NFVI
+        grouping:
+          compute-capacity:
+            leaf:
+              cores:
+                type: int16
+                default: '0'
+              ram:
+                type: int32
+                default: '0'
+                units: MB
+              instances:
+                type: int16
+                default: '0'
+          network-capacity:
+            leaf:
+              networks:
+                type: int16
+                default: '0'
+              ports:
+                type: int16
+                default: '0'
+              routers:
+                type: int16
+                default: '0'
+              subnets:
+                type: int16
+                default: '0'
+              addresses:
+                type: int32
+                default: '0'
+          storage-capacity:
+            leaf:
+              gigabytes:
+                type: int32
+                default: '0'
+                units: GB
+              snapshots:
+                type: int16
+                default: '0'
+              volumes:
+                type: int16
+                default: '0'
+          resource-capacity:
+            uses: {}
+            leaf:
+              cores:
+                type: int16
+                default: '0'
+              ram:
+                type: int32
+                default: '0'
+                units: MB
+              instances:
+                type: int16
+                default: '0'
+              networks:
+                type: int16
+                default: '0'
+              ports:
+                type: int16
+                default: '0'
+              routers:
+                type: int16
+                default: '0'
+              subnets:
+                type: int16
+                default: '0'
+              addresses:
+                type: int32
+                default: '0'
+              gigabytes:
+                type: int32
+                default: '0'
+                units: GB
+              snapshots:
+                type: int16
+                default: '0'
+              volumes:
+                type: int16
+                default: '0'
+          resource-collection:
+            description: |-
+              Information model capturing parameters for describing a collection of
+              resource capacity and resource elements
+            container:
+              capacity:
+                uses: {}
+                leaf:
+                  cores:
+                    type: int16
+                    default: '0'
+                  ram:
+                    type: int32
+                    default: '0'
+                    units: MB
+                  instances:
+                    type: int16
+                    default: '0'
+                  networks:
+                    type: int16
+                    default: '0'
+                  ports:
+                    type: int16
+                    default: '0'
+                  routers:
+                    type: int16
+                    default: '0'
+                  subnets:
+                    type: int16
+                    default: '0'
+                  addresses:
+                    type: int32
+                    default: '0'
+                  gigabytes:
+                    type: int32
+                    default: '0'
+                    units: GB
+                  snapshots:
+                    type: int16
+                    default: '0'
+                  volumes:
+                    type: int16
+                    default: '0'
+            leaf-list:
+              elements:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': 'nfvi:ResourceElement'
+                    require-instance: true
+          resource-stack:
+            description: |-
+              Information model describing a NFVI resource stack comprising of
+              various resource elements across compute, network, and storage
+            'ct:instance-list':
+              hosts:
+                'ct:instance-type': 'nfvi:PhysicalHost'
+              hypervisors:
+                'ct:instance-type': 'nfvi:Hypervisor'
+            container:
+              compute:
+                description: Contains compute related resources
+                'ct:instance-list':
+                  servers:
+                    'ct:instance-type': 'nfvi:ServerInstance'
+                  images:
+                    'ct:instance-type': 'nfvi:VirtualMachineImage'
+                  flavors:
+                    'ct:instance-type': 'nfvi:ComputeFlavor'
+              network:
+                description: Contains networking related resources
+                'ct:instance-list':
+                  networks:
+                    'ct:instance-type': 'nfvi:Network'
+                  subnets:
+                    'ct:instance-type': 'nfvi:SubNetwork'
+                  ports:
+                    'ct:instance-type': 'nfvi:SwitchPort'
+        'ct:complex-type':
+          ResourceElement:
+            'ct:abstract': 'true'
+            key: id
+            leaf:
+              id:
+                type: 'yang:uuid'
+                mandatory: true
+              name:
+                type: string
+              enabled:
+                type: boolean
+                default: 'true'
+              protected:
+                type: boolean
+                default: 'false'
+              owner:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': 'acm:Identity'
+              visibility:
+                description: "Specify visibility level available from the perspective of 'owner'"
+                type:
+                  enumeration:
+                    enum:
+                      public:
+                        value: 0
+                      domain:
+                        value: 1
+                      project:
+                        value: 2
+                      group:
+                        value: 3
+                      user:
+                        value: 4
+                default: user
+            leaf-list:
+              tags:
+                type: string
+              members:
+                description: Optionally share with explicit list of members of AccessIdentity complex-type
+                type:
+                  instance-identifier:
+                    'ct:instance-type': 'acm:Identity'
+          ResourceInstance:
+            'ct:extends': ResourceElement
+            'ct:abstract': 'true'
+            leaf:
+              status:
+                type:
+                  enumeration:
+                    enum:
+                      active:
+                        value: 0
+                      inactive:
+                        value: 1
+                      pending:
+                        value: 2
+              progress:
+                type:
+                  uint8:
+                    range: 0..100
+                default: '0'
+          ResourceContainer:
+            'ct:extends': ResourceInstance
+            'ct:abstract': 'true'
+            description: |-
+              An abstract resource instance which contains a collection of capacity
+              and elements.
+            container:
+              capacity:
+                uses: {}
+                leaf:
+                  cores:
+                    type: int16
+                    default: '0'
+                  ram:
+                    type: int32
+                    default: '0'
+                    units: MB
+                  instances:
+                    type: int16
+                    default: '0'
+                  networks:
+                    type: int16
+                    default: '0'
+                  ports:
+                    type: int16
+                    default: '0'
+                  routers:
+                    type: int16
+                    default: '0'
+                  subnets:
+                    type: int16
+                    default: '0'
+                  addresses:
+                    type: int32
+                    default: '0'
+                  gigabytes:
+                    type: int32
+                    default: '0'
+                    units: GB
+                  snapshots:
+                    type: int16
+                    default: '0'
+                  volumes:
+                    type: int16
+                    default: '0'
+            leaf-list:
+              elements:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': 'nfvi:ResourceElement'
+                    require-instance: true
+          AvailabilityZone:
+            'ct:extends': ResourceElement
+          PhysicalHost:
+            'ct:extends': ResourceElement
+            leaf:
+              type:
+                type: string
+              version:
+                type: string
+              cpu:
+                type: uint8
+              workload:
+                type: uint8
+                default: '0'
+              uptime:
+                type: string
+            container:
+              ram:
+                leaf:
+                  total:
+                    type: uint32
+                    units: MB
+                  used:
+                    type: uint32
+                    units: MB
+                  free:
+                    type: uint32
+                    units: MB
+              disk:
+                leaf:
+                  total:
+                    type: uint32
+                    units: GB
+                  used:
+                    type: uint32
+                    units: GB
+                  free:
+                    type: uint32
+                    units: GB
+            leaf-list:
+              hypervisors:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': Hypervisor
+          Hypervisor:
+            'ct:extends': PhysicalHost
+            leaf:
+              host:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': PhysicalHost
+                mandatory: true
+            container:
+              vcpu:
+                leaf:
+                  total:
+                    type: uint16
+                  used:
+                    type: uint16
+                  free:
+                    type: uint16
+            leaf-list:
+              servers:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': ServerInstance
+          ComputeElement:
+            'ct:extends': ResourceElement
+            'ct:abstract': 'true'
+            container:
+              constraint:
+                leaf:
+                  disk:
+                    type: uint32
+                    units: GB
+                    default: '0'
+                  ram:
+                    type: uint32
+                    units: MB
+                    default: '0'
+                  vcpu:
+                    type: uint16
+                    default: '0'
+            leaf-list:
+              instances:
+                description: State info about instances currently using this resource element
+                type:
+                  instance-identifier:
+                    'ct:instance-type': ResourceInstance
+                config: false
+          VirtualMachineImage:
+            'ct:extends': ComputeElement
+            container:
+              data:
+                leaf:
+                  checksum:
+                    type: string
+                    mandatory: true
+                  size:
+                    type: uint32
+                    units: Bytes
+                    mandatory: true
+                  content:
+                    description: "should be a 'private' property so only direct access retrieves content"
+                    type: binary
+                container:
+                  format:
+                    leaf:
+                      container:
+                        type:
+                          enumeration:
+                            enum:
+                              ami:
+                                value: 0
+                              ari:
+                                value: 1
+                              aki:
+                                value: 2
+                              bare:
+                                value: 3
+                              ovf:
+                                value: 4
+                        default: bare
+                      disk:
+                        type:
+                          enumeration:
+                            enum:
+                              ami:
+                                value: 0
+                              ari:
+                                value: 1
+                              aki:
+                                value: 2
+                              vhd:
+                                value: 3
+                              vmdk:
+                                value: 4
+                              raw:
+                                value: 5
+                              qcow2:
+                                value: 6
+                              vdi:
+                                value: 7
+                              iso:
+                                value: 8
+          ComputeFlavor:
+            'ct:extends': ResourceElement
+            leaf:
+              disk:
+                type: uint32
+                units: GB
+                default: '0'
+              ram:
+                type: uint32
+                units: MB
+                default: '0'
+              vcpus:
+                type: uint16
+                default: '0'
+          ServerInstance:
+            'ct:extends': ResourceInstance
+            leaf:
+              flavor:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': ComputeFlavor
+                mandatory: true
+              image:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': VirtualMachineImage
+                mandatory: true
+              host:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': PhysicalHost
+            leaf-list:
+              connections:
+                description: |-
+                  References to collection of NetworkingElement class objects such as
+                  Network, Subnet, Port, Router that this ServerInstance is
+                  connected with.
+                type:
+                  instance-identifier:
+                    'ct:instance-type': NetworkElement
+          NetworkElement:
+            'ct:extends': ResourceElement
+            'ct:abstract': 'true'
+          Network:
+            'ct:extends': NetworkElement
+            leaf-list:
+              subnets:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': SubNetwork
+          SubNetwork:
+            'ct:extends': NetworkElement
+            leaf:
+              network:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': Network
+            leaf-list:
+              nameservers:
+                type: string
+            container:
+              dhcp:
+                leaf:
+                  enabled:
+                    type: boolean
+                list:
+                  pools:
+                    leaf:
+                      start:
+                        type: 'inet:ip-address'
+                      end:
+                        type: 'inet:ip-address'
+          SwitchPort:
+            'ct:extends': NetworkElement
+            leaf:
+              subnet:
+                type:
+                  instance-identifier:
+                    'ct:instance-type': SubNetwork
+extension:
+  module:
+    argument: name
+    include: 0..n
+    prefix: 0..1
+    anyxml: 0..n
+    augment: 0..n
+    choice: 0..n
+    contact: 0..1
+    container: 0..n
+    description: 0..1
+    deviation: 0..n
+    extension: 0..n
+    feature: 0..n
+    grouping: 0..n
+    identity: 0..n
+    import: 0..n
+    leaf: 0..n
+    leaf-list: 0..n
+    list: 0..n
+    namespace: 0..1
+    notification: 0..n
+    organization: 0..1
+    reference: 0..1
+    revision: 0..n
+    rpc: 0..n
+    typedef: 0..n
+    uses: 0..n
+    yang-version: 0..1
+    preprocess: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, ctx) {
+        var changes, match, ref, synth, target;
+        synth = this.require('data-synth');
+        ref = params.augment;
+        for (target in ref) {
+          changes = ref[target];
+          match = this.locate(ctx, target);
+          if (match == null) {
+            continue;
+          }
+          synth.copy(match, changes);
+        }
+        return delete this.source[params.prefix];
+      }
+    construct: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, children, ctx, self) {
+        return (self.origin.construct.apply(this, arguments)).merge({
+          models: this.resolve('complex-type')
+        });
+      }
+    complex-type: 0..n
+    instance: 0..n
+    instance-list: 0..n
+    origin:
+      argument: name
+      include: 0..n
+      prefix: 0..1
+      anyxml: 0..n
+      augment: 0..n
+      choice: 0..n
+      contact: 0..1
+      container: 0..n
+      description: 0..1
+      deviation: 0..n
+      extension: 0..n
+      feature: 0..n
+      grouping: 0..n
+      identity: 0..n
+      import: 0..n
+      leaf: 0..n
+      leaf-list: 0..n
+      list: 0..n
+      namespace: 0..1
+      notification: 0..n
+      organization: 0..1
+      reference: 0..1
+      revision: 0..n
+      rpc: 0..n
+      typedef: 0..n
+      uses: 0..n
+      yang-version: 0..1
+      preprocess: !<tag:yaml.org,2002:js/function> |-
+        function (arg, params, ctx) {
+          var changes, match, ref, synth, target;
+          synth = this.require('data-synth');
+          ref = params.augment;
+          for (target in ref) {
+            changes = ref[target];
+            match = this.locate(ctx, target);
+            if (match == null) {
+              continue;
+            }
+            synth.copy(match, changes);
+          }
+          return delete this.source[params.prefix];
+        }
+      construct: !<tag:yaml.org,2002:js/function> |-
+        function (arg, params, children) {
+          var k, m, modules, ref, synth, v;
+          synth = this.require('data-synth');
+          modules = {};
+          ref = params["import"];
+          for (k in ref) {
+            v = ref[k];
+            modules[k] = children[k];
+            delete children[k];
+          }
+          m = (synth.Store(params, function() {
+            return this.set({
+              name: arg,
+              modules: modules
+            });
+          })).bind(children);
+          this.define('module', arg, m);
+          return m;
+        }
+  prefix:
+    argument: value
+    preprocess: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, ctx) {
+        return this.source[arg] = this.source;
+      }
+  include:
+    argument: module
+    preprocess: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, ctx) {
+        var k, m, ref, ref1, ref2, results, v;
+        m = this.preprocess(this.resolve('dependencies', arg));
+        ref = m.extension;
+        for (k in ref) {
+          v = ref[k];
+          this.define('extension', k, v);
+        }
+        ref1 = m.typedef;
+        for (k in ref1) {
+          v = ref1[k];
+          this.define('typedef', k, v);
+        }
+        ref2 = m.schema;
+        results = [];
+        for (k in ref2) {
+          v = ref2[k];
+          results.push(ctx[k] = v);
+        }
+        return results;
+      }
+    revision-date: 0..1
+  augment:
+    anyxml: 0..n
+    case: 0..n
+    choice: 0..n
+    container: 0..n
+    description: 0..1
+    if-feature: 0..n
+    leaf: 0..n
+    leaf-list: 0..n
+    list: 0..n
+    reference: 0..1
+    status: 0..1
+    uses: 0..n
+    when: 0..1
+    argument: target-node
+  belongs-to:
+    prefix: 1
+    preprocess: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, ctx) {
+        return this.source[params.prefix] = this.source;
+      }
+    argument: module
+  bit:
+    description: 0..1
+    reference: 0..1
+    status: 0..1
+    position: 0..1
+    argument: name
+  case:
+    anyxml: 0..n
+    choice: 0..n
+    container: 0..n
+    description: 0..1
+    if-feature: 0..n
+    leaf: 0..n
+    leaf-list: 0..n
+    list: 0..n
+    reference: 0..1
+    status: 0..1
+    uses: 0..n
+    when: 0..1
+    argument: name
+  choice:
+    anyxml: 0..n
+    case: 0..n
+    config: 0..1
+    container: 0..n
+    default: 0..1
+    description: 0..1
+    if-feature: 0..n
+    leaf: 0..n
+    leaf-list: 0..n
+    list: 0..n
+    mandatory: 0..1
+    reference: 0..1
+    status: 0..1
+    when: 0..1
+    argument: condition
+  config:
+    preprocess: !<tag:yaml.org,2002:js/function> |-
+      function (arg, p, ctx) {
+        return ctx.config = arg === true || arg === 'true';
+      }
+    argument: value
+  container:
+    anyxml: 0..n
+    choice: 0..n
+    config: 0..1
+    container: 0..n
+    description: 0..1
+    grouping: 0..n
+    if-feature: 0..n
+    leaf: 0..n
+    leaf-list: 0..n
+    list: 0..n
+    must: 0..n
+    presence: 0..1
+    reference: 0..1
+    status: 0..1
+    typedef: 0..n
+    uses: 0..n
+    when: 0..1
+    construct: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, children) {
+        var synth;
+        synth = this.require('data-synth');
+        return (synth.Object(params)).bind(children);
+      }
+    argument: name
+    instance: 0..n
+    instance-list: 0..n
+    origin:
+      anyxml: 0..n
+      choice: 0..n
+      config: 0..1
+      container: 0..n
+      description: 0..1
+      grouping: 0..n
+      if-feature: 0..n
+      leaf: 0..n
+      leaf-list: 0..n
+      list: 0..n
+      must: 0..n
+      presence: 0..1
+      reference: 0..1
+      status: 0..1
+      typedef: 0..n
+      uses: 0..n
+      when: 0..1
+      construct: !<tag:yaml.org,2002:js/function> |-
+        function (arg, params, children) {
+          var synth;
+          synth = this.require('data-synth');
+          return (synth.Object(params)).bind(children);
+        }
+      argument: name
+  deviate:
+    config: 0..1
+    default: 0..1
+    mandatory: 0..1
+    max-elements: 0..1
+    min-elements: 0..1
+    must: 0..n
+    type: 0..1
+    unique: 0..1
+    units: 0..1
+    argument: value
+  deviation:
+    description: 0..1
+    deviate: 1..n
+    reference: 0..1
+    argument: target-node
+  enum:
+    description: 0..1
+    reference: 0..1
+    status: 0..1
+    value: 0..1
+    preprocess: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, ctx) {
+        if (params.value == null) {
+          if (this.enumValue == null) {
+            this.enumValue = 0;
+          }
+          params.value = this.enumValue++;
+        } else {
+          params.value = Number(params.value);
+          this.enumValue = params.value + 1;
+        }
+        return ctx["enum"][arg] = params;
+      }
+    argument: name
+  feature:
+    description: 0..1
+    if-feature: 0..n
+    reference: 0..1
+    status: 0..1
+    preprocess: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, ctx) {
+        if (params.status === 'unavailable') {
+          console.warn("feature " + arg + " is unavailable");
+          if (typeof ctx.feature === 'object') {
+            return delete ctx.feature[arg];
+          } else {
+            return delete ctx.feature;
+          }
+        }
+      }
+    construct: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, children) {
+        var feature;
+        feature = this.resolve('feature', arg);
+        return null;
+      }
+    argument: name
+  grouping:
+    anyxml: 0..n
+    choice: 0..n
+    container: 0..n
+    description: 0..1
+    grouping: 0..n
+    leaf: 0..n
+    leaf-list: 0..n
+    list: 0..n
+    reference: 0..1
+    status: 0..1
+    typedef: 0..n
+    uses: 0..n
+    preprocess: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params) {
+        return this.define('grouping', arg, params);
+      }
+    argument: name
+    instance: 0..n
+    instance-list: 0..n
+    origin:
+      anyxml: 0..n
+      choice: 0..n
+      container: 0..n
+      description: 0..1
+      grouping: 0..n
+      leaf: 0..n
+      leaf-list: 0..n
+      list: 0..n
+      reference: 0..1
+      status: 0..1
+      typedef: 0..n
+      uses: 0..n
+      preprocess: !<tag:yaml.org,2002:js/function> |-
+        function (arg, params) {
+          return this.define('grouping', arg, params);
+        }
+      argument: name
+  identity:
+    base: 0..1
+    description: 0..1
+    reference: 0..1
+    status: 0..1
+    preprocess: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params) {
+        return this.define('identity', arg, params);
+      }
+    argument: name
+  if-feature:
+    preprocess: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, ctx) {
+        if ((this.resolve('feature', arg)) == null) {
+          return ctx.status = 'unavailable';
+        }
+      }
+    argument: name
+  import:
+    prefix: 1
+    revision-date: 0..1
+    preprocess: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, ctx) {
+        var copy, k, m, original, ref, ref1, rev, schema, source, synth, v;
+        synth = this.require('data-synth');
+        schema = this.resolve('dependencies', arg, false);
+        if (schema == null) {
+          console.warn("no explicit dependency for " + arg + " defined, searching local filesystem");
+          schema = this.parse("!yang " + arg + ".yang", this.source);
+          if (schema != null) {
+            this.define('dependencies', arg, schema);
+            source = this.source.parent;
+            while ((source.parent != null) && source.parent.name !== 'yangforge') {
+              source = source.parent;
+            }
+            if (source.dependencies == null) {
+              source.dependencies = {};
+            }
+            source.dependencies[arg] = schema;
+          }
+        }
+        m = this.preprocess(schema);
+        if (m == null) {
+          throw this.error("unable to resolve '" + arg + "' in dependencies", 'import');
+        }
+        rev = params['revision-date'];
+        if ((rev != null) && !(rev in m.revision)) {
+          throw this.error("requested " + rev + " not available in " + arg, 'import');
+        }
+        ref = m.extension;
+        for (k in ref) {
+          v = ref[k];
+          if (!(v.override === true)) {
+            continue;
+          }
+          original = this.resolve('extension', k);
+          copy = synth.copy({}, v);
+          copy.origin = synth.copy({}, (ref1 = original.origin) != null ? ref1 : original);
+          delete copy.override;
+          this.define('extension', k, copy);
+        }
+        return this.source[params.prefix] = m;
+      }
+    construct: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, children, ctx) {
+        return this.compile(this.source[params.prefix], this.source);
+      }
+    argument: module
+  input:
+    anyxml: 0..n
+    choice: 0..n
+    container: 0..n
+    grouping: 0..n
+    leaf: 0..n
+    leaf-list: 0..n
+    list: 0..n
+    typedef: 0..n
+    uses: 0..n
+    construct: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, children) {
+        var synth;
+        synth = this.require('data-synth');
+        return (synth.Object(params)).bind(children);
+      }
+    instance: 0..n
+    instance-list: 0..n
+    origin:
+      anyxml: 0..n
+      choice: 0..n
+      container: 0..n
+      grouping: 0..n
+      leaf: 0..n
+      leaf-list: 0..n
+      list: 0..n
+      typedef: 0..n
+      uses: 0..n
+      construct: !<tag:yaml.org,2002:js/function> |-
+        function (arg, params, children) {
+          var synth;
+          synth = this.require('data-synth');
+          return (synth.Object(params)).bind(children);
+        }
+  leaf:
+    config: 0..1
+    default: 0..1
+    description: 0..1
+    if-feature: 0..n
+    mandatory: 0..1
+    must: 0..n
+    reference: 0..1
+    status: 0..1
+    type: 0..1
+    units: 0..1
+    when: 0..1
+    construct: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, children, ctx, self) {
+        var synth;
+        synth = this.require('data-synth');
+        if (params.type['instance-identifier'] != null) {
+          return synth.BelongsTo(params, function() {
+            return this.set({
+              model: children.type
+            });
+          });
+        } else {
+          return self.origin.construct.apply(this, arguments);
+        }
+      }
+    argument: name
+    origin:
+      config: 0..1
+      default: 0..1
+      description: 0..1
+      if-feature: 0..n
+      mandatory: 0..1
+      must: 0..n
+      reference: 0..1
+      status: 0..1
+      type: 0..1
+      units: 0..1
+      when: 0..1
+      construct: !<tag:yaml.org,2002:js/function> |-
+        function (arg, params, children) {
+          var synth;
+          synth = this.require('data-synth');
+          return synth.Property(params, function() {
+            if (children.type != null) {
+              return this.set({
+                type: children.type
+              });
+            }
+          });
+        }
+      argument: name
+  leaf-list:
+    config: 0..1
+    description: 0..1
+    if-feature: 0..n
+    max-elements: 0..1
+    min-elements: 0..1
+    must: 0..n
+    ordered-by: 0..1
+    reference: 0..1
+    status: 0..1
+    type: 0..1
+    units: 0..1
+    when: 0..1
+    construct: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, children, ctx, self) {
+        var synth;
+        synth = this.require('data-synth');
+        if (params.type['instance-identifier'] != null) {
+          return synth.HasMany(params, function() {
+            return this.set({
+              model: children.type
+            });
+          });
+        } else {
+          return self.origin.construct.apply(this, arguments);
+        }
+      }
+    argument: name
+    origin:
+      config: 0..1
+      description: 0..1
+      if-feature: 0..n
+      max-elements: 0..1
+      min-elements: 0..1
+      must: 0..n
+      ordered-by: 0..1
+      reference: 0..1
+      status: 0..1
+      type: 0..1
+      units: 0..1
+      when: 0..1
+      construct: !<tag:yaml.org,2002:js/function> |-
+        function (arg, params, children) {
+          var synth;
+          synth = this.require('data-synth');
+          return synth.List(params, function() {
+            if (children.type != null) {
+              return this.set({
+                type: children.type
+              });
+            }
+          });
+        }
+      argument: name
+  list:
+    anyxml: 0..n
+    choice: 0..n
+    config: 0..1
+    container: 0..n
+    description: 0..1
+    grouping: 0..n
+    if-feature: 0..n
+    key: 0..1
+    leaf: 0..n
+    leaf-list: 0..n
+    list: 0..n
+    max-elements: 0..1
+    min-elements: 0..1
+    must: 0..n
+    ordered-by: 0..1
+    reference: 0..1
+    status: 0..1
+    typedef: 0..n
+    unique: 0..1
+    uses: 0..n
+    when: 0..1
+    construct: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, children) {
+        var item, synth;
+        synth = this.require('data-synth');
+        item = (synth.Object(null)).bind(children);
+        return (synth.List(params)).set({
+          type: item
+        });
+      }
+    argument: name
+  mandatory:
+    preprocess: !<tag:yaml.org,2002:js/function> |-
+      function (arg, p, ctx) {
+        return ctx.mandatory = arg === true || arg === 'true';
+      }
+    argument: value
+  max-elements:
+    preprocess: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, ctx) {
+        if (arg !== 'unbounded') {
+          return ctx['max-elements'] = Number(arg);
+        }
+      }
+    argument: value
+  min-elements:
+    preprocess: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, ctx) {
+        return ctx['min-elements'] = Number(arg);
+      }
+    argument: value
+  must:
+    description: 0..1
+    error-app-tag: 0..1
+    error-message: 0..1
+    reference: 0..1
+    argument: condition
+  notification:
+    anyxml: 0..n
+    choice: 0..n
+    container: 0..n
+    description: 0..1
+    grouping: 0..n
+    if-feature: 0..n
+    leaf: 0..n
+    leaf-list: 0..n
+    list: 0..n
+    reference: 0..1
+    status: 0..1
+    typedef: 0..n
+    uses: 0..n
+    preprocess: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params) {
+        return this.define('notification', arg, params);
+      }
+    argument: event
+  output:
+    anyxml: 0..n
+    choice: 0..n
+    container: 0..n
+    grouping: 0..n
+    leaf: 0..n
+    leaf-list: 0..n
+    list: 0..n
+    typedef: 0..n
+    uses: 0..n
+    construct: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, children) {
+        var synth;
+        synth = this.require('data-synth');
+        return (synth.Object(params)).bind(children);
+      }
+    instance: 0..n
+    instance-list: 0..n
+    origin:
+      anyxml: 0..n
+      choice: 0..n
+      container: 0..n
+      grouping: 0..n
+      leaf: 0..n
+      leaf-list: 0..n
+      list: 0..n
+      typedef: 0..n
+      uses: 0..n
+      construct: !<tag:yaml.org,2002:js/function> |-
+        function (arg, params, children) {
+          var synth;
+          synth = this.require('data-synth');
+          return (synth.Object(params)).bind(children);
+        }
+  path:
+    preprocess: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, ctx) {
+        return ctx.path = arg.replace(/[_]/g, '.');
+      }
+    argument: value
+  pattern:
+    construct: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, children, ctx) {
+        if (ctx.patterns == null) {
+          ctx.patterns = [];
+        }
+        return ctx.patterns.push(new RegExp(arg));
+      }
+    argument: value
+  refine:
+    default: 0..1
+    description: 0..1
+    reference: 0..1
+    config: 0..1
+    mandatory: 0..1
+    presence: 0..1
+    must: 0..n
+    min-elements: 0..1
+    max-elements: 0..1
+    units: 0..1
+    argument: target-node
+  require-instance:
+    preprocess: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, ctx) {
+        return ctx['require-instance'] = arg === true || arg === 'true';
+      }
+    argument: value
+  revision:
+    description: 0..1
+    reference: 0..1
+    preprocess: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, ctx) {
+        return this.define('revision', arg, params);
+      }
+    argument: date
+  rpc:
+    description: 0..1
+    grouping: 0..n
+    if-feature: 0..n
+    input: 0..1
+    output: 0..1
+    reference: 0..1
+    status: 0..1
+    typedef: 0..n
+    construct: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, children) {
+        var func, method, ref, ref1, request, response, synth;
+        synth = this.require('data-synth');
+        func = this.resolve('rpc', arg, false);
+        if (func == null) {
+          func = function(input, output, done) {
+            return done("No control logic found for '" + arg + "' rpc operation");
+          };
+        }
+        request = (ref = children.input) != null ? ref : synth.Meta;
+        response = (ref1 = children.output) != null ? ref1 : synth.Meta;
+        method = function(data, resolve, reject) {
+          var e, error, input, output;
+          if (typeof console.debug === "function") {
+            console.debug("executing rpc " + arg + "...");
+          }
+          try {
+            input = new request(data, this);
+            output = new response(null, this);
+          } catch (error) {
+            e = error;
+            return reject(e);
+          }
+          return func.call(this, input, output, function(e) {
+            if (e == null) {
+              return resolve(output);
+            } else {
+              return reject(e);
+            }
+          });
+        };
+        method.params = params;
+        method.input = request;
+        method.output = response;
+        return method;
+      }
+    argument: name
+  submodule:
+    argument: name
+    anyxml: 0..n
+    augment: 0..n
+    belongs-to: 0..1
+    choice: 0..n
+    contact: 0..1
+    container: 0..n
+    description: 0..1
+    deviation: 0..n
+    extension: 0..n
+    feature: 0..n
+    grouping: 0..n
+    identity: 0..n
+    import: 0..n
+    include: 0..n
+    leaf: 0..n
+    leaf-list: 0..n
+    list: 0..n
+    notification: 0..n
+    organization: 0..1
+    reference: 0..1
+    revision: 0..n
+    rpc: 0..n
+    typedef: 0..n
+    uses: 0..n
+    yang-version: 0..1
+    preprocess: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, ctx) {
+        var k, v;
+        for (k in params) {
+          v = params[k];
+          ctx[k] = v;
+        }
+        return delete ctx.submodule;
+      }
+    complex-type: 0..n
+    instance: 0..n
+    instance-list: 0..n
+    origin:
+      argument: name
+      anyxml: 0..n
+      augment: 0..n
+      belongs-to: 0..1
+      choice: 0..n
+      contact: 0..1
+      container: 0..n
+      description: 0..1
+      deviation: 0..n
+      extension: 0..n
+      feature: 0..n
+      grouping: 0..n
+      identity: 0..n
+      import: 0..n
+      include: 0..n
+      leaf: 0..n
+      leaf-list: 0..n
+      list: 0..n
+      notification: 0..n
+      organization: 0..1
+      reference: 0..1
+      revision: 0..n
+      rpc: 0..n
+      typedef: 0..n
+      uses: 0..n
+      yang-version: 0..1
+      preprocess: !<tag:yaml.org,2002:js/function> |-
+        function (arg, params, ctx) {
+          var k, v;
+          for (k in params) {
+            v = params[k];
+            ctx[k] = v;
+          }
+          return delete ctx.submodule;
+        }
+  status:
+    preprocess: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, ctx) {
+        return ctx.status != null ? ctx.status : ctx.status = arg;
+      }
+    argument: value
+  type:
+    base: 0..1
+    bit: 0..n
+    enum: 0..n
+    fraction-digits: 0..1
+    length: 0..1
+    path: 0..1
+    pattern: 0..n
+    range: 0..1
+    require-instance: 0..1
+    type: 0..n
+    preprocess: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, ctx) {
+        return delete this.enumValue;
+      }
+    construct: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, children, ctx, self) {
+        if (children.ctype != null) {
+          ctx.type = children.ctype;
+          return null;
+        } else {
+          return self.origin.construct.apply(this, arguments);
+        }
+      }
+    argument: name
+    instance-type: 0..1
+    origin:
+      base: 0..1
+      bit: 0..n
+      enum: 0..n
+      fraction-digits: 0..1
+      length: 0..1
+      path: 0..1
+      pattern: 0..n
+      range: 0..1
+      require-instance: 0..1
+      type: 0..n
+      preprocess: !<tag:yaml.org,2002:js/function> |-
+        function (arg, params, ctx) {
+          return delete this.enumValue;
+        }
+      construct: !<tag:yaml.org,2002:js/function> |-
+        function (arg, params, children, ctx) {
+          var key, mparams, ref, ref1, synth, typedef, value;
+          synth = this.require('data-synth');
+          typedef = this.resolve('typedef', arg);
+          if (typedef == null) {
+            throw this.error("unable to resolve typedef for " + arg);
+          }
+          switch (false) {
+            case typedef.construct == null:
+              ctx.type = typedef.construct(params, this, arguments.callee);
+              break;
+            case typeof typedef.type !== 'object':
+              ref = typedef.type;
+              for (key in ref) {
+                value = ref[key];
+                mparams = synth.copy({}, value);
+                synth.copy(mparams, params);
+                arguments.callee.call(this, key, mparams, children, ctx);
+              }
+              break;
+            case typeof typedef.type !== 'string':
+              arguments.callee.call(this, typedef.type, params, children, ctx);
+          }
+          if ((ref1 = ctx.type) != null) {
+            ref1.toString = function() {
+              return arg;
+            };
+          }
+          return null;
+        }
+      argument: name
+  typedef:
+    default: 0..1
+    description: 0..1
+    units: 0..1
+    type: 0..1
+    reference: 0..1
+    preprocess: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params) {
+        return this.define('typedef', arg, params);
+      }
+    argument: name
+  uses:
+    augment: 0..n
+    description: 0..1
+    if-feature: 0..n
+    refine: 0..n
+    reference: 0..1
+    status: 0..1
+    when: 0..1
+    preprocess: !<tag:yaml.org,2002:js/function> |-
+      function (arg, params, ctx) {
+        var changes, grouping, k, match, ref, ref1, synth, target, v;
+        synth = this.require('data-synth');
+        grouping = synth.copy({}, this.resolve('grouping', arg));
+        delete grouping.description;
+        delete grouping.reference;
+        synth.copy(ctx, grouping);
+        ref = params.refine;
+        for (target in ref) {
+          changes = ref[target];
+          match = this.locate(ctx, target);
+          if (match == null) {
+            continue;
+          }
+          for (k in changes) {
+            v = changes[k];
+            match[k] = v;
+          }
+        }
+        ref1 = params.augment;
+        for (target in ref1) {
+          changes = ref1[target];
+          match = this.locate(ctx, target);
+          if (match == null) {
+            continue;
+          }
+          synth.copy(match, changes);
+        }
+        if (typeof ctx.uses === 'object') {
+          return delete ctx.uses[arg];
+        } else {
+          return delete ctx.uses;
+        }
+      }
+    argument: name
+  when:
+    description: 0..1
+    reference: 0..1
+    argument: condition
+  anyxml: {}
+  base:
+    argument: name
+  contact:
+    argument:
+      text:
+        yin-element: 'true'
+  default:
+    argument: value
+  description:
+    argument:
+      text:
+        yin-element: 'true'
+  error-app-tag:
+    argument: value
+  error-message:
+    argument:
+      value:
+        yin-element: 'true'
+  fraction-digits:
+    argument: value
+  key:
+    argument: value
+  length:
+    argument: value
+  namespace:
+    argument: uri
+  ordered-by:
+    argument: value
+  organization:
+    argument:
+      text:
+        yin-element: 'true'
+  position:
+    argument: value
+  presence:
+    argument: value
+  range:
+    argument: value
+  reference:
+    argument:
+      text:
+        yin-element: 'true'
+  revision-date:
+    argument: date
+  unique:
+    argument: tag
+  units:
+    argument: value
+  value:
+    argument: value
+  yang-version:
+    argument: value
+  yin-element:
+    argument: value
+feature: !<tag:yaml.org,2002:js/undefined> ''
+keywords:
+  - opnfv
+  - promise
+  - vim
+  - nfvi
+  - infrastructure
+  - openstack
+  - nbi
+  - yangforge
+  - resource
+  - reservation
+  - capacity
+  - allocation
+rpc:
+  create-reservation: !<tag:yaml.org,2002:js/function> |-
+    function (input, output, done) {
+          var reservation, reservations;
+          reservation = this.create('ResourceReservation');
+          reservations = this.access('promise.reservations');
+          return reservation.invoke('update', input.get()).then(function(res) {
+            return res.save().then(function() {
+              reservations.push(res);
+              output.set({
+                result: 'ok',
+                message: 'reservation request accepted'
+              });
+              output.set('reservation-id', res.id);
+              return done();
+            })["catch"](function(err) {
+              output.set({
+                result: 'error',
+                message: err
+              });
+              return done();
+            });
+          })["catch"](function(err) {
+            output.set({
+              result: 'conflict',
+              message: err
+            });
+            return done();
+          });
+        }
+  query-reservation: !<tag:yaml.org,2002:js/function> |-
+    function (input, output, done) {
+          var query;
+          query = input.get();
+          query.capacity = 'reserved';
+          return this.invoke('query-capacity', query).then(function(res) {
+            output.set('reservations', res.get('collections'));
+            output.set('utilization', res.get('utilization'));
+            return done();
+          })["catch"](function(e) {
+            return done(e);
+          });
+        }
+  update-reservation: !<tag:yaml.org,2002:js/function> |-
+    function (input, output, done) {
+          var reservation;
+          if ((input.get('reservation-id')) == null) {
+            output.set({
+              result: 'error',
+              message: "must provide 'reservation-id' parameter"
+            });
+            return done();
+          }
+          reservation = this.find('ResourceReservation', input.get('reservation-id'));
+          if (reservation == null) {
+            output.set({
+              result: 'error',
+              message: 'no reservation found for specified identifier'
+            });
+            return done();
+          }
+          return reservation.invoke('update', input.get()).then(function(res) {
+            return res.save().then(function() {
+              output.set({
+                result: 'ok',
+                message: 'reservation update successful'
+              });
+              return done();
+            })["catch"](function(err) {
+              output.set({
+                result: 'error',
+                message: err
+              });
+              return done();
+            });
+          })["catch"](function(err) {
+            output.set({
+              result: 'conflict',
+              message: err
+            });
+            return done();
+          });
+        }
+  cancel-reservation: !<tag:yaml.org,2002:js/function> |-
+    function (input, output, done) {
+          var reservation;
+          reservation = this.find('ResourceReservation', input.get('reservation-id'));
+          if (reservation == null) {
+            output.set({
+              result: 'error',
+              message: 'no reservation found for specified identifier'
+            });
+            return done();
+          }
+          return reservation.destroy().then((function(_this) {
+            return function() {
+              (_this.access('promise.reservations')).remove(reservation.id);
+              output.set('result', 'ok');
+              output.set('message', 'reservation canceled');
+              return done();
+            };
+          })(this))["catch"](function(e) {
+            output.set('result', 'error');
+            output.set('message', e);
+            return done();
+          });
+        }
+  query-capacity: !<tag:yaml.org,2002:js/function> |-
+    function (input, output, done) {
+          var collections, deltas, entry, k, last, matches, metric, timestamp, usages, v, window;
+          window = input.get('window');
+          metric = input.get('capacity');
+          collections = (function() {
+            switch (metric) {
+              case 'total':
+                return ['ResourcePool'];
+              case 'reserved':
+                return ['ResourceReservation'];
+              case 'usage':
+                return ['ResourceAllocation'];
+              case 'available':
+                return ['ResourcePool', 'ResourceReservation', 'ResourceAllocation'];
+            }
+          })();
+          matches = collections.reduce(((function(_this) {
+            return function(a, name) {
+              var res;
+              res = _this.find(name, {
+                start: function(value) {
+                  return (window.end == null) || (new Date(value)) <= (new Date(window.end));
+                },
+                end: function(value) {
+                  return (window.start == null) || (new Date(value)) >= (new Date(window.start));
+                },
+                enabled: true
+              });
+              return a.concat.apply(a, res);
+            };
+          })(this)), []);
+          if (window.scope === 'exclusive') {
+            matches = matches.where({
+              start: function(value) {
+                return (window.start == null) || (new Date(value)) >= (new Date(window.start));
+              },
+              end: function(value) {
+                return (window.end == null) || (new Date(value)) <= (new Date(window.end));
+              }
+            });
+          }
+          matches = matches.without({
+            id: input.get('without')
+          });
+          if (metric === 'available') {
+            matches = matches.without({
+              reservation: function(v) {
+                return v != null;
+              }
+            });
+          }
+          output.set('collections', matches);
+          if ((input.get('show-utilization')) !== true) {
+            return done();
+          }
+          deltas = matches.reduce((function(a, entry) {
+            var b, base, base1, ekey, k, ref1, ref2, skey, v;
+            b = entry.get();
+            if (b.end == null) {
+              b.end = 'infiniteT';
+            }
+            ref1 = [(b.start.split('T'))[0], (b.end.split('T'))[0]], skey = ref1[0], ekey = ref1[1];
+            if (a[skey] == null) {
+              a[skey] = {
+                count: 0,
+                capacity: {}
+              };
+            }
+            if (a[ekey] == null) {
+              a[ekey] = {
+                count: 0,
+                capacity: {}
+              };
+            }
+            a[skey].count += 1;
+            a[ekey].count -= 1;
+            ref2 = b.capacity;
+            for (k in ref2) {
+              v = ref2[k];
+              if (!(v != null)) {
+                continue;
+              }
+              if ((base = a[skey].capacity)[k] == null) {
+                base[k] = 0;
+              }
+              if ((base1 = a[ekey].capacity)[k] == null) {
+                base1[k] = 0;
+              }
+              if (entry.name === 'ResourcePool') {
+                a[skey].capacity[k] += v;
+                a[ekey].capacity[k] -= v;
+              } else {
+                a[skey].capacity[k] -= v;
+                a[ekey].capacity[k] += v;
+              }
+            }
+            return a;
+          }), {});
+          last = {
+            count: 0,
+            capacity: {}
+          };
+          usages = (function() {
+            var i, len, ref1, ref2, ref3, results;
+            ref1 = Object.keys(deltas).sort();
+            results = [];
+            for (i = 0, len = ref1.length; i < len; i++) {
+              timestamp = ref1[i];
+              if (!(timestamp !== 'infinite')) {
+                continue;
+              }
+              entry = deltas[timestamp];
+              entry.timestamp = (new Date(timestamp)).toJSON();
+              entry.count += last.count;
+              ref2 = entry.capacity;
+              for (k in ref2) {
+                v = ref2[k];
+                entry.capacity[k] += (ref3 = last.capacity[k]) != null ? ref3 : 0;
+              }
+              last = entry;
+              results.push(entry);
+            }
+            return results;
+          })();
+          output.set('utilization', usages);
+          return done();
+        }
+  increase-capacity: !<tag:yaml.org,2002:js/function> |-
+    function (input, output, done) {
+          var pool;
+          pool = this.create('ResourcePool', input.get());
+          return pool.save().then((function(_this) {
+            return function(res) {
+              (_this.access('promise.pools')).push(res);
+              output.set({
+                result: 'ok',
+                message: 'capacity increase successful'
+              });
+              output.set('pool-id', res.id);
+              return done();
+            };
+          })(this))["catch"](function(e) {
+            output.set({
+              result: 'error',
+              message: e
+            });
+            return done();
+          });
+        }
+  decrease-capacity: !<tag:yaml.org,2002:js/function> |-
+    function (input, output, done) {
+          var k, pool, ref1, request, v;
+          request = input.get();
+          ref1 = request.capacity;
+          for (k in ref1) {
+            v = ref1[k];
+            request.capacity[k] = -v;
+          }
+          pool = this.create('ResourcePool', request);
+          return pool.save().then((function(_this) {
+            return function(res) {
+              (_this.access('promise.pools')).push(res);
+              output.set({
+                result: 'ok',
+                message: 'capacity decrease successful'
+              });
+              output.set('pool-id', res.id);
+              return done();
+            };
+          })(this))["catch"](function(e) {
+            output.set({
+              result: 'error',
+              message: e
+            });
+            return done();
+          });
+        }
+  create-instance: !<tag:yaml.org,2002:js/function> |-
+    function (input, output, done) {
+          var available, flavor, k, pid, provider, required, reservation, rid, v;
+          pid = input.get('provider-id');
+          if (pid != null) {
+            provider = this.find('ResourceProvider', pid);
+            if (provider == null) {
+              output.set({
+                result: 'error',
+                message: "no matching provider found for specified identifier: " + pid
+              });
+              return done();
+            }
+          } else {
+            provider = (this.find('ResourceProvider'))[0];
+            if (provider == null) {
+              output.set({
+                result: 'error',
+                message: "no available provider found for create-instance"
+              });
+              return done();
+            }
+          }
+          flavor = provider.access("services.compute.flavors." + (input.get('flavor')));
+          if (flavor == null) {
+            output.set({
+              result: 'error',
+              message: "no such flavor found for specified identifier: " + pid
+            });
+            return done();
+          }
+          required = {
+            instances: 1,
+            cores: flavor.get('vcpus'),
+            ram: flavor.get('ram'),
+            gigabytes: flavor.get('disk')
+          };
+          rid = input.get('reservation-id');
+          if (rid != null) {
+            reservation = this.find('ResourceReservation', rid);
+            if (reservation == null) {
+              output.set({
+                result: 'error',
+                message: 'no valid reservation found for specified identifier'
+              });
+              return done();
+            }
+            if ((reservation.get('active')) !== true) {
+              output.set({
+                result: 'error',
+                message: "reservation is currently not active"
+              });
+              return done();
+            }
+            available = reservation.get('remaining');
+          } else {
+            available = this.get('promise.capacity.available');
+          }
+          for (k in required) {
+            v = required[k];
+            if ((v != null) && !!v) {
+              if (!(available[k] >= v)) {
+                output.set({
+                  result: 'conflict',
+                  message: "required " + k + "=" + v + " exceeds available " + available[k]
+                });
+                return done();
+              }
+            }
+          }
+          return this.create('ResourceAllocation', {
+            reservation: rid,
+            capacity: required
+          }).save().then((function(_this) {
+            return function(instance) {
+              var request, url;
+              url = provider.get('services.compute.endpoint');
+              request = _this.parent.require('superagent');
+              request.post(url + "/servers").send({
+                server: {
+                  name: input.get('name'),
+                  imageRef: input.get('image'),
+                  flavorRef: input.get('flavor')
+                }
+              }).set('X-Auth-Token', provider.get('token')).set('Accept', 'application/json').end(function(err, res) {
+                if ((err != null) || !res.ok) {
+                  instance.destroy();
+                  console.error(err);
+                  return done(res.error);
+                }
+                instance.set('instance-ref', {
+                  provider: provider,
+                  server: res.body.server.id
+                });
+                (_this.access('promise.allocations')).push(instance);
+                output.set({
+                  result: 'ok',
+                  message: 'create-instance request accepted'
+                });
+                output.set('instance-id', instance.id);
+                return done();
+              });
+              return instance;
+            };
+          })(this))["catch"](function(err) {
+            output.set({
+              result: 'error',
+              mesage: err
+            });
+            return done();
+          });
+        }
+  destroy-instance: !<tag:yaml.org,2002:js/function> |-
+    function (input, output, done) {
+          var instance;
+          instance = this.find('ResourceAllocation', input.get('instance-id'));
+          if (instance == null) {
+            output.set({
+              result: 'error',
+              message: 'no allocation found for specified identifier'
+            });
+            return done();
+          }
+          return instance.destroy().then((function(_this) {
+            return function() {
+              var provider, ref, request, url;
+              (_this.access('promise.allocations')).remove(instance.id);
+              ref = instance.get('instance-ref');
+              provider = _this.access("promise.providers." + ref.provider);
+              url = provider.get('services.compute.endpoint');
+              request = _this.parent.require('superagent');
+              request["delete"](url + "/servers/" + ref.server).set('X-Auth-Token', provider.get('token')).set('Accept', 'application/json').end(function(err, res) {
+                if ((err != null) || !res.ok) {
+                  console.error(err);
+                  return done(res.error);
+                }
+                output.set('result', 'ok');
+                output.set('message', 'instance destroyed and resource released back to pool');
+                return done();
+              });
+              return instance;
+            };
+          })(this))["catch"](function(e) {
+            output.set('result', 'error');
+            output.set('message', e);
+            return done();
+          });
+        }
+  add-provider: !<tag:yaml.org,2002:js/function> "function (input, output, done) {\n      var app, payload, providers, request, url;\n      app = this.parent;\n      request = app.require('superagent');\n      payload = (function() {\n        switch (input.get('provider-type')) {\n          case 'openstack':\n            return {\n              auth: {\n                tenantId: input.get('tenant.id'),\n                tenantName: input.get('tenant.name'),\n                passwordCredentials: input.get('username', 'password')\n              }\n            };\n        }\n      })();\n      if (payload == null) {\n        return done('Sorry, only openstack supported at this time');\n      }\n      url = input.get('endpoint');\n      switch (input.get('strategy')) {\n        case 'keystone':\n        case 'oauth':\n          if (!/\\/tokens$/.test(url)) {\n            url += '/tokens';\n          }\n      }\n      providers = this.access('promise.providers');\n      return request.post(url).send(payload).set('Accept', 'application/json').end((function(_this) {\n        return function(err, res) {\n          var access, provider, ref1, ref2, ref3;\n          if ((err != null) || !res.ok) {\n            return done(res.error);\n          }\n          access = res.body.access;\n          provider = _this.create('ResourceProvider', {\n            token: access != null ? (ref1 = access.token) != null ? ref1.id : void 0 : void 0,\n            name: access != null ? (ref2 = access.token) != null ? (ref3 = ref2.tenant) != null ? ref3.name : void 0 : void 0 : void 0\n          });\n          return provider.invoke('update', access.serviceCatalog).then(function(res) {\n            return res.save().then(function() {\n              providers.push(res);\n              output.set('result', 'ok');\n              output.set('provider-id', res.id);\n              return done();\n            })[\"catch\"](function(err) {\n              output.set('error', {\n                message: err\n              });\n              return done();\n            });\n          })[\"catch\"](function(err) {\n            output.set('error', {\n              message: err\n            });\n            return done();\n          });\n        };\n      })(this));\n    }"
+typedef: !<tag:yaml.org,2002:js/undefined> ''
+complex-type:
+  ResourceElement:
+    id: !<tag:yaml.org,2002:js/function> |-
+      function (prev) {
+        return prev.set('default', function() {
+          return this.uuid();
+        });
+      }
+  ResourceCollection:
+    id:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return prev.set('default', function() {
+            return this.uuid();
+          });
+        }
+    start:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return prev.set('default', function() {
+            return (new Date).toJSON();
+          });
+        }
+    active:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return this.computed((function() {
+            var end, now, start;
+            now = new Date;
+            start = new Date(this.get('start'));
+            end = (function() {
+              switch (false) {
+                case (this.get('end')) == null:
+                  return new Date(this.get('end'));
+                default:
+                  return now;
+              }
+            }).call(this);
+            return (this.get('enabled')) && ((start <= now && now <= end));
+          }), {
+            type: prev
+          });
+        }
+  ResourceReservation:
+    id:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return prev.set('default', function() {
+            return this.uuid();
+          });
+        }
+    start:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return prev.set('default', function() {
+            return (new Date).toJSON();
+          });
+        }
+    active:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return this.computed((function() {
+            var end, now, start;
+            now = new Date;
+            start = new Date(this.get('start'));
+            end = (function() {
+              switch (false) {
+                case (this.get('end')) == null:
+                  return new Date(this.get('end'));
+                default:
+                  return now;
+              }
+            }).call(this);
+            return (this.get('enabled')) && ((start <= now && now <= end));
+          }), {
+            type: prev
+          });
+        }
+    end:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return prev.set('default', function() {
+            var end, max;
+            end = new Date(this.get('start'));
+            max = this.parent.get('promise.policy.reservation.max-duration');
+            if (max == null) {
+              return;
+            }
+            end.setTime(end.getTime() + (max * 60 * 60 * 1000));
+            return end.toJSON();
+          });
+        }
+    allocations:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return this.computed((function() {
+            var res;
+            res = this.store.find('ResourceAllocation', {
+              reservation: this.id
+            });
+            return res.map(function(x) {
+              return x.get('id');
+            });
+          }), {
+            type: 'array'
+          });
+        }
+    remaining:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return this.computed((function() {
+            var entry, i, k, len, records, total, usage, v;
+            total = this.get('capacity');
+            records = this.store.find('ResourceAllocation', {
+              id: this.get('allocations'),
+              active: true
+            });
+            for (i = 0, len = records.length; i < len; i++) {
+              entry = records[i];
+              usage = entry.get('capacity');
+              for (k in usage) {
+                v = usage[k];
+                total[k] -= v;
+              }
+            }
+            return total;
+          }), {
+            type: prev
+          });
+        }
+    validate:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return function(value, resolve, reject) {
+            var end, hasCapacity, k, now, ref, start, v;
+            if (value == null) {
+              value = {};
+            }
+            ref = value.capacity;
+            for (k in ref) {
+              v = ref[k];
+              if ((v != null) && !!v) {
+                hasCapacity = true;
+              }
+            }
+            if ((!hasCapacity) && value.elements.length === 0) {
+              return reject("unable to validate reservation record without anything being reserved");
+            }
+            now = new Date;
+            if (value.start != null) {
+              start = new Date(value.start);
+            }
+            if (value.end != null) {
+              end = new Date(value.end);
+            }
+            if ((end != null) && end < now) {
+              return reject("requested end time " + value.end + " cannot be in the past");
+            }
+            if ((start != null) && (end != null) && start > end) {
+              retun(reject("requested start time must be earlier than end time"));
+            }
+            return resolve(this);
+          };
+        }
+    update:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return function(req, resolve, reject) {
+            if (req.start == null) {
+              req.start = this.get('start');
+            }
+            if (req.end == null) {
+              req.end = this.get('end');
+            }
+            return this.parent.invoke('query-capacity', {
+              start: req.start,
+              end: req.end,
+              capacity: 'available',
+              without: this.id
+            }).then((function(_this) {
+              return function(res) {
+                var available, collections, end, entries, i, k, pools, ref, ref1, start, t1, t2, v, x;
+                collections = res.get('collections');
+                if (!(collections.length > 0)) {
+                  return reject('no resource capacity available during requested start/end time');
+                }
+                pools = collections.filter(function(e) {
+                  return /^ResourcePool/.test(e);
+                });
+                entries = res.get('utilization');
+                start = new Date(req.start);
+                end = new Date(req.end);
+                for (x = i = 0, ref = entries.length - 1; 0 <= ref ? i <= ref : i >= ref; x = 0 <= ref ? ++i : --i) {
+                  t1 = new Date(entries[x].timestamp);
+                  if (!(t1 < end)) {
+                    break;
+                  }
+                  if (x < entries.length - 1) {
+                    t2 = new Date(entries[x + 1].timestamp);
+                    if (!(t2 > start)) {
+                      continue;
+                    }
+                  }
+                  available = entries[x].capacity;
+                  ref1 = req.capacity;
+                  for (k in ref1) {
+                    v = ref1[k];
+                    if ((v != null) && !!v) {
+                      if (!(available[k] >= v)) {
+                        return reject("requested " + k + "=" + v + " exceeds available " + available[k] + " between " + t1 + " and " + t2);
+                      }
+                    }
+                  }
+                }
+                _this.set(req);
+                _this.set('pools', pools);
+                return resolve(_this);
+              };
+            })(this))["catch"](function(err) {
+              return reject(err);
+            });
+          };
+        }
+    save:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return function(resolve, reject) {
+            return this.invoke('validate', this.get()).then(function(res) {
+              var now;
+              now = (new Date).toJSON();
+              if ((res.get('created-on')) == null) {
+                res.set('created-on', now);
+              }
+              res.set('modified-on', now);
+              return resolve(res);
+            })["catch"](function(e) {
+              return reject(e);
+            });
+          };
+        }
+  ResourceAllocation:
+    id:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return prev.set('default', function() {
+            return this.uuid();
+          });
+        }
+    start:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return prev.set('default', function() {
+            return (new Date).toJSON();
+          });
+        }
+    active:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return this.computed((function() {
+            var end, now, start;
+            now = new Date;
+            start = new Date(this.get('start'));
+            end = (function() {
+              switch (false) {
+                case (this.get('end')) == null:
+                  return new Date(this.get('end'));
+                default:
+                  return now;
+              }
+            }).call(this);
+            return (this.get('enabled')) && ((start <= now && now <= end));
+          }), {
+            type: prev
+          });
+        }
+    priority:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return this.computed((function() {
+            switch (false) {
+              case !((this.get('reservation')) == null):
+                return 3;
+              case !!(this.get('active')):
+                return 2;
+              default:
+                return 1;
+            }
+          }), {
+            type: prev
+          });
+        }
+  ResourcePool:
+    id:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return prev.set('default', function() {
+            return this.uuid();
+          });
+        }
+    start:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return prev.set('default', function() {
+            return (new Date).toJSON();
+          });
+        }
+    active:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return this.computed((function() {
+            var end, now, start;
+            now = new Date;
+            start = new Date(this.get('start'));
+            end = (function() {
+              switch (false) {
+                case (this.get('end')) == null:
+                  return new Date(this.get('end'));
+                default:
+                  return now;
+              }
+            }).call(this);
+            return (this.get('enabled')) && ((start <= now && now <= end));
+          }), {
+            type: prev
+          });
+        }
+    save:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return function(resolve, reject) {
+            var hasCapacity, k, ref, v, value;
+            value = this.get();
+            ref = value.capacity;
+            for (k in ref) {
+              v = ref[k];
+              if ((v != null) && !!v) {
+                hasCapacity = true;
+              }
+            }
+            if ((!hasCapacity) && value.elements.length === 0) {
+              return reject("unable to save pool record without any capacity values");
+            }
+            return resolve(this);
+          };
+        }
+  ResourceProvider:
+    id:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return prev.set('default', function() {
+            return this.uuid();
+          });
+        }
+    token:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return prev.set('private', true);
+        }
+    pools:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return this.computed((function() {
+            return (this.store.find('ResourcePool', {
+              source: this.get('name')
+            })).map(function(x) {
+              return x.get('id');
+            });
+          }), {
+            type: 'array'
+          });
+        }
+    update:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return function(services, resolve, reject) {
+            var request;
+            if (services == null) {
+              services = [];
+            }
+            if (!services.length) {
+              return reject("unable to update provider without list of services");
+            }
+            request = this.store.parent.require('superagent');
+            services.forEach((function(_this) {
+              return function(service) {
+                var url;
+                switch (service.type) {
+                  case 'compute':
+                    url = service.endpoints[0].publicURL;
+                    _this.set('services.compute.endpoint', url);
+                    request.get(url + "/limits").set('X-Auth-Token', _this.get('token')).set('Accept', 'application/json').end(function(err, res) {
+                      var capacity, ref;
+                      if ((err != null) || !res.ok) {
+                        console.warn("request to discover capacity limits failed");
+                        return;
+                      }
+                      capacity = (ref = res.body.limits) != null ? ref.absolute : void 0;
+                      return (_this.access('capacity')).set({
+                        cores: capacity.maxTotalCores,
+                        ram: capacity.maxTotalRAMSize,
+                        instances: capacity.maxTotalInstances,
+                        addresses: capacity.maxTotalFloatingIps
+                      });
+                    });
+                    return request.get(url + "/flavors/detail").set('X-Auth-Token', _this.get('token')).set('Accept', 'application/json').end(function(err, res) {
+                      var er, error, flavors, ref;
+                      if ((err != null) || !res.ok) {
+                        console.warn("request to discover compute flavors failed");
+                        return;
+                      }
+                      flavors = res.body.flavors;
+                      try {
+                        flavors = flavors.map(function(x) {
+                          return {
+                            ResourceFlavor: x
+                          };
+                        });
+                        return (ref = _this.access('services.compute.flavors')).push.apply(ref, flavors);
+                      } catch (error) {
+                        er = error;
+                        return console.warn("failed to update flavors into the provider due to validation errors");
+                      }
+                    });
+                }
+              };
+            })(this));
+            return resolve(this);
+          };
+        }
+  ResourceFlavor: !<tag:yaml.org,2002:js/undefined> ''
+pkgdir: /home/plee/hack/opnfv-promise
+module:
+  opnfv-promise:
+    promise.capacity.total:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return this.computed((function() {
+            var combine;
+            combine = function(a, b) {
+              var k, ref, v;
+              ref = b.capacity;
+              for (k in ref) {
+                v = ref[k];
+                if (!(v != null)) {
+                  continue;
+                }
+                if (a[k] == null) {
+                  a[k] = 0;
+                }
+                a[k] += v;
+              }
+              return a;
+            };
+            return (this.parent.get('pools')).filter(function(entry) {
+              return entry.active === true;
+            }).reduce(combine, {});
+          }), {
+            type: prev
+          });
+        }
+    promise.capacity.reserved:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return this.computed((function() {
+            var combine;
+            combine = function(a, b) {
+              var k, ref, v;
+              ref = b.remaining;
+              for (k in ref) {
+                v = ref[k];
+                if (!(v != null)) {
+                  continue;
+                }
+                if (a[k] == null) {
+                  a[k] = 0;
+                }
+                a[k] += v;
+              }
+              return a;
+            };
+            return (this.parent.get('reservations')).filter(function(entry) {
+              return entry.active === true;
+            }).reduce(combine, {});
+          }), {
+            type: prev
+          });
+        }
+    promise.capacity.usage:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return this.computed((function() {
+            var combine;
+            combine = function(a, b) {
+              var k, ref, v;
+              ref = b.capacity;
+              for (k in ref) {
+                v = ref[k];
+                if (!(v != null)) {
+                  continue;
+                }
+                if (a[k] == null) {
+                  a[k] = 0;
+                }
+                a[k] += v;
+              }
+              return a;
+            };
+            return (this.parent.get('allocations')).filter(function(entry) {
+              return entry.active === true;
+            }).reduce(combine, {});
+          }), {
+            type: prev
+          });
+        }
+    promise.capacity.available:
+      - !<tag:yaml.org,2002:js/function> |-
+        function (prev) {
+          return this.computed((function() {
+            var k, reserved, total, usage, v;
+            total = this.get('total');
+            reserved = this.get('reserved');
+            usage = this.get('usage');
+            for (k in total) {
+              v = total[k];
+              if (!(v != null)) {
+                continue;
+              }
+              if (reserved[k] != null) {
+                total[k] -= reserved[k];
+              }
+              if (usage[k] != null) {
+                total[k] -= usage[k];
+              }
+            }
+            return total;
+          }), {
+            type: prev
+          });
+        }
+config: !<tag:yaml.org,2002:js/undefined> ''
