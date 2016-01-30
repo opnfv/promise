@@ -2,7 +2,7 @@
   "name": "@opnfv/promise",
   "version": "1.0.0",
   "description": "Resource Management for Virtualized Infrastructure",
-  "author": "Peter K. Lee <peter@intercloud.net>",
+  "author": "Peter K. Lee <peter@corenova.com>",
   "license": "Apache-2.0",
   "private": true,
   "homepage": "http://wiki.opnfv.org/promise",
