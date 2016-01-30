@@ -1,6 +1,15 @@
+#
+# Author: Peter K. Lee (peter@corenova.com)
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+
 name: opnfv-promise
 description: Resource Management for Virtualized Infrastructure
-author: Peter K. Lee <peter@intercloud.net>
+author: Peter K. Lee <peter@corenova.com>
 license: Apache-2.0
 homepage: http://wiki.opnfv.org/promise
 repository: git://github.com/opnfv/promise.git
