@@ -1,6 +1,6 @@
-********************************************
-Promise Installation and Configuration Guide
-********************************************
+******************
+Promise User Guide
+******************
 
 .. toctree::
    :numbered:
