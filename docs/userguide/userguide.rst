@@ -212,6 +212,7 @@ The operation takes the following input parameters:
 * name (mandatory): Assigned name for the instance to be created
 * image (mandatory): the image to be booted in the new instance
 * flavor (mandatory): the flavor of the requested server instance
+* networks: the list of network uuids of the requested server instance
 * provider-id: identifier of the provider where the instance shall be created
 * reservation-id: identifier of a resource reservation the *create-instance*
   is issued against
