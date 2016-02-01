@@ -323,6 +323,7 @@ reservation-id               String          Id of the resource reservation
 name                         String          Name of the instance
 image                        String          Id of the image
 flavor                       String          Id of the flavor
+networks                     Uuid            List of network uuids
 ============================ =============== ==============================================
 
 Response parameters

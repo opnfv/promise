@@ -39,6 +39,15 @@ ANNEX B: Promise YANG schema based on YangForge
     description "When enabled, provides resource management across multiple providers";
   }
 
+  typedef reference-identifier {
+    description "defines valid formats for external reference id";
+    type union {
+      type yang:uuid;
+      type inet:uri;
+      type uint32;
+    }
+  }
+
   grouping resource-utilization {
     container capacity {
       container total     { description 'Conceptual container that should be extended'; }
@@ -557,19 +566,18 @@ ANNEX B: Promise YANG schema based on YangForge
       }
       leaf name   { type string; mandatory true; }
       leaf image  {
-        type union {
-          type yang:uuid;
-          type inet:uri;
-        }
+        type reference-identifier;
         mandatory true;
       }
       leaf flavor {
-        type union {
-          type yang:uuid;
-          type inet:uri;
-        }
+        type reference-identifier;
         mandatory true;
       }
+      leaf-list networks {
+        type reference-identifier;
+        description "optional, will assign default network if not provided";
+      }
+
       // TODO: consider supporting a template-id (such as HEAT) for more complex instantiation
 
       leaf reservation-id {

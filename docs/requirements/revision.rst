@@ -28,4 +28,11 @@ ANNEX D: Document revision
 | 1.0.6   | JIRA: PROMISE-62                        |
 |         |  - Supported APIs for Brahmaputra       |
 +---------+-----------------------------------------+
+| 1.0.7   | JIRA: PROMISE-63                        |
+|         |  - Update message flow for shim-layer   |
+|         | JIRA: PROMISE-58                        |
+|         |  - Integrated approach description      |
+|         | JIRA: PROMISE-64                        |
+|         |  - Promise userguide                    |
++---------+-----------------------------------------+
 
