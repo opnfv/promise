@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a4e6583_e11ccbc3",
+        "filename": "docs/configguide/featureconfig.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2016-02-04T08:26:56Z",
+      "side": 1,
+      "message": "is it possible to add an empty line between the license header and the rest of the document? This comment is valid for all files in this patch.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 38
+      },
+      "revId": "44f0292795c0410bc2825759f443299d42f04e45",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
