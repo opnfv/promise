@@ -9,4 +9,4 @@ Promise User Guide
    :numbered:
    :maxdepth: 2
 
-   userguide.rst
+   featureusage.rst
