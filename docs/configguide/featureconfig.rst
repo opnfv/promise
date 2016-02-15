@@ -50,7 +50,7 @@ The results of the tests will be stored in the promise-results.json file.
 
 The results can also be seen in the console ("npm run -s test")
 
-.. figure:: images/screenshot_promise.png
+.. figure:: @PROJECT_PATH@/configguide/images/screenshot_promise.png
    :name: figure1
    :width: 90%
 
