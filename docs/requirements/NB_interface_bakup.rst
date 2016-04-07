@@ -43,16 +43,19 @@ Subscription from Consumer to VIM to be notified about compute capacity changes
 
        {
           "zoneId": "12345",
-          "computeResourceTypeId": "vcInstances",
-          "threshold": {
-             "thresholdType" : "absoluteValue",
-             "threshold": {
+          "resourceDescriptor": [
+              {
+                 "computeResourceTypeId": "vcInstances"
+              }
+          ],
+          "threshold": [
+              {
                  "capacity_info": "available",
                  "condition": "lt",
                  "value": 5
-             }
-          }
-       }
+              }
+          ]
+      }
 
    **Example response**:
 
@@ -66,10 +69,10 @@ Subscription from Consumer to VIM to be notified about compute capacity changes
           "capacityChangeSubscriptionId": "abcdef-ghijkl-123456789"
        }
 
-   :statuscode 400: computeResourceTypeId is missing
+   :statuscode 400: resourceDescriptor is missing
 
-Query Compute Capacity for a defined resource type
-""""""""""""""""""""""""""""""""""""""""""""""""""
+Query Compute Capacity
+""""""""""""""""""""""
 
 Request to find out about available, reserved, total and allocated compute
 capacity.
@@ -86,7 +89,9 @@ capacity.
 
       {
         "zoneId": "12345",
-        "computeResourceTypeId": "vcInstances",
+        "resourceDescriptor":  {
+             "computeResourceTypeId": "vcInstances"
+        },
         "timePeriod":  {
              "startTime": "2015-09-21T00:00:00Z",
              "stopTime": "2015-09-21T00:05:30Z"
@@ -108,54 +113,6 @@ capacity.
              "reserved": 17,
              "total": 50,
              "allocated": 29
-          }
-       }
-
-   :query limit: Default is 10.
-   :statuscode 404: resource zone unknown
-
-
-Query Compute Capacity with required attributes
-"""""""""""""""""""""""""""""""""""""""""""""""
-Request to find out available compute capacity with given characteristics
-
-.. http:get:: /capacity/compute/query
-   :noindex:
-
-   **Example request**:
-
-   .. sourcecode:: http
-
-      GET /capacity/compute/query HTTP/1.1
-      Accept: application/json
-
-      {
-        "zoneId": "12345",
-        "resourceCriteria":  {
-             "virtualCPU": {
-                 "cpuArchitecture": "x86",
-                 "numVirtualCpu": 8
-             }
-        },
-        "attributeSelector":  "available",
-        "timePeriod":  {
-             "startTime": "2015-09-21T00:00:00Z",
-             "stopTime": "2015-09-21T00:05:30Z"
-        }
-      }
-
-   **Example response**:
-
-   .. sourcecode:: http
-
-       HTTP/1.1 200 OK
-       Content-Type: application/json
-
-       {
-          "zoneId": "12345",
-          "lastUpdate": "2015-09-21T00:03:20Z",
-          "capacityInformation": {
-             "available": 50
           }
        }
 
@@ -239,7 +196,7 @@ Request the reservation of compute resource capacity
           }
        }
 
-or virtualization containers
+and/or virtualized containers
 
 .. http:post:: reservation/compute/create
    :noindex:
@@ -266,7 +223,7 @@ or virtualization containers
                      "numaEnabled": "False",
                      "virtualMemSize": 16
                  },
-                 "storageAttributes": {
+                 "virtualStorage": {
                      "typeOfStorage": "volume",
                      "sizeOfStorage": 16
                  }
@@ -290,21 +247,20 @@ or virtualization containers
              "virtualizationContainerReserved": [
                  {
                     "containerId": "myContainer",
-                    "flavorId": "myFlavor",
-                    "virtualCpu": {
-                        "numVirtualCpu": 2,
-                        "cpuArchitecture": "x86"
-                    },
-                    "virtualMemory": {
-                        "numaEnabled": "False",
-                        "virtualMemSize": 16
-                    },
-                    "virtualDisks": {
-                        "storageId": "myStorage",
-                        "flavourId": "myStorageFlavour",
-                        "typeOfStorage": "volume",
-                        "sizeOfStorage": 16,
-                        "operationalState": "enabled"
+                    "containerFlavor": {
+                        "flavorId": "myFlavor",
+                        "virtualCpu": {
+                           "numVirtualCpu": 2,
+                           "cpuArchitecture": "x86"
+                        },
+                        "virtualMemory": {
+                           "numaEnabled": "False",
+                           "virtualMemSize": 16
+                        },
+                        "virtualStorage": {
+                            "typeOfStorage": "volume",
+                            "sizeOfStorage": 16
+                        }
                     }
                  }
              ]
@@ -346,7 +302,7 @@ access to.
        Content-Type: application/json
 
        {
-          "queryResult":
+          "reservationData":
           {
              "startTime": "2015-09-21T01:00:00Z",
              "reservationStatus": "active",
@@ -412,83 +368,6 @@ Request to terminate a compute resource reservation
 .. http:delete:: /reservation/compute/(reservation_id)
    :noindex:
 
-   **Example response**:
-
-   .. sourcecode:: http
-
-       HTTP/1.1 200
-       Content-Type: application/json
-
-       {
-          "reservationId": "xxxx-yyyy-zzzz",
-       }
-
-
-Subscribe Resource Reservation Change Event
-"""""""""""""""""""""""""""""""""""""""""""
-
-Subscription from Consumer to VIM to be notified about changes
-related to a reservation or to the resources associated to it.
-
-.. http:post:: /reservation/subscribe
-   :noindex:
-
-   **Example request**:
-
-   .. sourcecode:: http
-
-       POST /reservation/subscribe HTTP/1.1
-       Accept: application/json
-
-       {
-          "inputFilter": [
-              {
-                 "reservationId": "xxxx-yyyy-zzzz",
-              }
-          ]
-      }
-
-   **Example response**:
-
-   .. sourcecode:: http
-
-       HTTP/1.1 201 CREATED
-       Content-Type: application/json
-
-       {
-          "created": "2015-09-21T00:00:00Z",
-          "reservationChangeSubscriptionId": "abcdef-ghijkl-123456789"
-       }
-
-   :statuscode 400: inputFilter is missing
-
-
-Notify Resource Reservation Change Event
-""""""""""""""""""""""""""""""""""""""""
-
-Notification about changes in a compute resource reservation
-
-.. http:post:: /capacity/compute/notification
-   :noindex:
-
-   **Example notification**:
-
-   .. sourcecode:: http
-
-      Content-Type: application/json
-
-      {
-           "changeId": "aaaaaa-btgxxx-987654321",
-           "reservationId": "xxxx-yyyy-zzzz",
-           "vimId": "vim-CX-03"
-           "changeType": "Reservation time change"
-           "changedReservationData": {
-              "endTime": "2015-10-14TT16:00:00Z",
-           }
-      }
-
-
-
 Virtualised Network Resources
 -----------------------------
 
@@ -511,15 +390,18 @@ Susbcription from Consumer to VIM to be notified about network capacity changes
         Accept: application/json
 
         {
-            "networkResourceTypeId": "publicIps",
-            "threshold": {
-               "thresholdType": "absoluteValue",
-               "threshold": {
-                   "capacity_info": "available",
-                   "condition": "lt",
-                   "value": 5
-               }
-            }
+            "resourceDescriptor": [
+                {
+                    "networkResourceTypeId": "publicIps"
+                }
+            ],
+            "threshold": [
+                {
+                    "capacity_info": "available",
+                    "condition": "lt",
+                    "value": 5
+                }
+            ]
         }
 
     **Example response**:
@@ -551,7 +433,9 @@ capacity.
         Accept: application/json
 
         {
-            "networkResourceTypeId": "publicIps",
+            "resourceDescriptor":  {
+                "networkResourceTypeId": "publicIps"
+            },
             "timePeriod":  {
                 "startTime": "2015-09-28T00:00:00Z",
                 "stopTime": "2015-09-28T00:05:30Z"
@@ -641,10 +525,12 @@ network ports
                 "startTime": "2015-09-28T01:00:00Z",
                 "reservationStatus": "initialized",
                 "reservationId": "wwww-xxxx-yyyy",
-                "publicIps": [
-                    "10.2.91.60",
-                    "10.2.91.61"
-                ]
+                "networkReserved": {
+                    "publicIps": [
+                        "10.2.91.60",
+                        "10.2.91.61"
+                    ]
+                }
             }
         }
 
@@ -680,11 +566,11 @@ access to.
        Content-Type: application/json
 
        {
-           "queryResult": {
+           "reservationData": {
                "startTime": "2015-09-28T01:00:00Z",
                "reservationStatus": "active",
                "reservationId": "wwww-xxxx-yyyy",
-               "publicIps": [
+               "networkReserved": "publicIps": [
                    "10.2.91.60",
                    "10.2.91.61"
                ]
@@ -723,10 +609,12 @@ Request to update network resource reservation
                 "startTime": "2015-09-21T16:00:00Z",
                 "reservationStatus": "active",
                 "reservationId": "wwww-xxxx-yyyy",
-                "publicIps": [
-                   "10.2.91.60",
-                   "10.2.91.61"
-                ]
+                "networkReserved": {
+                    "publicIps": [
+                        "10.2.91.60",
+                        "10.2.91.61"
+                     ]
+                }
             }
         }
 
@@ -736,20 +624,11 @@ Terminate Network Resource Reservation
 Request to terminate a network resource reservation
 
 .. http:delete:: /reservation/network/(reservation_id)
-   :noindex:
+    :noindex:
 
-   **Example response**:
-
-   .. sourcecode:: http
-
-       HTTP/1.1 200
-       Content-Type: application/json
-
-       {
-          "reservationId": "xxxx-yyyy-zzzz",
-       }
 
 Virtualised Storage Resources
+
 -----------------------------
 
 Storage Capacity Management
@@ -771,15 +650,18 @@ Subscription from Consumer to VIM to be notified about storage capacity changes
         Accept: application/json
 
         {
-           "storageResourceTypeId": "volumes",
-           "threshold": {
-              "thresholdType": "absoluteValue",
-              "threshold": {
-                  "capacity_info": "available",
-                  "condition": "lt",
-                  "value": 3
+           "resourceDescriptor": [
+               {
+                   "storageResourceTypeId": "volumes"
                }
-           }
+           ],
+           "threshold": [
+               {
+                   "capacity_info": "available",
+                   "condition": "lt",
+                   "value": 3
+               }
+           ]
         }
 
     **Example response**:
@@ -794,8 +676,8 @@ Subscription from Consumer to VIM to be notified about storage capacity changes
             "capacityChangeSubscriptionId": "cdefgh-ijklmn-345678901"
         }
 
-Query Storage Capacity for a defined resource type
-""""""""""""""""""""""""""""""""""""""""""""""""""
+Query Storage Capacity
+""""""""""""""""""""""
 
 Request to find out about available, reserved, total and allocated storage
 capacity.
@@ -811,7 +693,9 @@ capacity.
         Accept: application/json
 
         {
-            "storageResourceTypeId": "volumes",
+            "resourceDescriptor": {
+                "storageResourceTypeId": "volumes"
+            },
             "timePeriod":  {
                 "startTime": "2015-09-28T12:00:00Z",
                 "stopTime": "2015-09-28T12:04:45Z"
@@ -832,48 +716,6 @@ capacity.
                "reserved": 4,
                "total": 10,
                "allocated": 4
-           }
-       }
-
-Query Storage Capacity with required attributes
-"""""""""""""""""""""""""""""""""""""""""""""""
-
-Request to find out available capacity.
-
-.. http:get:: /capacity/storage/query
-    :noindex:
-
-    **Example request**:
-
-    .. sourcecode:: http
-
-        GET /capacity/storage/query HTTP/1.1
-        Accept: application/json
-
-        {
-            "resourceCriteria": {
-                "typeOfStorage" : "volume",
-                "sizeOfStorage" : 200,
-                "rdmaSupported" : "True",
-            },
-            "attributeSelector": "available",
-            "timePeriod":  {
-                "startTime": "2015-09-28T12:00:00Z",
-                "stopTime": "2015-09-28T12:04:45Z"
-            }
-        }
-
-    **Example response**:
-
-    .. sourcecode:: http
-
-       HTTP/1.1 200 OK
-       Content-Type: application/json
-
-       {
-           "lastUpdate": "2015-09-28T12:01:35Z",
-           "capacityInformation": {
-               "available": 2
            }
        }
 
@@ -984,7 +826,7 @@ access to.
         Content-Type: application/json
 
         {
-            "queryResult": {
+            "reservationData": {
                 "startTime": "2015-09-28T13:00:00Z",
                 "reservationStatus": "active",
                 "reservationId": "vvvv-wwww-xxxx",
@@ -1044,15 +886,4 @@ Terminate Storage Resource Reservation
 Request to terminate a storage resource reservation
 
 .. http:delete:: /reservation/storage/(reservation_id)
-   :noindex:
-
-   **Example response**:
-
-   .. sourcecode:: http
-
-       HTTP/1.1 200
-       Content-Type: application/json
-
-       {
-          "reservationId": "xxxx-yyyy-zzzz",
-       }
+    :noindex:
