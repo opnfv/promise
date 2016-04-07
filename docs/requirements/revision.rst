@@ -38,4 +38,6 @@ ANNEX D: Document revision
 |         | JIRA: PROMISE-64                        |
 |         |  - Promise userguide                    |
 +---------+-----------------------------------------+
-
+| 1.0.8   | JIRA: PROMISE-11                        |
+|         |  - Alignment to ETSI NVF Specs          |
++---------+-----------------------------------------+
