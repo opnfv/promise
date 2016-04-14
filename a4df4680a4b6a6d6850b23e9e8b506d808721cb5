@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a486d77_55234b05",
+        "filename": "docs/requirements/usecase.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2016-04-14T12:59:34Z",
+      "side": 1,
+      "message": "Proposal to add a subclause \"\u003d\u003d\u003duse cases\u003d\u003d\u003d\"",
+      "revId": "a4df4680a4b6a6d6850b23e9e8b506d808721cb5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_3520cff6",
+        "filename": "docs/requirements/usecase.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2016-04-14T12:59:34Z",
+      "side": 1,
+      "message": "go down one level to \"-------\"",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 28
+      },
+      "revId": "a4df4680a4b6a6d6850b23e9e8b506d808721cb5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_151dd3bd",
+        "filename": "docs/requirements/usecase.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2016-04-14T12:59:34Z",
+      "side": 1,
+      "message": "go down one level to \"-------\"",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 38
+      },
+      "revId": "a4df4680a4b6a6d6850b23e9e8b506d808721cb5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_f57917fd",
+        "filename": "docs/requirements/usecase.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2016-04-14T12:59:34Z",
+      "side": 1,
+      "message": "go down one level to \"-------\"",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 35
+      },
+      "revId": "a4df4680a4b6a6d6850b23e9e8b506d808721cb5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_d57e1be4",
+        "filename": "docs/requirements/usecase.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2016-04-14T12:59:34Z",
+      "side": 1,
+      "message": "go down one level to \"-------\"",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 72
+      },
+      "revId": "a4df4680a4b6a6d6850b23e9e8b506d808721cb5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_b5839fcb",
+        "filename": "docs/requirements/usecase.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2016-04-14T12:59:34Z",
+      "side": 1,
+      "message": "we would then continue with \"----Scenario1----\" here.",
+      "revId": "a4df4680a4b6a6d6850b23e9e8b506d808721cb5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
