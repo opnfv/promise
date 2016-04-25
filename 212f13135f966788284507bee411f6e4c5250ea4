@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da87b5cf_41b072f4",
+        "filename": "docs/requirements/NB_interface.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2016-04-25T12:00:40Z",
+      "side": 1,
+      "message": "Please check specification of CapacityThreshold IE (IFA005 v2.1.1)",
+      "range": {
+        "startLine": 47,
+        "startChar": 10,
+        "endLine": 53,
+        "endChar": 11
+      },
+      "revId": "212f13135f966788284507bee411f6e4c5250ea4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da87b5cf_a175be33",
+        "filename": "docs/requirements/NB_interface.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2016-04-25T12:00:40Z",
+      "side": 1,
+      "message": "or virtualization containers",
+      "range": {
+        "startLine": 241,
+        "startChar": 0,
+        "endLine": 241,
+        "endChar": 29
+      },
+      "revId": "212f13135f966788284507bee411f6e4c5250ea4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da87b5cf_01a02a8f",
+        "filename": "docs/requirements/NB_interface.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2016-04-25T12:00:40Z",
+      "side": 1,
+      "message": "Please check specification of ReservedVirtualisationContainer IE (IFA005 v2.1.1).",
+      "range": {
+        "startLine": 289,
+        "startChar": 13,
+        "endLine": 308,
+        "endChar": 14
+      },
+      "revId": "212f13135f966788284507bee411f6e4c5250ea4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da87b5cf_c1a9e27c",
+        "filename": "docs/requirements/NB_interface.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2016-04-25T12:00:40Z",
+      "side": 1,
+      "message": "resource reservation?",
+      "range": {
+        "startLine": 467,
+        "startChar": 19,
+        "endLine": 467,
+        "endChar": 35
+      },
+      "revId": "212f13135f966788284507bee411f6e4c5250ea4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da87b5cf_61b6d6de",
+        "filename": "docs/requirements/NB_interface.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2016-04-25T12:00:40Z",
+      "side": 1,
+      "message": "Same as above.",
+      "range": {
+        "startLine": 513,
+        "startChar": 12,
+        "endLine": 519,
+        "endChar": 13
+      },
+      "revId": "212f13135f966788284507bee411f6e4c5250ea4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da87b5cf_41039273",
+        "filename": "docs/requirements/NB_interface.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2016-04-25T12:00:40Z",
+      "side": 1,
+      "message": "Please check specification of ReservedVirtualNetwork IE (IFA005 v2.1.1)",
+      "range": {
+        "startLine": 638,
+        "startChar": 16,
+        "endLine": 646,
+        "endChar": 17
+      },
+      "revId": "212f13135f966788284507bee411f6e4c5250ea4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da87b5cf_612b36ec",
+        "filename": "docs/requirements/NB_interface.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2016-04-25T12:00:40Z",
+      "side": 1,
+      "message": "Same as above",
+      "range": {
+        "startLine": 683,
+        "startChar": 15,
+        "endLine": 689,
+        "endChar": 16
+      },
+      "revId": "212f13135f966788284507bee411f6e4c5250ea4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da87b5cf_8130ba57",
+        "filename": "docs/requirements/NB_interface.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2016-04-25T12:00:40Z",
+      "side": 1,
+      "message": "Same as above",
+      "range": {
+        "startLine": 722,
+        "startChar": 16,
+        "endLine": 730,
+        "endChar": 17
+      },
+      "revId": "212f13135f966788284507bee411f6e4c5250ea4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da87b5cf_21352e46",
+        "filename": "docs/requirements/NB_interface.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2016-04-25T12:00:40Z",
+      "side": 1,
+      "message": "Same as above",
+      "range": {
+        "startLine": 776,
+        "startChar": 11,
+        "endLine": 782,
+        "endChar": 12
+      },
+      "revId": "212f13135f966788284507bee411f6e4c5250ea4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
