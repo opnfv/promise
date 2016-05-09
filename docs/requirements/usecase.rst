@@ -5,6 +5,9 @@
 Use cases and scenarios
 =======================
 
+Use cases
+=========
+
 Resource reservation is a basic feature in any virtualization-based network
 operation. In order to perform such resource reservation from NFVO to VIM, NFVI
 capacity information is also necessary at the NFVO side. Below, four use cases
@@ -18,7 +21,7 @@ release is described in :ref:`uc-brahmaputra`.
 #.  Co-existence of reservations and allocation requests without reservation
 
 Resource capacity management
-============================
+----------------------------
 
 NFVO takes the first decision on in which NFVI it would instantiate a VNF. Along
 with NFVIs resource attributes (e.g. availability of hardware accelerators,
@@ -36,7 +39,7 @@ NFVI at a pre-determined abstraction, either by a query-response, or in an
 event-based, or in a periodical way.
 
 Resource reservation for immediate use
-======================================
+--------------------------------------
 
 Reservation is inherently for the future. Even if some reserved resources are to
 be consumed instantly, there is a network latency between the issuance of a
@@ -54,7 +57,7 @@ Reservations requests for immediate use do not have a start time but may have
 an end time.
 
 Resource reservation for future use
-===================================
+-----------------------------------
 
 Network operators may want to reserve extra resources for future use. Such
 necessity could arise from predicted congestion in telecom nodes e.g. due to
@@ -71,7 +74,7 @@ request and the actual allocation is outside the scope of this requirement
 project.
 
 Co-existence of reservations and allocation requests without reservation
-========================================================================
+------------------------------------------------------------------------
 
 In a real environment VIM will have to handle allocation requests without any
 time reference, i.e. time-unbound, together with time-bound reservations and
@@ -103,3 +106,16 @@ implicit or explicit priority scheme:
 .. [#unbound] In this case, the consumer (VNFM or NFVO) requests to immediately
               instantiate and assign virtualized resources without having
               reserved the resources beforehand
+
+Scenarios
+=========
+
+This section describes the expected behavior of the system in different
+scenarios.
+
+As we are targeting a cloud platform with the above use cases, it is crucial to
+keep the flexibility in the system. By this means it is hard to explicitely
+block hardware resources for the future and ensure their availablility for
+allocation therefore it can happen that the reservation plan cannot be fulfilled
+due to certain changes in the underlying environment. We need to ensure that we
+are prepared for error and edge cases during the design period.
