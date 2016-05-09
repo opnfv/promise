@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a91bd0f_fca9207c",
+        "filename": "docs/requirements/NB_interface.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2016-05-09T08:00:30Z",
+      "side": 1,
+      "message": "nit \u003d -\u003e :",
+      "range": {
+        "startLine": 48,
+        "startChar": 28,
+        "endLine": 48,
+        "endChar": 31
+      },
+      "revId": "71e3c4bd00ce99b0a61ad5f52689780bc9c0359e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
