@@ -1,9 +1,8 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
 
-Promise capabilities and usage
-==============================
-
+Promise description
+===================
 Promise is a resource reservation and management project to identify NFV related
 requirements and realize resource reservation for future usage by capacity
 management of resource pools regarding compute, network and storage.
@@ -14,8 +13,10 @@ The following are the key features provided by this module:
 * Reservation Management
 * Allocation Management
 
-The Brahmaputra implementation of Promise is built with the YangForge data
-modeling framework [#f2]_ , using a shim-layer on top of OpenStack to provide
+Promise capabilities and usage
+==============================
+The Colorado implementation of Promise is built with the YangForge data modeling
+framework [#f2]_ , using a shim-layer on top of OpenStack to provide
 the Promise features. This approach requires communication between
 Consumers/Administrators and OpenStack to pass through the shim-layer. The
 shim-layer intercepts the message flow to manage the allocation requests based
@@ -25,57 +26,29 @@ internal databases. Furthermore, Promise provides additional intent-based APIs
 to allow a Consumer or Administrator to perform capacity management (i.e. add
 providers, update the capacity, and query the current capacity and utilization
 of a provider), reservation management (i.e. create, update, cancel, query
-reservations), and allocation management (i.e. create, destroy, query
-instances).
+reservations), and allocation management (i.e. create, destroy instances).
 
 Detailed information about Promise use cases, features, interface
 specifications, work flows, and the underlying Promise YANG schema can be found
 in the Promise requirement document [#f1]_ .
 
+Promise features and API usage guidelines and examples
+------------------------------------------------------
+This section lists the Promise features and API implemented in OPNFV Colorado.
 
-Promise usage
--------------
-
-The yfc run command will load the primary application package from this
-repository along with any other dependency files/assets referenced within the
-YAML manifest and instantiate the opnfv-promise module and run REST/JSON
-interface by default listeningon port 5000.::
-    $ yfc run promise.yaml
-
-
-You can also checkout the GIT repository (https://github.com/opnfv/promise/) or
-simply download the files into your local system and run the application.
-
-
-Promise feature and API usage guidelines and examples
------------------------------------------------------
-
-This section lists the Promise features and API implemented in OPNFV Brahmaputra.
-
-
-Note 1: In contrast to ETSI NFV specifications and the detailed interface
-specification in Section 7, the Promise shim-layer implementation does not
-distinguish intent interfaces per resource type, i.e. the various capacity,
-reservations, etc. operations have different endpoints for each domain such as
-compute, storage, and network. The current shim-layer implementation does not
-separate the endpoints for performing the various operations.
-
-Note 2: The listed parameters are optional unless explicitly marked as
-"mandatory".
-
+Note: The listed parameters are optional unless explicitly marked as "mandatory".
 
 Reservation management
 ^^^^^^^^^^^^^^^^^^^^^^
-
 The reservation management allows a Consumer to request reservations for
-resource capacity or specific resource elements. Reservations can be for now or
-a later time window. After the start time of a reservation has arrived, the
-Consumer can issue create server instance requests against the reserved
-capacity / elements. Note, a reservation will expire after a predefined
-*expiry* time in case no allocation referring to the reservation is requested.
+resource capacity. Reservations can be for now or a later time window.
+After the start time of a reservation has arrived, the Consumer can issue
+create server instance requests against the reserved capacity. Note, a
+reservation will expire after a predefined *expiry* time in case no
+allocation referring to the reservation is requested.
 
 The implemented workflow is well aligned with the described workflow in the
-Promise requirement document [#f1]_ (Clause 6.1) except for the
+Promise requirement document [#f1]_ (Section 6.1) except for the
 "multi-provider" scenario as described in :ref:`multi-provider` .
 
 .. _create-reservation:
@@ -84,39 +57,19 @@ Promise requirement document [#f1]_ (Clause 6.1) except for the
 """"""""""""""""""""
 
 This operation allows making a request to the reservation system to reserve
-resources. The Consumer can either request to reserve a certain capacity
-(*container*) or specific resource elements (*elements*), like a certain server
-instance.
+resources.
 
 The operation takes the following input parameters:
 
 * start: start time of the requested reservation
 * end: end time of the requested reservation
-* container: request for reservation of capacity
-
-  * instances: number of instances
-  * cores: number of cores
-  * ram: size of ram (in MB)
-  * networks: number of networks
-  * addresses: number of (public) IP addresses
-  * ports: number of ports
-  * routers: number of routers
-  * subnets: number of subnets
-  * gigabytes: size of storage (in GB)
-  * volumes: number of volumes
-  * snapshots: number of snapshots
-
-* elements: reference to a list of 'pre-existing' resource elements that are
-  required for fulfillment of the resource-usage-request
-
-  * instance-identifier: identifier of a specific resource element
-
-* zone: identifier of an Availability Zone
+* capacity.instances: amount of instances to be reserved
+* capacity.cores: amount of cores to be reserved
+* capacity.ram: amount of ram in MB to be reserved
 
 Promise will check the available capacity in the given time window and in case
 sufficient capacity exists to meet the reservation request, will mark those
 resources "reserved" in its reservation map.
-
 
 *update-reservation*
 """"""""""""""""""""
@@ -128,7 +81,6 @@ It can take the same input parameters as in *create-reservation*
 but in addition requires a mandatory reference to the *reservation-id* of the
 reservation that shall be updated.
 
-
 *cancel-reservation*
 """"""""""""""""""""
 
@@ -137,7 +89,6 @@ This operation is used to cancel an existing reservation.
 The operation takes the following input parameter:
 
 * reservation-id (mandatory): identifier of the reservation to be canceled.
-
 
 *query-reservation*
 """""""""""""""""""
@@ -149,37 +100,16 @@ start/end time window.
 The operation takes the following input parameters to narrow down the query
 results:
 
-* zone: identifier of an Availability Zone
 * without: excludes specified collection identifiers from the result
-* elements:
-
-  * some: query for ResourceCollection(s) that contain some or more of these
-    element(s)
-  * every: query for ResourceCollection(s) that contain all of these
-    element(s)
-
-* window: matches entries that are within the specified start/end time window
-
-  * start: start time
-  * end: end time
-  * scope: if set to 'exclusive', only reservations with start AND end time
+* elements.some: query for ResourceCollection(s) that contain some or more of these element(s)
+* elements.every: query for ResourceCollection(s) that contain all of these element(s)
+* window.start: matches entries that are within the specified start/
+* window.end: end time window
+* window.scope: if set to 'exclusive', only reservations with start AND end time
     within the time window are returned. Otherwise ('inclusive'), all
     reservation starting OR ending in the time windows are returned.
-
 * show-utilization: boolean value that specifies whether to also return the
   resource utilization in the queried time window or not
-
-
-*subscribe-reservation-events* / *notify-reservation-events*
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-Subscription to receive notifications about reservation-related events, e.g. a
-reservation is about to expire or a reservation is in conflict state due to a
-failure in the NFVI.
-
-Note, this feature is not yet available in Brahmaputra release.
-
-
 
 Allocation management
 ^^^^^^^^^^^^^^^^^^^^^
@@ -207,8 +137,8 @@ In case the *create-instance* request is rejected, Promise responds with a
 Consumer to take appropriate actions, e.g., send an updated *create-instance*
 request. In case the *create-instance* request was accepted and a related
 allocation record has been created, the shim-layer issues a *createServer*
-request to the VIM Controller providing all information to create the server
-instance.
+request to the VIM Controller (i.e. Nova) providing all information to create
+the server instance.
 
 The operation takes the following input parameters:
 
@@ -218,9 +148,8 @@ The operation takes the following input parameters:
 * networks: the list of network uuids of the requested server instance
 * provider-id: identifier of the provider where the instance shall be created
 * reservation-id: identifier of a resource reservation the *create-instance*
-  is issued against
 
-The Brahamputra implementation of Promise has the following limitations:
+The Colorado implementation of Promise has the following limitations:
 
 * All create server instance requests shall pass through the Promise
   shim-layer such that Promise can keep track of all allocation requests. This
@@ -246,33 +175,14 @@ The operation takes the following input parameter:
 
 * instance-id: identifier of the server instance to be destroyed
 
-
-*query-resource-collection*
-"""""""""""""""""""""""""""
-
-This operation allows to query for resource collection(s) that are within the
-specified start/end time window.
-
-
-*subscribe-allocation-events* / *notify-allocation-events*
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-Subscription to receive notifications about allocation-related events, e.g. an
-allocation towards the VIM that did not pass the Promise shim-layer
-
-Note, this feature is not yet available in Brahmaputra release.
-
-
-
 Capacity management
 ^^^^^^^^^^^^^^^^^^^
-
 The capacity management feature allows the Consumer or Administrator to do
 capacity planning, i.e. the capacity available to the reservation management
 can differ from the actual capacity in the registered provider(s). This feature
 can, e.g., be used to limit the available capacity for a given time window due
 to a planned downtime of some of the resources, or increase the capacity
-available to the reservation system in case of a plannes upgrade of the
+available to the reservation system in case of a planned upgrade of the
 available capacity.
 
 *increase/decrease-capacity*
@@ -303,10 +213,10 @@ This feature can be used in different ways, like
 The operation takes the following input parameters:
 
 * start: start time for the increased/decreased capacity
-
 * end: end time for the increased/decreased capacity
-
-* container: see :ref:`create-reservation`
+* capacity.cores: Increased/decreased amount of cores
+* capacity.ram: Increased/decreased amount of RAM
+* capacity.instances: Increased/decreased amount of instances
 
 Note, increase/decreasing the capacity in Promise is completely transparent to
 the VIM. As such, when increasing the virtual capacity in Promise (e.g. for a
@@ -339,27 +249,14 @@ The current implementation supports the following filter criteria:
   * 'usage': resource allocations
   * 'available': remaining capacity, i.e. neither reserved nor allocated
 
-
-*subscribe-capacity-events* / *notify-capacity-events*
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-These operations enable the Consumer to subscribe to receiving notifications
-about capacity-related events, e.g., increased/decreased capacity for a
-provider due to a failure or upgrade of a resource pool. In order to provide
-such notifications to its Consumers, Promise shim-layer has to subscribe itself
-to OpenStack Aodh to be notified from the VIM about any capacity related events.
-
-Note, this feature is not yet available in Brahmaputra release.
-
-
 .. _multi-provider:
 
 (Multi-)provider management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This API  towards OpenStack allows an Consumer/Administrator to add and remove
+This API  towards OpenStack allows a Consumer/Administrator to add and remove
 resource providers to Promise. Note, Promise supports a multi-provider
-configuration, however, for Brahmaputra, multi-provider support is not yet
+configuration, however, for Colorado, multi-provider support is not yet
 fully supported.
 
 *add-provider*
@@ -368,7 +265,7 @@ fully supported.
 This operation is used to register a new resource provider into the Promise
 reservation system.
 
-Note, for Brahmaputra, the add-provider operation should only be used to
+Note, for Colorado, the add-provider operation should only be used to
 register one provider with the Promise shim-layer. Further note that currently
 only OpenStack is supported as a provider.
 
@@ -380,20 +277,11 @@ The operation takes the following input parameters:
 * username (mandatory)
 * password (mandatory)
 * region: specified region for the provider
-* tenant
-
-  * id
-  * name
-
-
-*remove-provider*
-"""""""""""""""""
-This operation removes a resource provider from the reservation system. Note,
-this feature is not yet available in Brahmaputra release.
-
-
+* tenant.id: id of the OpenStack tenant/project
+* tenant.name: name of the OpenStack tenant/project
 
 .. [#f1] Promise requirement document,
-   http://http://artifacts.opnfv.org/promise/docs/requirements/index.html
+         http://artifacts.opnfv.org/promise/docs/requirements/index.html
 
 .. [#f2] YangForge framework, http://github.com/opnfv/yangforge
+
