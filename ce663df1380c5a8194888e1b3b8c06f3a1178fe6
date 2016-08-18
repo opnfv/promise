@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_7d907995",
+        "filename": "docs/userguide/feature.configguide.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2016-08-18T12:38:49Z",
+      "side": 1,
+      "message": "my preference: no unnecessary capitalization",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 38
+      },
+      "revId": "ce663df1380c5a8194888e1b3b8c06f3a1178fe6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_bd961193",
+        "filename": "docs/userguide/images/LICENSE",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2016-08-18T12:38:49Z",
+      "side": 1,
+      "message": "2016?",
+      "range": {
+        "startLine": 1,
+        "startChar": 10,
+        "endLine": 1,
+        "endChar": 14
+      },
+      "revId": "ce663df1380c5a8194888e1b3b8c06f3a1178fe6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_dd93cda1",
+        "filename": "docs/userguide/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2016-08-18T12:38:49Z",
+      "side": 1,
+      "message": "my preference:   s/User Guide/user guide/",
+      "range": {
+        "startLine": 5,
+        "startChar": 8,
+        "endLine": 5,
+        "endChar": 18
+      },
+      "revId": "ce663df1380c5a8194888e1b3b8c06f3a1178fe6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
