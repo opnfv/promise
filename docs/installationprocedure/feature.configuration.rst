@@ -14,8 +14,8 @@ Install nodejs, npm and promise
     curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
     sudo apt-get install -y nodejs
     sudo npm -g install npm@latest
-    git clone https://github.com/opnfv/promise.git
-    cd promise
+    git clone https://gerrit.opnfv.org/gerrit/promise
+    cd promise/source
     npm install
 
 Please note that the last command 'npm install' will install all needed dependencies
