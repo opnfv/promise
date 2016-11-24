@@ -1,0 +1,8 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+2: Gerald Kunzmann <kunzmann@docomolab-euro.com>
+Code-Review+2: Peter Lee <peter@corenova.com>
+Submitted-by: Gerald Kunzmann <kunzmann@docomolab-euro.com>
+Submitted-at: Thu, 24 Nov 2016 12:56:44 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/24755
+Project: promise
+Branch: refs/heads/master
