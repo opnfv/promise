@@ -2,8 +2,8 @@ Project: Resource Management (promise)
 Project Creation Date: December 4, 2014
 Project Category: Requirements
 Lifecycle State: Incubation
-Primary Contact: Peter K. Lee (peter@corenova.com)
-Project Lead: Peter K. Lee (peter@corenova.com)
+Primary Contact: Gerald Kunzmann (DOCOMO, kunzmann@docomolab-euro.com)
+Project Lead: Gerald Kunzmann (DOCOMO, kunzmann@docomolab-euro.com)
 Jira Project Name: Resource Management
 Jira Project Prefix: PROMISE
 mailing list tag [promise]
@@ -13,8 +13,8 @@ Repository: promise
 Committers:
 Arturo Martin De Nicolas (Ericsson, arturo.martin-de-nicolas@ericsson.com)
 Ashiq Khan (DOCOMO, khan@nttdocomo.com)
-Gerald Kunzmann (DOCOMO, kunzmann@docomolab-euro.com)
 Ravi Chunduru (ClearPath, rchunduru@clearpathnet.com)
 Ryota Mibu (NEC, r-mibu@cq.jp.nec.com)
 Serge Manning (Sprint, Serge.Manning@sprint.com)
+Peter K. Lee (peter@corenova.com)
 
