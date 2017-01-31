@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1acb0d3e_54d36238",
+        "filename": "promise/test/functest/run_tests.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 459
+      },
+      "writtenOn": "2017-01-31T22:48:16Z",
+      "side": 1,
+      "message": "you can remove this :)",
+      "revId": "9f356998dd28c6d57279cd886e03ac25e0d0587f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
