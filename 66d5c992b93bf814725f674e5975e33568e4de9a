@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1acb0d3e_59b06ef4",
+        "filename": "promise/test/functest/run_tests.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2017-02-07T15:51:43Z",
+      "side": 1,
+      "message": "Can you please check the value of OS_AUTH_URL after \"forcing\" keystone v2?\n\nWE need to ensure that OS_AUTH_URL is set correctly, e.g. \nOS_AUTH_URL\u003dhttp://192.168.0.2:5000/v2.0 for https://jira.opnfv.org/secure/attachment/11801/promise_keystonev2_danube.log",
+      "range": {
+        "startLine": 83,
+        "startChar": 4,
+        "endLine": 83,
+        "endChar": 38
+      },
+      "revId": "66d5c992b93bf814725f674e5975e33568e4de9a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
