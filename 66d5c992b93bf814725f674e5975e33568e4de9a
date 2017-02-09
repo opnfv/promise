@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "1acb0d3e_2c3e7db9",
+        "filename": "promise/test/functest/run_tests.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 335
+      },
+      "writtenOn": "2017-02-09T17:43:54Z",
+      "side": 1,
+      "message": "well probably\npromise is currently not supported keystone v3\nhow shall I do?\nI can remove this statement and let promise team do it another way...",
+      "parentUuid": "1acb0d3e_26269e17",
+      "range": {
+        "startLine": 79,
+        "startChar": 8,
+        "endLine": 79,
+        "endChar": 51
+      },
+      "revId": "66d5c992b93bf814725f674e5975e33568e4de9a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1acb0d3e_59b06ef4",
         "filename": "promise/test/functest/run_tests.py",
         "patchSetId": 5
@@ -95,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "1acb0d3e_cc4a5955",
+        "filename": "promise/test/functest/run_tests.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 335
+      },
+      "writtenOn": "2017-02-09T17:43:54Z",
+      "side": 1,
+      "message": "OK it was an issue...after I added the /v2.0, I got 23 Passes and 10 Failures",
+      "parentUuid": "1acb0d3e_59b06ef4",
+      "range": {
+        "startLine": 83,
+        "startChar": 4,
+        "endLine": 83,
+        "endChar": 38
+      },
+      "revId": "66d5c992b93bf814725f674e5975e33568e4de9a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1acb0d3e_26953e40",
         "filename": "promise/test/functest/run_tests.py",
         "patchSetId": 5
@@ -118,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "1acb0d3e_0c414139",
+        "filename": "promise/test/functest/run_tests.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 335
+      },
+      "writtenOn": "2017-02-09T17:43:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1acb0d3e_26953e40",
+      "range": {
+        "startLine": 129,
+        "startChar": 4,
+        "endLine": 133,
+        "endChar": 53
+      },
+      "revId": "66d5c992b93bf814725f674e5975e33568e4de9a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1acb0d3e_e69e5663",
         "filename": "promise/test/functest/run_tests.py",
         "patchSetId": 5
@@ -129,6 +201,30 @@
       "writtenOn": "2017-02-09T03:42:03Z",
       "side": 1,
       "message": "Why updating the credentials here? I don\u0027t see further use of creds.",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 7
+      },
+      "revId": "66d5c992b93bf814725f674e5975e33568e4de9a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_6c81e549",
+        "filename": "promise/test/functest/run_tests.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 335
+      },
+      "writtenOn": "2017-02-09T17:43:54Z",
+      "side": 1,
+      "message": "I do not know promise...:)\nin Colorado they updated the creds earlier to use promise user/tenant\nhttps://git.opnfv.org/functest/tree/testcases/features/promise.py?h\u003dstable/colorado\n\nbut if I do that now, I got a keystone error. It seems that teh admin role is no more granted (same problem with vIMS BTW) \nI assume it is useless\n\n@Bertrand, Peter could you elaborate a little bit?",
+      "parentUuid": "1acb0d3e_e69e5663",
       "range": {
         "startLine": 183,
         "startChar": 0,
