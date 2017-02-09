@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "1acb0d3e_46796a2e",
+        "filename": "promise/test/functest/run_tests.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 5959
+      },
+      "writtenOn": "2017-02-09T03:42:03Z",
+      "side": 1,
+      "message": "Please use os_utils.is_keystone_v3() instead of hardcoding 2 here.\n\nif os_utils.is_keystone_v3():\n   os.environ[\"OS_IDENTITY_API_VERSION\"] \u003d \"2\"\n   change_keystone_version \u003d True\n   logger.info(\"Force Keystone v2\")",
+      "range": {
+        "startLine": 78,
+        "startChar": 3,
+        "endLine": 78,
+        "endChar": 55
+      },
+      "revId": "66d5c992b93bf814725f674e5975e33568e4de9a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_26269e17",
+        "filename": "promise/test/functest/run_tests.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 5959
+      },
+      "writtenOn": "2017-02-09T03:42:03Z",
+      "side": 1,
+      "message": "I would say forcing to change the env variable is not a very decent way and will cause potential problem. Let\u0027s say, what if the code is interrupted in the middle of execution and there is no chance to revert the key back. It will cause all the other cases to fail.\n\nAlso, is this a verified process of faking a V3 env to V2? The keystone endpoint of the env is registered as v3. Simply changing the env parameter would be possibly fail especially for keystone related functions. I would say, it may fail to create tenant/user (just my assumption)",
+      "range": {
+        "startLine": 79,
+        "startChar": 8,
+        "endLine": 79,
+        "endChar": 51
+      },
+      "revId": "66d5c992b93bf814725f674e5975e33568e4de9a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1acb0d3e_59b06ef4",
         "filename": "promise/test/functest/run_tests.py",
         "patchSetId": 5
@@ -18,6 +64,99 @@
         "startChar": 4,
         "endLine": 83,
         "endChar": 38
+      },
+      "revId": "66d5c992b93bf814725f674e5975e33568e4de9a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_e675f632",
+        "filename": "promise/test/functest/run_tests.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 5959
+      },
+      "writtenOn": "2017-02-09T03:42:03Z",
+      "side": 1,
+      "message": "+1, after forcing to change the OS_IDENTITY_API_VERSION, the OS_AUTH_URL also needs to be changed.",
+      "parentUuid": "1acb0d3e_59b06ef4",
+      "range": {
+        "startLine": 83,
+        "startChar": 4,
+        "endLine": 83,
+        "endChar": 38
+      },
+      "revId": "66d5c992b93bf814725f674e5975e33568e4de9a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_26953e40",
+        "filename": "promise/test/functest/run_tests.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 5959
+      },
+      "writtenOn": "2017-02-09T03:42:03Z",
+      "side": 1,
+      "message": "I think the creds here is not changed. In this way, there is no need to pass the creds as a parameter when getting the client.\n\n neutron_client \u003d os_utils.get_neutron_client()\n\n    nova_client \u003d os_utils.get_nova_client()\n\n    glance_client \u003d os_utils.get_glance_client()",
+      "range": {
+        "startLine": 129,
+        "startChar": 4,
+        "endLine": 133,
+        "endChar": 53
+      },
+      "revId": "66d5c992b93bf814725f674e5975e33568e4de9a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_e69e5663",
+        "filename": "promise/test/functest/run_tests.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 5959
+      },
+      "writtenOn": "2017-02-09T03:42:03Z",
+      "side": 1,
+      "message": "Why updating the credentials here? I don\u0027t see further use of creds.",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 7
+      },
+      "revId": "66d5c992b93bf814725f674e5975e33568e4de9a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_a6884e23",
+        "filename": "promise/test/functest/run_tests.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 5959
+      },
+      "writtenOn": "2017-02-09T03:42:03Z",
+      "side": 1,
+      "message": "Why the two lines are commented? If they are not needed, how about removing them to avoid any confusion?",
+      "range": {
+        "startLine": 211,
+        "startChar": 7,
+        "endLine": 214,
+        "endChar": 32
       },
       "revId": "66d5c992b93bf814725f674e5975e33568e4de9a",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
