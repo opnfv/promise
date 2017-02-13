@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dabed58f_097ce971",
+        "filename": "promise/test/functest/run_tests.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5959
+      },
+      "writtenOn": "2017-02-13T02:06:25Z",
+      "side": 1,
+      "message": "Could you help to wrap this part by following this patch\nhttps://git.opnfv.org/functest/tree/functest/ci/run_tests.py#n41\n\nPutting the parser part directly in the module will cause problem for the unit test.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 26
+      },
+      "revId": "2a5dd90cc8a418a8f592cb28ab69401b4ed14521",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dabed58f_e992b59e",
+        "filename": "promise/test/functest/run_tests.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5959
+      },
+      "writtenOn": "2017-02-13T02:06:25Z",
+      "side": 1,
+      "message": "I would say appending the \u0027/v2.0\u0027 will not work. In some env which has v3 installed, the \nOS_AUTH_URL\u003d\u0027http://172.16.1.1:5000/v3/\u0027\n\nMaybe a string substitution will work.",
+      "range": {
+        "startLine": 70,
+        "startChar": 7,
+        "endLine": 70,
+        "endChar": 71
+      },
+      "revId": "2a5dd90cc8a418a8f592cb28ab69401b4ed14521",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
