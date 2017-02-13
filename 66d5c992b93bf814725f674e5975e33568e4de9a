@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "dabed58f_49e98119",
+        "filename": "promise/test/functest/run_tests.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 5959
+      },
+      "writtenOn": "2017-02-13T02:06:25Z",
+      "side": 1,
+      "message": "IMHO, firstly, we have to make sure whether it is working if updating environmental envs (e.g. os_auth_url) manually to v2. \nOnce it is verified, we know what fields are ought to be changed exactly.\nIf we cannot find a better way than updating the global variable, a TODO note is needed to elaborate the potential risk.",
+      "parentUuid": "1acb0d3e_2c3e7db9",
+      "range": {
+        "startLine": 79,
+        "startChar": 8,
+        "endLine": 79,
+        "endChar": 51
+      },
+      "revId": "66d5c992b93bf814725f674e5975e33568e4de9a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1acb0d3e_59b06ef4",
         "filename": "promise/test/functest/run_tests.py",
         "patchSetId": 5
