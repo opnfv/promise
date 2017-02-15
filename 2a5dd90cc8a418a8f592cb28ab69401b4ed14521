@@ -1,0 +1,9 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+1: Jose Lausuch <jose.lausuch@ericsson.com>
+Code-Review+1: Serena Feng <feng.xiaowei@zte.com.cn>
+Code-Review+2: Gerald Kunzmann <kunzmann@docomolab-euro.com>
+Submitted-by: Gerald Kunzmann <kunzmann@docomolab-euro.com>
+Submitted-at: Wed, 15 Feb 2017 12:17:24 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/27553
+Project: promise
+Branch: refs/heads/master
