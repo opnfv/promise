@@ -6,7 +6,7 @@ Abstract
 This user guide document provides the users with:
 
 1. Short description of Promise project and key features implemented in
-Colorado.
+Danube.
 
 Promise description
 ===================
@@ -22,7 +22,7 @@ The following are the key features provided by this module:
 
 Promise capabilities and usage
 ==============================
-The Colorado implementation of Promise is built with the YangForge data modeling
+The Danube implementation of Promise is built with the YangForge data modeling
 framework [#f2]_ , using a shim-layer on top of OpenStack to provide
 the Promise features. This approach requires communication between
 Consumers/Administrators and OpenStack to pass through the shim-layer. The
@@ -41,7 +41,7 @@ in the Promise requirement document [#f1]_ .
 
 Promise features and API usage guidelines and examples
 ------------------------------------------------------
-This section lists the Promise features and API implemented in OPNFV Colorado.
+This section lists the Promise features and API implemented in OPNFV Danube.
 
 Note: The listed parameters are optional unless explicitly marked as "mandatory".
 
@@ -156,7 +156,7 @@ The operation takes the following input parameters:
 * provider-id: identifier of the provider where the instance shall be created
 * reservation-id: identifier of a resource reservation the *create-instance*
 
-The Colorado implementation of Promise has the following limitations:
+The Danube implementation of Promise has the following limitations:
 
 * All create server instance requests shall pass through the Promise
   shim-layer such that Promise can keep track of all allocation requests. This
@@ -263,7 +263,7 @@ The current implementation supports the following filter criteria:
 
 This API  towards OpenStack allows a Consumer/Administrator to add and remove
 resource providers to Promise. Note, Promise supports a multi-provider
-configuration, however, for Colorado, multi-provider support is not yet
+configuration, however, for Danube, multi-provider support is not yet
 fully supported.
 
 *add-provider*
@@ -272,7 +272,7 @@ fully supported.
 This operation is used to register a new resource provider into the Promise
 reservation system.
 
-Note, for Colorado, the add-provider operation should only be used to
+Note, for Danube, the add-provider operation should only be used to
 register one provider with the Promise shim-layer. Further note that currently
 only OpenStack is supported as a provider.
 
