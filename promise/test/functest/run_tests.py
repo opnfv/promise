@@ -67,6 +67,8 @@ def main():
     # if keystone v3, for keystone v2
     if os_utils.is_keystone_v3():
         os.environ["OS_IDENTITY_API_VERSION"] = "2"
+        os.environ["OS_AUTH_URL"] = \
+            os.environ["OS_AUTH_URL"].replace("/v3", "")
         os.environ["OS_AUTH_URL"] = os.environ["OS_AUTH_URL"] + "/v2.0"
         change_keystone_version = True
         logger.info("Force Keystone v2")
