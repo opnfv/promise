@@ -10,11 +10,11 @@
 import argparse
 import json
 import os
+import re
 import subprocess
 import time
 
 import functest.utils.functest_logger as ft_logger
-import functest.utils.functest_utils as ft_utils
 import functest.utils.openstack_utils as os_utils
 from functest.utils.constants import CONST
 
@@ -58,8 +58,6 @@ logger = ft_logger.Logger("promise").getLogger()
 
 
 def main():
-    start_time = time.time()
-
     change_keystone_version = False
     os_auth = os.environ["OS_AUTH_URL"]
 
@@ -67,7 +65,15 @@ def main():
     # if keystone v3, for keystone v2
     if os_utils.is_keystone_v3():
         os.environ["OS_IDENTITY_API_VERSION"] = "2"
-        os.environ["OS_AUTH_URL"] = os.environ["OS_AUTH_URL"] + "/v2.0"
+        # the OS_AUTH_URL may have different format according to the installer
+        # apex: OS_AUTH_URL=http://192.168.37.17:5000/v2.0
+        # fuel: OS_AUTH_URL='http://192.168.0.2:5000/'
+        #       OS_AUTH_URL='http://192.168.10.2:5000/v3
+        match = re.findall(r'[0-9]+(?:\.[0-9]+){3}:[0-9]+',
+                           os.environ["OS_AUTH_URL"])
+        new_url = "http://" + match[0] + "/v2.0"
+
+        os.environ["OS_AUTH_URL"] = new_url
         change_keystone_version = True
         logger.info("Force Keystone v2")
 
