@@ -58,6 +58,7 @@ logger = ft_logger.Logger("promise").getLogger()
 
 
 def main():
+    return_code = 0
     change_keystone_version = False
     os_auth = os.environ["OS_AUTH_URL"]
 
@@ -204,10 +205,9 @@ def main():
 
     if ret == 0:
         logger.info("The test succeeded.")
-        # test_status = 'OK'
     else:
         logger.info("The command '%s' failed." % cmd)
-        # test_status = "Failed"
+        return_code = -1
 
     # Print output of file
     with open(results_file_name, 'r') as results_file:
@@ -247,7 +247,7 @@ def main():
         os.environ["OS_AUTH_URL"] = os_auth
         logger.info("Revert to Keystone v3")
 
-    exit(0)
+    exit(return_code)
 
 
 if __name__ == '__main__':
