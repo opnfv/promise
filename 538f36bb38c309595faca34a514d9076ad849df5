@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dabed58f_eb9b69c7",
+        "filename": "promise/test/functest/run_tests.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 459
+      },
+      "writtenOn": "2017-02-27T14:23:39Z",
+      "side": 1,
+      "message": "I prefer\n\nreturn_code \u003d -1 (or whatever value) \n\nand change it to 0 when we make sure the test passes",
+      "revId": "538f36bb38c309595faca34a514d9076ad849df5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dabed58f_aba57105",
+        "filename": "promise/test/functest/run_tests.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 459
+      },
+      "writtenOn": "2017-02-27T14:23:39Z",
+      "side": 1,
+      "message": "add here:\n\nreturn_code \u003d 0",
+      "revId": "538f36bb38c309595faca34a514d9076ad849df5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dabed58f_0ba11df8",
+        "filename": "promise/test/functest/run_tests.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 459
+      },
+      "writtenOn": "2017-02-27T14:23:39Z",
+      "side": 1,
+      "message": "remove this",
+      "revId": "538f36bb38c309595faca34a514d9076ad849df5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
