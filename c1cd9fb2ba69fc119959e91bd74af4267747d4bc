@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dabed58f_0b3d9d8f",
+        "filename": "promise/test/functest/run_tests.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 459
+      },
+      "writtenOn": "2017-02-27T14:59:01Z",
+      "side": 1,
+      "message": "Following Cedric\u0027s best practices, I would say that you do:\n\nimport sys (at the top)\n\nand here:\nsys.exit(main())\n\nand in the main() function, instead of exiting, you replace it by returns",
+      "revId": "c1cd9fb2ba69fc119959e91bd74af4267747d4bc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
