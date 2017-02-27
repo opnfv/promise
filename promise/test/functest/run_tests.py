@@ -12,6 +12,7 @@ import json
 import os
 import re
 import subprocess
+import sys
 import time
 
 import functest.utils.functest_logger as ft_logger
@@ -58,6 +59,7 @@ logger = ft_logger.Logger("promise").getLogger()
 
 
 def main():
+    return_code = -1
     change_keystone_version = False
     os_auth = os.environ["OS_AUTH_URL"]
 
@@ -93,7 +95,7 @@ def main():
     if user_id == '':
         logger.error("Error : Failed to get id of %s user" %
                      creds['username'])
-        exit(-1)
+        return return_code
 
     logger.info("Creating tenant '%s'..." % PROMISE_TENANT_NAME)
     tenant_id = os_utils.create_tenant(
@@ -101,7 +103,7 @@ def main():
     if not tenant_id:
         logger.error("Error : Failed to create %s tenant"
                      % PROMISE_TENANT_NAME)
-        exit(-1)
+        return return_code
     logger.debug("Tenant '%s' created successfully." % PROMISE_TENANT_NAME)
 
     roles_name = ["admin", "Admin"]
@@ -112,7 +114,7 @@ def main():
 
     if role_id == '':
         logger.error("Error : Failed to get id for %s role" % role_name)
-        exit(-1)
+        return return_code
 
     logger.info("Adding role '%s' to tenant '%s'..."
                 % (role_id, PROMISE_TENANT_NAME))
@@ -120,7 +122,7 @@ def main():
                                   role_id, tenant_id):
         logger.error("Error : Failed to add %s on tenant %s" %
                      (creds['username'], PROMISE_TENANT_NAME))
-        exit(-1)
+        return return_code
     logger.debug("Role added successfully.")
 
     logger.info("Creating user '%s'..." % PROMISE_USER_NAME)
@@ -129,10 +131,9 @@ def main():
 
     if not user_id:
         logger.error("Error : Failed to create %s user" % PROMISE_USER_NAME)
-        exit(-1)
+        return return_code
     logger.debug("User '%s' created successfully." % PROMISE_USER_NAME)
 
-    neutron_client = os_utils.get_neutron_client()
     nova_client = os_utils.get_nova_client()
     glance_client = os_utils.get_glance_client()
 
@@ -153,7 +154,7 @@ def main():
 
         if image_id == '':
             logger.error("Failed to create the Glance image...")
-            exit(-1)
+            return return_code
 
     logger.debug("Image '%s' with ID '%s' created successfully."
                  % (PROMISE_IMAGE_NAME, image_id))
@@ -167,21 +168,20 @@ def main():
                                            PROMISE_FLAVOR_VCPUS)
         if not flavor_id:
             logger.error("Failed to create the Flavor...")
-            exit(-1)
+            return return_code
         logger.debug("Flavor '%s' with ID '%s' created successfully." %
                      (PROMISE_FLAVOR_NAME, flavor_id))
     else:
         logger.debug("Using existing flavor '%s' with ID '%s'..."
                      % (PROMISE_FLAVOR_NAME, flavor_id))
 
-    network_dic = os_utils.create_network_full(neutron_client,
-                                               PROMISE_NET_NAME,
-                                               PROMISE_SUBNET_NAME,
-                                               PROMISE_ROUTER_NAME,
-                                               PROMISE_SUBNET_CIDR)
+    network_dic = os_utils.create_shared_network_full(PROMISE_NET_NAME,
+                                                      PROMISE_SUBNET_NAME,
+                                                      PROMISE_ROUTER_NAME,
+                                                      PROMISE_SUBNET_CIDR)
     if not network_dic:
         logger.error("Failed to create the private network...")
-        exit(-1)
+        return return_code
 
     logger.info("Exporting environment variables...")
     os.environ["NODE_ENV"] = "functest"
@@ -204,10 +204,9 @@ def main():
 
     if ret == 0:
         logger.info("The test succeeded.")
-        # test_status = 'OK'
+        return_code = 0
     else:
         logger.info("The command '%s' failed." % cmd)
-        # test_status = "Failed"
 
     # Print output of file
     with open(results_file_name, 'r') as results_file:
@@ -247,8 +246,8 @@ def main():
         os.environ["OS_AUTH_URL"] = os_auth
         logger.info("Revert to Keystone v3")
 
-    exit(0)
+    return return_code
 
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())
