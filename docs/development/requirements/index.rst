@@ -11,15 +11,6 @@ Promise: Resource Management
           Gerald Kunzmann (NTT DOCOMO), Ryota Mibu (NEC),
           Carlos Goncalves (NEC), Arturo Martin De Nicolas (Ericsson)
 
-:History:
-          ========== =====================================================
-          Date       Description
-          ========== =====================================================
-          04.12.2014 Project creation
-          20.04.2015 Initial version of the deliverable uploaded to gerrit
-          19.06.2015 Stable version of the Promise deliverable
-          ========== =====================================================
-
 :Abstract: Promise is an OPNFV requirement project. Its objective is to realize
            ETSI NFV defined resource reservation and NFVI capacity features
            within the scope of OPNFV. Promise provides the details of the
@@ -49,4 +40,3 @@ Promise: Resource Management
    annex1.rst
    schemas.rst
    supported_apis.rst
-   revision.rst

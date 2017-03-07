@@ -20,8 +20,5 @@ the VNFM. The use cases include:
 * Reservation of a resource or set of resources for future use
 
 The Promise project has performed a gap analysis in order to fulfill the
-required functionality. Based on the gap analysis an implementation plan and
-way forward has been proposed, including a possible design architecture and
-high level information model. Immediate next steps of this project is to
-deliver a working Proof-of-Concepts (PoC) and engage upstream communities to
-fill out the gaps identified by Promise.
+required functionality. Based on the gap analysis an implementation plan an 
+architecture, information model and northbound interface has been specified.
