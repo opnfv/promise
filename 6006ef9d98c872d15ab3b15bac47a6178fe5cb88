@@ -1,0 +1,7 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+2: Ashiq Khan <khan@nttdocomo.com>
+Submitted-by: Ashiq Khan <khan@nttdocomo.com>
+Submitted-at: Wed, 08 Mar 2017 01:20:36 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/29965
+Project: promise
+Branch: refs/heads/master
