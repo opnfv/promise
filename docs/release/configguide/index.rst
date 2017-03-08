@@ -2,6 +2,8 @@
 .. http://creativecommons.org/licenses/by/4.0
    .. (c) <optionally add copywriters name>
 
+.. _promise-configguide:
+
 **************************************
 Promise installation and configuration
 **************************************
