@@ -1,0 +1,8 @@
+Code-Review+2: Gerald Kunzmann <kunzmann@docomolab-euro.com>
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+2: Ashiq Khan <khan@nttdocomo.com>
+Submitted-by: Ashiq Khan <khan@nttdocomo.com>
+Submitted-at: Thu, 09 Mar 2017 00:52:17 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/30041
+Project: promise
+Branch: refs/heads/master
