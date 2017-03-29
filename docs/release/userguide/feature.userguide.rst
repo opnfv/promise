@@ -3,13 +3,6 @@
 
 Abstract
 ========
-This user guide document provides the users with:
-
-1. Short description of Promise project and key features implemented in
-Danube.
-
-Promise description
-===================
 Promise is a resource reservation and management project to identify NFV related
 requirements and realize resource reservation for future usage by capacity
 management of resource pools regarding compute, network and storage.
@@ -19,6 +12,8 @@ The following are the key features provided by this module:
 * Capacity Management
 * Reservation Management
 * Allocation Management
+
+The following sections provide details on the Promise capabilities and its API usage.
 
 Promise capabilities and usage
 ==============================
