@@ -1,11 +1,8 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
 
-Manual testing
-==============
-
 Promise installation
---------------------
+====================
 
 Install nodejs, npm and promise
 
@@ -27,7 +24,7 @@ for promise (including yangforge and mocha)
 
 
 Validation
-----------
+==========
 Please perform the following preparation steps:
 
 1. Set OpenStack environment parameters properly (e.g. source openrc admin demo
