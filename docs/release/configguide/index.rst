@@ -10,6 +10,5 @@ Promise installation and configuration
 
 .. toctree::
    :numbered:
-   :maxdepth: 2
 
    feature.configuration.rst
