@@ -9,13 +9,14 @@
 #
 import argparse
 import json
+import logging
+import logging.config
 import os
 import re
 import subprocess
 import sys
 import time
 
-import functest.utils.functest_logger as ft_logger
 import functest.utils.openstack_utils as os_utils
 from functest.utils.constants import CONST
 
@@ -55,7 +56,7 @@ PROMISE_ROUTER_NAME = CONST.promise_router_name
 
 
 """ logging configuration """
-logger = ft_logger.Logger("promise").getLogger()
+logger = logging.getLogger('promise')
 
 
 def main():
@@ -250,4 +251,6 @@ def main():
 
 
 if __name__ == '__main__':
+    logging.config.fileConfig(
+        CONST.__getattribute__('dir_functest_logging_cfg'))
     sys.exit(main())
