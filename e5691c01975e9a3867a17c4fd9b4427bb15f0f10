@@ -1,0 +1,10 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+1: Morgan Richomme <morgan.richomme@orange.com>
+Code-Review+1: Cedric Ollivier <cedric.ollivier@orange.com>
+Code-Review+2: Gerald Kunzmann <kunzmann@docomolab-euro.com>
+Code-Review+1: Bertrand Souville <souville@docomolab-euro.com>
+Submitted-by: Gerald Kunzmann <kunzmann@docomolab-euro.com>
+Submitted-at: Mon, 15 May 2017 10:22:01 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/34743
+Project: promise
+Branch: refs/heads/master
