@@ -143,19 +143,17 @@ def main():
 
     logger.info("Upload some OS images if it doesn't exist")
 
-    images = {"image_name": GLANCE_IMAGE_NAME, "image_url": GLANCE_IMAGE_PATH}
-    for image_name, image_url in images.iteritems():
-        image_id = os_utils.get_image_id(glance_client, image_name)
+    image_id = os_utils.get_image_id(glance_client, GLANCE_IMAGE_NAME)
 
-        if image_id == '':
-            logger.info("%s image doesn't exist on glance repo" % image_name)
-            logger.info("Try downloading this image and upload on glance !")
-            image_id = os_utils.create_glance_image(
-                glance_client, GLANCE_IMAGE_NAME, GLANCE_IMAGE_PATH)
+    if image_id == '':
+        logger.info("%s image doesn't exist on glance repo" % GLANCE_IMAGE_NAME)
+        logger.info("Try downloading this image and upload on glance !")
+        image_id = os_utils.create_glance_image(
+            glance_client, GLANCE_IMAGE_NAME, GLANCE_IMAGE_PATH)
 
-        if image_id == '':
-            logger.error("Failed to create the Glance image...")
-            return return_code
+    if image_id == '':
+        logger.error("Failed to create the Glance image...")
+        return return_code
 
     logger.debug("Image '%s' with ID '%s' created successfully."
                  % (PROMISE_IMAGE_NAME, image_id))
