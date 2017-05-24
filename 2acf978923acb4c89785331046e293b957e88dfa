@@ -1,0 +1,9 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+1: Aric Gardner <agardner@linuxfoundation.org>
+Code-Review+1: Alexandru Avadanii <Alexandru.Avadanii@enea.com>
+Code-Review+2: Gerald Kunzmann <kunzmann@docomolab-euro.com>
+Submitted-by: Gerald Kunzmann <kunzmann@docomolab-euro.com>
+Submitted-at: Wed, 24 May 2017 15:51:43 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/35053
+Project: promise
+Branch: refs/heads/master
