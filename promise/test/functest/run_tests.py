@@ -46,7 +46,7 @@ PROMISE_FLAVOR_DISK = CONST.promise_flavor_disk
 GLANCE_IMAGE_FILENAME = CONST.openstack_image_file_name
 GLANCE_IMAGE_FORMAT = CONST.openstack_image_disk_format
 GLANCE_IMAGE_NAME = CONST.openstack_image_file_name
-GLANCE_IMAGE_PATH = os.path.join(CONST.dir_functest_data,
+GLANCE_IMAGE_PATH = os.path.join(CONST.dir_functest_images,
                                  GLANCE_IMAGE_FILENAME)
 
 PROMISE_NET_NAME = CONST.promise_network_name
