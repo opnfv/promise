@@ -1,0 +1,13 @@
+# Upstream contributions in OpenStack
+# system is one of Gerrit, Launchpad
+---
+-
+  url: https://blueprints.launchpad.net/blazar/+spec/new-instance-reservation
+  system: Launchpad
+-
+  url: https://blueprints.launchpad.net/blazar/+spec/climate-dashboard
+  system: Launchpad
+-
+  url: https://blueprints.launchpad.net/blazar/+spec/update-reserved-capacity
+  system: Launchpad
+  # WIP
