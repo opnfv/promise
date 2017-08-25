@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_eeaa2bd1",
+        "filename": "docs/release/release-notes/releasenotes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2017-08-25T12:35:20Z",
+      "side": 1,
+      "message": "Add important notes section?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 0
+      },
+      "revId": "8d349404538465265363b10c44d4714661aab5ce",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_ce580735",
+        "filename": "docs/release/release-notes/releasenotes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2017-08-25T12:35:20Z",
+      "side": 1,
+      "message": "spent",
+      "range": {
+        "startLine": 39,
+        "startChar": 60,
+        "endLine": 39,
+        "endChar": 65
+      },
+      "revId": "8d349404538465265363b10c44d4714661aab5ce",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_ee3cebc1",
+        "filename": "docs/release/release-notes/releasenotes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2017-08-25T12:35:20Z",
+      "side": 1,
+      "message": "Add link e.g. https://launchpad.net/blazar/+milestone/0.3.0?",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 99
+      },
+      "revId": "8d349404538465265363b10c44d4714661aab5ce",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_0e42ef3d",
+        "filename": "docs/release/release-notes/releasenotes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2017-08-25T12:35:20Z",
+      "side": 1,
+      "message": "CI Job?",
+      "range": {
+        "startLine": 55,
+        "startChar": 14,
+        "endLine": 55,
+        "endChar": 22
+      },
+      "revId": "8d349404538465265363b10c44d4714661aab5ce",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_3345a0b3",
+        "filename": "docs/release/release-notes/releasenotes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2017-08-25T12:35:20Z",
+      "side": 1,
+      "message": "let\u0027s also include armband",
+      "range": {
+        "startLine": 57,
+        "startChar": 14,
+        "endLine": 57,
+        "endChar": 50
+      },
+      "revId": "8d349404538465265363b10c44d4714661aab5ce",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_ae5b032d",
+        "filename": "docs/release/release-notes/releasenotes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2017-08-25T12:35:20Z",
+      "side": 1,
+      "message": "This is outdated. Suggest to include link to \n\u003chttps://git.opnfv.org/promise/tree/source/test/promise-intents.coffee\u003e and update the list accordingly",
+      "range": {
+        "startLine": 66,
+        "startChar": 34,
+        "endLine": 66,
+        "endChar": 49
+      },
+      "revId": "8d349404538465265363b10c44d4714661aab5ce",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_135fbc42",
+        "filename": "docs/release/release-notes/releasenotes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2017-08-25T12:35:20Z",
+      "side": 1,
+      "message": "Please replace by https://blazar.readthedocs.io/en/latest/",
+      "range": {
+        "startLine": 115,
+        "startChar": 58,
+        "endLine": 115,
+        "endChar": 96
+      },
+      "revId": "8d349404538465265363b10c44d4714661aab5ce",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
