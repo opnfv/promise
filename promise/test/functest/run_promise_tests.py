@@ -10,7 +10,6 @@
 import argparse
 import json
 import logging
-import logging.config
 import os
 import re
 import subprocess
@@ -29,7 +28,7 @@ parser.add_argument("-r", "--report",
 args = parser.parse_args()
 
 
-PROMISE_REPO_DIR = CONST.dir_repo_promise
+PROMISE_REPO_DIR = '/src/promise'
 RESULTS_DIR = CONST.dir_results
 
 PROMISE_TENANT_NAME = CONST.promise_tenant_name
@@ -249,6 +248,5 @@ def main():
 
 
 if __name__ == '__main__':
-    logging.config.fileConfig(
-        CONST.__getattribute__('dir_functest_logging_cfg'))
+    logging.basicConfig(level=logging.INFO)
     sys.exit(main())
