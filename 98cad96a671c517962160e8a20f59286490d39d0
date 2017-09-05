@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "da33351e_bb020b09",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2017-09-05T09:32:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da33351e_b55e9c10",
+      "revId": "98cad96a671c517962160e8a20f59286490d39d0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_9569d8c0",
         "filename": "promise/test/functest/run_promise_tests.py",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2017-09-04T12:47:29Z",
       "side": 1,
       "message": "You must switch to logging.basicConfig(). Otherwise you can\u0027t print logs in console as logger name is promise (it doesn\u0027t start with \u0027functest\u0027 what functest/ci/logging.ini requires).\n\nBashFeature already redirects output to the right log file.",
+      "revId": "98cad96a671c517962160e8a20f59286490d39d0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_7b08832d",
+        "filename": "promise/test/functest/run_promise_tests.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2017-09-05T09:32:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da33351e_9569d8c0",
       "revId": "98cad96a671c517962160e8a20f59286490d39d0",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
