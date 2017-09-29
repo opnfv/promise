@@ -32,7 +32,8 @@ PROMISE_REPO_DIR = '/src/promise'
 RESULTS_DIR = CONST.dir_results
 
 PROMISE_TENANT_NAME = CONST.promise_tenant_name
-TENANT_DESCRIPTION = CONST.promise_tenant_description
+PROMISE_PROJECT_NAME = CONST.promise_tenant_name
+PROMISE_PROJECT_DESCRIPTION = CONST.promise_tenant_description
 PROMISE_USER_NAME = CONST.promise_user_name
 PROMISE_USER_PWD = CONST.promise_user_pwd
 PROMISE_IMAGE_NAME = CONST.promise_image_name
@@ -60,24 +61,7 @@ logger = logging.getLogger('promise')
 
 def main():
     return_code = -1
-    change_keystone_version = False
     os_auth = os.environ["OS_AUTH_URL"]
-
-    # check keystone version
-    # if keystone v3, for keystone v2
-    if os_utils.is_keystone_v3():
-        os.environ["OS_IDENTITY_API_VERSION"] = "2"
-        # the OS_AUTH_URL may have different format according to the installer
-        # apex: OS_AUTH_URL=http://192.168.37.17:5000/v2.0
-        # fuel: OS_AUTH_URL='http://192.168.0.2:5000/'
-        #       OS_AUTH_URL='http://192.168.10.2:5000/v3
-        match = re.findall(r'[0-9]+(?:\.[0-9]+){3}:[0-9]+',
-                           os.environ["OS_AUTH_URL"])
-        new_url = "http://" + match[0] + "/v2.0"
-
-        os.environ["OS_AUTH_URL"] = new_url
-        change_keystone_version = True
-        logger.info("Force Keystone v2")
 
     creds = os_utils.get_credentials()
 
@@ -97,14 +81,14 @@ def main():
                      creds['username'])
         return return_code
 
-    logger.info("Creating tenant '%s'..." % PROMISE_TENANT_NAME)
-    tenant_id = os_utils.create_tenant(
-        keystone_client, PROMISE_TENANT_NAME, TENANT_DESCRIPTION)
-    if not tenant_id:
-        logger.error("Error : Failed to create %s tenant"
-                     % PROMISE_TENANT_NAME)
+    logger.info("Creating project '%s'..." % PROMISE_PROJECT_NAME)
+    project_id = os_utils.create_tenant(
+        keystone_client, PROMISE_PROJECT_NAME, PROMISE_PROJECT_DESCRIPTION)
+    if not project_id:
+        logger.error("Error : Failed to create %s project"
+                     % PROMISE_PROJECT_NAME)
         return return_code
-    logger.debug("Tenant '%s' created successfully." % PROMISE_TENANT_NAME)
+    logger.debug("Project '%s' created successfully." % PROMISE_PROJECT_NAME)
 
     roles_name = ["admin", "Admin"]
     role_id = ''
@@ -116,18 +100,18 @@ def main():
         logger.error("Error : Failed to get id for %s role" % role_name)
         return return_code
 
-    logger.info("Adding role '%s' to tenant '%s'..."
-                % (role_id, PROMISE_TENANT_NAME))
+    logger.info("Adding role '%s' to project '%s'..."
+                % (role_id, PROMISE_PROJECT_NAME))
     if not os_utils.add_role_user(keystone_client, user_id,
-                                  role_id, tenant_id):
-        logger.error("Error : Failed to add %s on tenant %s" %
-                     (creds['username'], PROMISE_TENANT_NAME))
+                                  role_id, project_id):
+        logger.error("Error : Failed to add %s on project %s" %
+                     (creds['username'], PROMISE_PROJECT_NAME))
         return return_code
     logger.debug("Role added successfully.")
 
     logger.info("Creating user '%s'..." % PROMISE_USER_NAME)
     user_id = os_utils.create_user(
-        keystone_client, PROMISE_USER_NAME, PROMISE_USER_PWD, None, tenant_id)
+        keystone_client, PROMISE_USER_NAME, PROMISE_USER_PWD, None, project_id)
 
     if not user_id:
         logger.error("Error : Failed to create %s user" % PROMISE_USER_NAME)
@@ -237,12 +221,6 @@ def main():
                 % (suites, tests, passes, pending, failures,
                    start_time_json, end_time, duration))
     end_time = time.time()
-
-    # re set default keysone version to 3 if it has been changed for promise
-    if change_keystone_version:
-        os.environ["OS_IDENTITY_API_VERSION"] = "3"
-        os.environ["OS_AUTH_URL"] = os_auth
-        logger.info("Revert to Keystone v3")
 
     return return_code
 
