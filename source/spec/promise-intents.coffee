@@ -350,8 +350,8 @@ module.exports =
         .end (err, res) =>
           if err? or !res.ok then return done res.error
           #console.log JSON.stringify res.body, null, 2
-          console.log res.headers
-          console.log res.body.token.catalog
+          #console.log res.headers
+          #console.log res.body.token.catalog
           provider = @create 'ResourceProvider',
             token: res.headers['x-subject-token']
             name: res.body.token.project.name
