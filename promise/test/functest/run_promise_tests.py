@@ -79,12 +79,6 @@ def main():
 
     keystone_client = os_utils.get_keystone_client()
 
-    user_id = os_utils.get_user_id(keystone_client, creds['username'])
-    if user_id == '':
-        logger.error("Error : Failed to get id of %s user" %
-                     creds['username'])
-        return return_code
-
     logger.info("Creating project '%s'..." % PROMISE_PROJECT_NAME)
     project_id = os_utils.create_tenant(
         keystone_client, PROMISE_PROJECT_NAME, PROMISE_PROJECT_DESCRIPTION)
@@ -94,7 +88,7 @@ def main():
         return return_code
     logger.debug("Project '%s' created successfully." % PROMISE_PROJECT_NAME)
 
-    roles_name = ["admin", "Admin"]
+    roles_name = ["_member_", "Member"]
     role_id = ''
     for role_name in roles_name:
         if role_id == '':
@@ -104,23 +98,31 @@ def main():
         logger.error("Error : Failed to get id for %s role" % role_name)
         return return_code
 
-    logger.info("Adding role '%s' to project '%s'..."
-                % (role_id, PROMISE_PROJECT_NAME))
-    if not os_utils.add_role_user(keystone_client, user_id,
-                                  role_id, project_id):
-        logger.error("Error : Failed to add %s on project %s" %
-                     (creds['username'], PROMISE_PROJECT_NAME))
+    domain_id = ''
+    domain_id = os.utils.get_domain_id(keystone_client, 
+                                       os.environ["OS_USER_DOMAIN_NAME"])
+    if domain_id == '':
+        logger.error("Error: Failed to get id for %s domain" % 
+                     os.environ["OS_USER_DOMAIN_NAME"])
         return return_code
-    logger.debug("Role added successfully.")
 
     logger.info("Creating user '%s'..." % PROMISE_USER_NAME)
-    user_id = os_utils.create_user(
-        keystone_client, PROMISE_USER_NAME, PROMISE_USER_PWD, None, project_id)
-
-    if not user_id:
+    try:
+         user = keystone_client.users.create(name=PROMISE_USER_NAME,
+                                             domain=domain_id,
+                                             password=PROMISE_USER_PWD)
+    except Exception as e:
         logger.error("Error : Failed to create %s user" % PROMISE_USER_NAME)
         return return_code
     logger.debug("User '%s' created successfully." % PROMISE_USER_NAME)
+
+    try:
+         keystone_client.roles.grant(role=role_id, user=user.id,
+                                     project=project_id)
+    except Exception as e:
+        logger.error("Error: Failed to grant member role on project %s" %
+                     project_id)
+        return return_code
 
     nova_client = os_utils.get_nova_client()
     glance_client = os_utils.get_glance_client()
