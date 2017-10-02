@@ -99,7 +99,7 @@ def main():
         return return_code
 
     domain_id = ''
-    domain_id = os.utils.get_domain_id(keystone_client, 
+    domain_id = os_utils.get_domain_id(keystone_client, 
                                        os.environ["OS_USER_DOMAIN_NAME"])
     if domain_id == '':
         logger.error("Error: Failed to get id for %s domain" % 
