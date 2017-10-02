@@ -17,7 +17,7 @@ The following sections provide details on the Promise capabilities and its API u
 
 Promise capabilities and usage
 ==============================
-The Danube implementation of Promise is built with the YangForge data modeling
+The Euphrates implementation of Promise is built with the YangForge data modeling
 framework [#f2]_ , using a shim-layer on top of OpenStack to provide
 the Promise features. This approach requires communication between
 Consumers/Administrators and OpenStack to pass through the shim-layer. The
@@ -34,9 +34,12 @@ Detailed information about Promise use cases, features, interface
 specifications, work flows, and the underlying Promise YANG schema can be found
 in the Promise requirement document [#f1]_ .
 
+Keystone v3 support has been added during the Euphrates release.
+
+
 Promise features and API usage guidelines and examples
 ------------------------------------------------------
-This section lists the Promise features and API implemented in OPNFV Danube.
+This section lists the Promise features and API implemented in OPNFV Euphrates.
 
 Note: The listed parameters are optional unless explicitly marked as "mandatory".
 
@@ -151,7 +154,7 @@ The operation takes the following input parameters:
 * provider-id: identifier of the provider where the instance shall be created
 * reservation-id: identifier of a resource reservation the *create-instance*
 
-The Danube implementation of Promise has the following limitations:
+The Euphrates implementation of Promise has the following limitations:
 
 * All create server instance requests shall pass through the Promise
   shim-layer such that Promise can keep track of all allocation requests. This
@@ -258,7 +261,7 @@ The current implementation supports the following filter criteria:
 
 This API  towards OpenStack allows a Consumer/Administrator to add and remove
 resource providers to Promise. Note, Promise supports a multi-provider
-configuration, however, for Danube, multi-provider support is not yet
+configuration, however, for Euphrates, multi-provider support is not yet
 fully supported.
 
 *add-provider*
@@ -267,23 +270,23 @@ fully supported.
 This operation is used to register a new resource provider into the Promise
 reservation system.
 
-Note, for Danube, the add-provider operation should only be used to
+Note, for Euphrates, the add-provider operation should only be used to
 register one provider with the Promise shim-layer. Further note that currently
 only OpenStack is supported as a provider.
 
 The operation takes the following input parameters:
 
-* provider-type (mandatory) = 'openstack': select a specific resource provider
+* provider-type = 'openstack': select a specific resource provider
   type.
-* endpoint (mandatory): target URL endpoint for the resource provider.
-* username (mandatory)
-* password (mandatory)
-* region: specified region for the provider
-* tenant.id: id of the OpenStack tenant/project
-* tenant.name: name of the OpenStack tenant/project
+* endpoint : target URL endpoint for the resource provider.
+* username : name of the user
+* password : user password
+* user-domain-name : domain name of the user
+* project.name : name of the OpenStack project
+* project.domain-name : domain name of the OpenStack project
 
 .. [#f1] Promise requirement document,
-         http://artifacts.opnfv.org/promise/docs/requirements/index.html
+         http://artifacts.opnfv.org/promise/docs/development_requirements/index.html
 
 .. [#f2] YangForge framework, http://github.com/opnfv/yangforge
 
