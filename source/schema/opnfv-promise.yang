@@ -620,9 +620,11 @@ module opnfv-promise {
           default "http://localhost:5000/v2.0";
         }
       }
-      container tenant {
+      leaf user-domain-name { type string; }
+      container project {
         leaf id { type string; }
         leaf name { type string; }
+        leaf domain-name { type string; }
       }
     }
     output {

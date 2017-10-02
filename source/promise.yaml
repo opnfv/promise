@@ -255,7 +255,7 @@ complex-type:
         services.forEach (service) =>
           switch service.type
             when 'compute'
-              url = service.endpoints[0].publicURL
+              url = service.endpoints[0].url
               @set 'services.compute.endpoint', url
               request
                 .get "#{url}/limits"
