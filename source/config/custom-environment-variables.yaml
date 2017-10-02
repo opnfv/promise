@@ -11,11 +11,13 @@ openstack:
   auth:
     endpoint: OS_AUTH_URL
     strategy: OS_AUTH_STRATEGY
-    tenant:
-      id: OS_TENANT_ID
-      name: OS_TENANT_NAME
+    project:
+      id: OS_PROJECT_ID
+      name: OS_PROJECT_NAME
+      domain-name: OS_PROJECT_DOMAIN_NAME
     username: OS_USERNAME
     password: OS_PASSWORD
+    user-domain-name: OS_USER_DOMAIN_NAME
   test:
     image:  OS_TEST_IMAGE
     flavor: OS_TEST_FLAVOR

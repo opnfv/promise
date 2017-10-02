@@ -320,9 +320,19 @@ module.exports =
       payload = switch input.get 'provider-type'
         when 'openstack'
           auth:
-            tenantId: input.get 'tenant.id'
-            tenantName: input.get 'tenant.name'
-            passwordCredentials: input.get 'username', 'password'
+            identity: 
+               methods: [ "password" ]
+               password:
+                  user:
+                     name: input.get 'username'
+                     password: input.get 'password'
+                     domain:
+                        name: input.get 'user-domain-name'
+            scope:
+               project:
+                  name: input.get 'project.name'
+                  domain:
+                     name: input.get 'project.domain-name'
 
       unless payload?
         return done 'Sorry, only openstack supported at this time'
@@ -330,7 +340,7 @@ module.exports =
       url = input.get 'endpoint'
       switch input.get 'strategy'
         when 'keystone', 'oauth'
-          url += '/tokens' unless /\/tokens$/.test url
+          url += '/auth/tokens' unless /\/tokens$/.test url
 
       providers = @access 'promise.providers'
       request
@@ -340,11 +350,12 @@ module.exports =
         .end (err, res) =>
           if err? or !res.ok then return done res.error
           #console.log JSON.stringify res.body, null, 2
-          access = res.body.access
+          console.log res.headers
+          console.log res.body.token.catalog
           provider = @create 'ResourceProvider',
-            token: access?.token?.id
-            name: access?.token?.tenant?.name
-          provider.invoke 'update', access.serviceCatalog
+            token: res.headers['x-subject-token']
+            name: res.body.token.project.name
+          provider.invoke 'update', res.body.token.catalog
           .then (res) ->
             res.save()
             .then ->

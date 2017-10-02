@@ -70,6 +70,10 @@ def main():
         logger.info("OS_AUTH_URL: %s" % os.environ["OS_AUTH_URL"])
         logger.info("OS_IDENTITY_API_VERSION: %s " %
                     os.environ["OS_IDENTITY_API_VERSION"])
+        logger.info("OS_USER_DOMAIN_NAME: %s" %
+                    os.environ["OS_USER_DOMAIN_NAME"])
+        logger.info("OS_PROJECT_DOMAIN_NAME: %s" %
+                    os.environ["OS_PROJECT_DOMAIN_NAME"])
     except KeyError:
         logger.error("Please set the OS environment variables")
 
@@ -171,7 +175,7 @@ def main():
     os.environ["OS_TEST_IMAGE"] = image_id
     os.environ["OS_TEST_FLAVOR"] = flavor_id
     os.environ["OS_TEST_NETWORK"] = network_dic["net_id"]
-    os.environ["OS_TENANT_NAME"] = PROMISE_TENANT_NAME
+    os.environ["OS_PROJECT_NAME"] = PROMISE_PROJECT_NAME
     os.environ["OS_USERNAME"] = PROMISE_USER_NAME
 
     os.chdir(PROMISE_REPO_DIR + '/source/')
