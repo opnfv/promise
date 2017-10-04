@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_2932d6f1",
+        "filename": "docs/development/manuals/api_mapping.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2017-10-04T09:58:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da33351e_13f7455a",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 173
+      },
+      "revId": "a3f01a19d75ad32517bd635c7bcd3632a1f7bedd",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_7397b1ec",
         "filename": "docs/development/manuals/api_mapping.rst",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2017-10-04T02:40:17Z",
       "side": 1,
       "message": "I\u0027ve registered a blueprint for this: https://blueprints.launchpad.net/blazar/+spec/no-affinity-instance-reservation",
+      "range": {
+        "startLine": 42,
+        "startChar": 124,
+        "endLine": 42,
+        "endChar": 158
+      },
+      "revId": "a3f01a19d75ad32517bd635c7bcd3632a1f7bedd",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_092f1289",
+        "filename": "docs/development/manuals/api_mapping.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2017-10-04T09:58:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da33351e_7397b1ec",
       "range": {
         "startLine": 42,
         "startChar": 124,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_694fbe6b",
+        "filename": "docs/development/manuals/api_mapping.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2017-10-04T09:58:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da33351e_539c2d0f",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 173
+      },
+      "revId": "a3f01a19d75ad32517bd635c7bcd3632a1f7bedd",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_93a23549",
         "filename": "docs/development/manuals/api_mapping.rst",
         "patchSetId": 3
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_49547afe",
+        "filename": "docs/development/manuals/api_mapping.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2017-10-04T09:58:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da33351e_93a23549",
+      "range": {
+        "startLine": 297,
+        "startChar": 0,
+        "endLine": 297,
+        "endChar": 40
+      },
+      "revId": "a3f01a19d75ad32517bd635c7bcd3632a1f7bedd",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_b39db90c",
         "filename": "docs/development/manuals/api_mapping.rst",
         "patchSetId": 3
@@ -105,6 +201,30 @@
       "writtenOn": "2017-10-04T02:40:17Z",
       "side": 1,
       "message": "start_date?",
+      "range": {
+        "startLine": 318,
+        "startChar": 39,
+        "endLine": 318,
+        "endChar": 42
+      },
+      "revId": "a3f01a19d75ad32517bd635c7bcd3632a1f7bedd",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_a95546fb",
+        "filename": "docs/development/manuals/api_mapping.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2017-10-04T09:58:23Z",
+      "side": 1,
+      "message": "As mentioned in the NOTE, AFAIK for compute host reservation only extending the end_date is possible, i.e. you cannot change the start_time in the update request message.",
+      "parentUuid": "da33351e_b39db90c",
       "range": {
         "startLine": 318,
         "startChar": 39,
