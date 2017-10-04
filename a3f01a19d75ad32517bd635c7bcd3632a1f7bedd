@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_13f7455a",
+        "filename": "docs/development/manuals/api_mapping.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 2805
+      },
+      "writtenOn": "2017-10-04T02:40:17Z",
+      "side": 1,
+      "message": "I\u0027ve registered a blueprint for this: https://blueprints.launchpad.net/blazar/+spec/flavors-extra-specs",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 173
+      },
+      "revId": "a3f01a19d75ad32517bd635c7bcd3632a1f7bedd",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_7397b1ec",
+        "filename": "docs/development/manuals/api_mapping.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 2805
+      },
+      "writtenOn": "2017-10-04T02:40:17Z",
+      "side": 1,
+      "message": "I\u0027ve registered a blueprint for this: https://blueprints.launchpad.net/blazar/+spec/no-affinity-instance-reservation",
+      "range": {
+        "startLine": 42,
+        "startChar": 124,
+        "endLine": 42,
+        "endChar": 158
+      },
+      "revId": "a3f01a19d75ad32517bd635c7bcd3632a1f7bedd",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_539c2d0f",
+        "filename": "docs/development/manuals/api_mapping.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 2805
+      },
+      "writtenOn": "2017-10-04T02:40:17Z",
+      "side": 1,
+      "message": "Will be supported in Queens: https://blueprints.launchpad.net/blazar/+spec/multi-freepools",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 173
+      },
+      "revId": "a3f01a19d75ad32517bd635c7bcd3632a1f7bedd",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_93a23549",
+        "filename": "docs/development/manuals/api_mapping.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 2805
+      },
+      "writtenOn": "2017-10-04T02:40:17Z",
+      "side": 1,
+      "message": "Note that instance reservation does not support the update operation for now. It will be supported in Queens: https://bugs.launchpad.net/blazar/+bug/1714437",
+      "range": {
+        "startLine": 297,
+        "startChar": 0,
+        "endLine": 297,
+        "endChar": 40
+      },
+      "revId": "a3f01a19d75ad32517bd635c7bcd3632a1f7bedd",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_b39db90c",
+        "filename": "docs/development/manuals/api_mapping.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 2805
+      },
+      "writtenOn": "2017-10-04T02:40:17Z",
+      "side": 1,
+      "message": "start_date?",
+      "range": {
+        "startLine": 318,
+        "startChar": 39,
+        "endLine": 318,
+        "endChar": 42
+      },
+      "revId": "a3f01a19d75ad32517bd635c7bcd3632a1f7bedd",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
