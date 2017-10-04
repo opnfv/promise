@@ -1,0 +1,7 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+2: Gerald Kunzmann <kunzmann@docomolab-euro.com>
+Submitted-by: Gerald Kunzmann <kunzmann@docomolab-euro.com>
+Submitted-at: Wed, 04 Oct 2017 15:10:58 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/44229
+Project: promise
+Branch: refs/heads/master
