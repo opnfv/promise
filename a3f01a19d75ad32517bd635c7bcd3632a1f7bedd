@@ -234,6 +234,30 @@
       "revId": "a3f01a19d75ad32517bd635c7bcd3632a1f7bedd",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_8fbe81ac",
+        "filename": "docs/development/manuals/api_mapping.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2017-10-05T10:18:12Z",
+      "side": 1,
+      "message": "It is already possible to update start_date in Blazar for compute host reservation.",
+      "parentUuid": "da33351e_a95546fb",
+      "range": {
+        "startLine": 318,
+        "startChar": 39,
+        "endLine": 318,
+        "endChar": 42
+      },
+      "revId": "a3f01a19d75ad32517bd635c7bcd3632a1f7bedd",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
