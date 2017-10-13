@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_d250e560",
+        "filename": "docs/development/manuals/api_mapping.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2017-10-13T12:17:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a3d3df0_57c167e3",
+      "range": {
+        "startLine": 302,
+        "startChar": 74,
+        "endLine": 302,
+        "endChar": 109
+      },
+      "revId": "0ce41e54964bd871f363c402098618c5b9837e16",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_b7b6f388",
         "filename": "docs/development/manuals/api_mapping.rst",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2017-10-13T07:12:00Z",
       "side": 1,
       "message": "This is valid for all references: Please replace \n[#bpx] by .. [#bpx].\n\nThanks.",
+      "range": {
+        "startLine": 379,
+        "startChar": 0,
+        "endLine": 379,
+        "endChar": 6
+      },
+      "revId": "0ce41e54964bd871f363c402098618c5b9837e16",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_324e71c2",
+        "filename": "docs/development/manuals/api_mapping.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 933
+      },
+      "writtenOn": "2017-10-13T12:17:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a3d3df0_b7b6f388",
       "range": {
         "startLine": 379,
         "startChar": 0,
