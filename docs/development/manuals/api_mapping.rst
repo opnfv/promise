@@ -277,7 +277,7 @@ II.a) REQUEST
 | Filter                           |                                      | meta-data information or status information    | on a filter. In Blazar you can either list all  |
 |                                  |                                      | expressing the type of information to be       | leases registered in Blazar (GET /v1/leases) or |
 |                                  |                                      | retrieved. It can also be used to specify one  | show information about a specific lease         |
-|                                  |                                      | or more reservations to be queried by          | (GET /v1/leases/{lease-id}).                     |
+|                                  |                                      | or more reservations to be queried by          | (GET /v1/leases/{lease-id}).                    |
 |                                  |                                      | providing their identifiers.                   |                                                 |
 +----------------------------------+--------------------------------------+------------------------------------------------+-------------------------------------------------+
 
