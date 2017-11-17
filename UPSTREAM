@@ -10,4 +10,11 @@
 -
   url: https://blueprints.launchpad.net/blazar/+spec/update-reserved-capacity
   system: Launchpad
+-
+  url: https://blueprints.launchpad.net/blazar/+spec/flavors-extra-specs
+  system: Launchpad
+  # WIP
+-
+  url: https://blueprints.launchpad.net/blazar/+spec/resource-monitoring
+  system: Launchpad
   # WIP
