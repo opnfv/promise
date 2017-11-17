@@ -17,11 +17,11 @@ Version history
 Important notes
 ===============
 
-**Attention:** Please be aware that the Promise shim-layer implementation is marked as DEPREACTED
+**Attention:** Please be aware that the Promise shim-layer implementation is marked as DEPRECATED
 in Euphrates and both implementation and related test cases may be removed from next release.
 
 Abstract
-===============
+========
 
 This document provides an overview of the Promise project in the OPNFV Euphrates
 release. Promise is a resource reservation and management project to identify NFV related
@@ -30,7 +30,7 @@ management of resource pools regarding compute, network and storage.
 
 
 Features
-============
+========
 
 The following features are provided by the Promise in the OPNFV Euphrates release:
 
@@ -50,8 +50,8 @@ Detailed information about Promise use cases, features, interface
 specifications, work flows, and the underlying Promise YANG schema can be found
 in the Promise requirement document [#f1]_ .
 
-.. [#f1]_ http://artifacts.opnfv.org/promise/docs/development_requirements/index.html
-.. [#f2]_ https://github.com/corenova/yang-forge
+.. [#f1]_ http://docs.opnfv.org/en/stable-euphrates/submodules/promise/docs/development/requirements/index.html
+.. [#f2]_ https://github.com/opnfv/yangforge
 .. [#f3]_ https://launchpad.net/blazar/+milestone/0.3.0
 
 
@@ -111,12 +111,12 @@ Useful links
 ============
 
  - Promise project page: https://wiki.opnfv.org/display/promise
- - Promise requirements: http://artifacts.opnfv.org/promise/docs/development_requirements/index.html
+ - Promise requirements: http://docs.opnfv.org/en/stable-euphrates/submodules/promise/docs/development/requirements/index.html
 
 Related Projects
 ----------------
 
- - OpenStack Blazar (Resource reservation for OpenStack): https://blazar.readthedocs.io/en/latest/
+ - OpenStack Blazar (Resource reservation for OpenStack): https://docs.openstack.org/blazar/latest/
  - YangForge data modeling framework: - https://github.com/opnfv/yangforge
 
 Related ETSI NFV specifications
