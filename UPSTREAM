@@ -18,3 +18,7 @@
   url: https://blueprints.launchpad.net/blazar/+spec/resource-monitoring
   system: Launchpad
   # WIP
+-
+  url: https://blueprints.launchpad.net/blazar/+spec/multi-freepools
+  system: Launchpad
+  # WIP
