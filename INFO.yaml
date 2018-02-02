@@ -1,0 +1,65 @@
+---
+project: 'Resource Management (promise)'
+project_creation_date: 'December 4, 2014'
+project_category: 'Requirements'
+lifecycle_state: 'Incubation'
+project_lead: &opnfv_promise_ptl
+    name: 'Gerald Kunzmann'
+    email: 'kunzmann@docomolab-euro.com'
+    id: 'kunzmann'
+    company: 'DOCOMO Euro-Labs'
+    timezone: 'Europe/Berlin'
+primary_contact: *opnfv_promise_ptl
+issue_tracking:
+    type: 'jira'
+    url: 'https://jira.opnfv.org/projects/PROMISE'
+    key: 'PROMISE'
+mailing_list:
+    type: 'mailman2'
+    url: 'opnfv-tech-discuss@lists.opnfv.org'
+    tag: '[promise]'
+realtime_discussion:
+    type: irc
+    server: 'freenode.net'
+    channel: '#opnfv-promise'
+meetings:
+    - type: 'gotomeeting+irc'
+      agenda: 'https://wiki.opnfv.org/display/meetings/Promise+Team+Meetings'
+      url: 'https://global.gotomeeting.com/join/391235029'
+      server: 'freenode.net'
+      channel: '#opnfv-promise'
+      repeats: 'bi-weekly'
+      date: 'Thursday'
+      time: '11:00 UTC'
+repositories:
+    - 'promise'
+committers:
+    - <<: *opnfv_promise_ptl
+    - name: 'Ashiq Khan'
+      email: 'khan@nttdocomo.com'
+      company: 'NTT DOCOMO'
+      id: 'ashiq.khan'
+    - name: 'Ryota Mibu'
+      email: 'r-mibu@cq.jp.nec.com'
+      company: 'NEC'
+      id: 'r-mibu'
+    - name: 'Serge Manning'
+      email: 'serge.manning@sprint.com'
+      company: 'SPRINT'
+      id: 'sergem913'
+    - name: 'Arturo Martin de Nicolas'
+      email: 'Arturo.Martin-de-Nicolas@ericsson.com'
+      company: 'Ericsson'
+      id: 'ArturoMartin'
+    - name: 'Peter Lee'
+      email: 'peter@corenova.com'
+      company: 'Corenova'
+      id: 'peterklee'
+    - name: 'masahito muroi'
+      email: 'muroi.masahito@lab.ntt.co.jp'
+      company: 'NTT'
+      id: 'muroi'
+tsc:
+    # yamllint disable rule:line-length
+    approval: ''
+    # yamllint enable rule:line-length
