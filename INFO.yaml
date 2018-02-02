@@ -1,0 +1,72 @@
+---
+project: 'Resource Management (promise)'
+project_creation_date: 'December 4, 2014'
+project_category: 'Requirements'
+lifecycle_state: 'Incubation'
+project_lead: &opnfv_promise_ptl
+    name: 'Gerald Kunzmann'
+    email: 'kunzmann@docomolab-euro.com'
+    id: 'kunzmann'
+    company: 'docomolab-euro.com'
+    timezone: 'Unknown'
+primary_contact: *opnfv_promise_ptl
+issue_tracking:
+    type: 'jira'
+    url: 'https://jira.opnfv.org/projects/PROMISE'
+    key: 'PROMISE'
+mailing_list:
+    type: 'mailman2'
+    url: 'opnfv-tech-discuss@lists.opnfv.org'
+    tag: '[promise]'
+realtime_discussion:
+    type: irc
+    server: 'freenode.net'
+    channel: '#opnfv-promise'
+meetings:
+    - type: 'gotomeeting+irc'
+      agenda:  # eg: 'https://wiki.opnfv.org/display/'
+      url:  # eg: 'https://global.gotomeeting.com/join/819733085'
+      server: 'freenode.net'
+      channel: '#opnfv-meeting'
+      repeats: 'weekly'
+      time:  # eg: '16:00 UTC'
+repositories:
+    - 'promise'
+committers:
+    - <<: *opnfv_promise_ptl
+    - name: 'Ashiq Khan'
+      email: 'khan@nttdocomo.com'
+      company: 'nttdocomo.com'
+      id: 'ashiq.khan'
+    - name: 'Ryota Mibu'
+      email: 'r-mibu@cq.jp.nec.com'
+      company: 'cq.jp.nec.com'
+      id: 'r-mibu'
+    - name: 'Serge Manning'
+      email: 'serge.manning@sprint.com'
+      company: 'sprint.com'
+      id: 'sergem913'
+    - name: 'Hironobu Maeda'
+      email: 'hmaeda@clearpathnet.com'
+      company: 'clearpathnet.com'
+      id: 'hiroCPN'
+    - name: 'Arturo Martin de Nicolas'
+      email: 'Arturo.Martin-de-Nicolas@ericsson.com'
+      company: 'ericsson.com'
+      id: 'ArturoMartin'
+    - name: 'Peter Lee'
+      email: 'peter@corenova.com'
+      company: 'corenova.com'
+      id: 'peterklee'
+    - name: 'Ildiko Vancsa'
+      email: 'ildiko@openstack.org'
+      company: 'openstack.org'
+      id: 'ildikov'
+    - name: 'masahito muroi'
+      email: 'muroi.masahito@lab.ntt.co.jp'
+      company: 'lab.ntt.co.jp'
+      id: 'muroi'
+tsc:
+    # yamllint disable rule:line-length
+    approval: ''
+    # yamllint enable rule:line-length
