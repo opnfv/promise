@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_491c596a",
+        "filename": "INFO.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2018-02-06T10:32:41Z",
+      "side": 1,
+      "message": "DOCOMO Euro-Labs",
+      "range": {
+        "startLine": 10,
+        "startChar": 14,
+        "endLine": 10,
+        "endChar": 32
+      },
+      "revId": "2fde1ed897b2a5648a7751cb356e97023f40c865",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_46056812",
+        "filename": "INFO.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2018-02-06T10:32:41Z",
+      "side": 1,
+      "message": "NTT DOCOMO",
+      "range": {
+        "startLine": 40,
+        "startChar": 16,
+        "endLine": 40,
+        "endChar": 29
+      },
+      "revId": "2fde1ed897b2a5648a7751cb356e97023f40c865",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_26002401",
+        "filename": "INFO.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2018-02-06T10:32:41Z",
+      "side": 1,
+      "message": "NEC",
+      "range": {
+        "startLine": 44,
+        "startChar": 16,
+        "endLine": 44,
+        "endChar": 29
+      },
+      "revId": "2fde1ed897b2a5648a7751cb356e97023f40c865",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_8902e107",
+        "filename": "INFO.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2018-02-06T10:32:41Z",
+      "side": 1,
+      "message": "SPRINT",
+      "range": {
+        "startLine": 48,
+        "startChar": 16,
+        "endLine": 48,
+        "endChar": 26
+      },
+      "revId": "2fde1ed897b2a5648a7751cb356e97023f40c865",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_6905dd0f",
+        "filename": "INFO.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2018-02-06T10:32:41Z",
+      "side": 1,
+      "message": "ClearPath Networks. Is this still valid?",
+      "range": {
+        "startLine": 52,
+        "startChar": 16,
+        "endLine": 52,
+        "endChar": 32
+      },
+      "revId": "2fde1ed897b2a5648a7751cb356e97023f40c865",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_c908692a",
+        "filename": "INFO.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2018-02-06T10:32:41Z",
+      "side": 1,
+      "message": "Ericsson",
+      "range": {
+        "startLine": 56,
+        "startChar": 16,
+        "endLine": 56,
+        "endChar": 28
+      },
+      "revId": "2fde1ed897b2a5648a7751cb356e97023f40c865",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_a90b6522",
+        "filename": "INFO.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2018-02-06T10:32:41Z",
+      "side": 1,
+      "message": "Corenova",
+      "range": {
+        "startLine": 60,
+        "startChar": 16,
+        "endLine": 60,
+        "endChar": 28
+      },
+      "revId": "2fde1ed897b2a5648a7751cb356e97023f40c865",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_0916d14b",
+        "filename": "INFO.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2018-02-06T10:32:41Z",
+      "side": 1,
+      "message": "OpenStack Foundation",
+      "range": {
+        "startLine": 64,
+        "startChar": 16,
+        "endLine": 64,
+        "endChar": 29
+      },
+      "revId": "2fde1ed897b2a5648a7751cb356e97023f40c865",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_e910cd4f",
+        "filename": "INFO.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2018-02-06T10:32:41Z",
+      "side": 1,
+      "message": "NTT",
+      "range": {
+        "startLine": 68,
+        "startChar": 16,
+        "endLine": 68,
+        "endChar": 29
+      },
+      "revId": "2fde1ed897b2a5648a7751cb356e97023f40c865",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
