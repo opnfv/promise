@@ -50,7 +50,7 @@ Detailed information about Promise use cases, features, interface
 specifications, work flows, and the underlying Promise YANG schema can be found
 in the Promise requirement document [#f1]_ .
 
-.. [#f1]_ http://docs.opnfv.org/en/stable-euphrates/submodules/promise/docs/development/requirements/index.html
+.. [#f1]_ :ref:`<promise-requirements>`
 .. [#f2]_ https://github.com/opnfv/yangforge
 .. [#f3]_ https://launchpad.net/blazar/+milestone/0.3.0
 
@@ -111,7 +111,7 @@ Useful links
 ============
 
  - Promise project page: https://wiki.opnfv.org/display/promise
- - Promise requirements: http://docs.opnfv.org/en/stable-euphrates/submodules/promise/docs/development/requirements/index.html
+ - :ref:`Promise requirements: <promise-requirements>`
 
 Related Projects
 ----------------
