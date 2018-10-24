@@ -1,9 +1,9 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
 
-=======================================
-OPNFV Promise release notes (Euphrates)
-=======================================
+====================================
+OPNFV Promise release notes (Gambia)
+====================================
 
 Version history
 ===============
@@ -11,19 +11,20 @@ Version history
 +------------+---------------+-----------------+-------------+
 | **Date**   | **Ver.**      | **Author**      | **Comment** |
 +============+===============+=================+=============+
-| 2017-07-13 | Euphrates 1.0 | Gerald Kunzmann |             |
+| 2018-10-24 | Gambia 1.0    | Gerald Kunzmann |             |
 +------------+---------------+-----------------+-------------+
 
 Important notes
 ===============
 
 **Attention:** Please be aware that the Promise shim-layer implementation is marked as DEPRECATED
-in Euphrates and both implementation and related test cases may be removed from next release.
+in Gambia and both implementation and related test cases will be replaced from next release.
+Please refer to the OpenStack Blazar project [#f4]_ for the latest implementation.
 
 Abstract
 ========
 
-This document provides an overview of the Promise project in the OPNFV Euphrates
+This document provides an overview of the Promise project in the OPNFV Gambia
 release. Promise is a resource reservation and management project to identify NFV related
 requirements and realize resource reservation for future usage by capacity
 management of resource pools regarding compute, network and storage.
@@ -32,17 +33,17 @@ management of resource pools regarding compute, network and storage.
 Features
 ========
 
-The following features are provided by the Promise in the OPNFV Euphrates release:
+The following features are provided by the Promise in the OPNFV Gambia release:
 
 * Capacity Management
 * Reservation Management
 * Allocation Management
 
-The Euphrates implementation of Promise is built with the YangForge data modeling
+The Gambia implementation of Promise is built with the YangForge data modeling
 framework [#f2]_ , using a shim-layer on top of OpenStack to provide
 the Promise features.
 
-In the OPNFV Euphrates release cycle most efforts have been spent to progress the upstream
+In the OPNFV Gambia release cycle most efforts have been spent to progress the upstream
 implementation of a native resource reservation system for OpenStack as part of the Blazar project
 [#f3]_.
 
@@ -52,7 +53,8 @@ in the Promise requirement document [#f1]_ .
 
 .. [#f1]_ :ref:`<promise-requirements>`
 .. [#f2]_ https://github.com/opnfv/yangforge
-.. [#f3]_ https://launchpad.net/blazar/+milestone/0.3.0
+.. [#f3]_ https://blueprints.launchpad.net/blazar
+.. [#f4]_ https://docs.openstack.org/blazar/latest/
 
 
 Installer support and verification status
@@ -89,6 +91,7 @@ Thereby, the following test cases (`TEST_CASES`_) are executed:
 
 .. _TEST_CASES: https://git.opnfv.org/promise/tree/source/test/promise-intents.coffee
 
+Note that Promise is working to change to XCI.
 
 Open JIRA tickets
 =================
@@ -103,7 +106,7 @@ Open JIRA tickets
 All the tickets that are not blocking have been fixed or postponed
 the next release.
 
-Promise Euphrates 1.0 is released without known bugs.
+Promise Gambia 1.0 is released without known bugs.
 
 
 
