@@ -1,123 +1,84 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
 
-=======================================
-OPNFV Promise release notes (Euphrates)
-=======================================
+
+This document provides the release notes for Gambia of Promise.
+
+.. contents::
+   :depth: 3
+   :local:
+
 
 Version history
-===============
+---------------
 
 +------------+---------------+-----------------+-------------+
 | **Date**   | **Ver.**      | **Author**      | **Comment** |
 +============+===============+=================+=============+
-| 2017-07-13 | Euphrates 1.0 | Gerald Kunzmann |             |
+| 2018-10-24 | Gambia 1.0    | Gerald Kunzmann |             |
 +------------+---------------+-----------------+-------------+
 
 Important notes
 ===============
 
-**Attention:** Please be aware that the Promise shim-layer implementation is marked as DEPRECATED
-in Euphrates and both implementation and related test cases may be removed from next release.
+**Attention:** Please be aware that Promise is transitioning to OpenStack
+Blazar. The integration of Blazar to OPNFV is done via OpenStack Ansible.
 
-Abstract
-========
 
-This document provides an overview of the Promise project in the OPNFV Euphrates
-release. Promise is a resource reservation and management project to identify NFV related
+Summary
+=======
+
+Promise is a resource reservation and management project to identify NFV related
 requirements and realize resource reservation for future usage by capacity
 management of resource pools regarding compute, network and storage.
+The resource reservation functionality is developed further in Blazar, a native
+resource reservation system for OpenStack `Blazar docs`_.
+
+In the OPNFV Gambia release cycle most efforts have been spent to progress the
+upstream development in the Blazar project as well as its integration to OPNFV
+via OpenStack Ansible.
 
 
-Features
-========
+Version change
+^^^^^^^^^^^^^^
 
-The following features are provided by the Promise in the OPNFV Euphrates release:
+Module version changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- The Promise implementation has been replaced by the upstream OpenStack Blazar
+project.
 
-* Capacity Management
-* Reservation Management
-* Allocation Management
+Document version changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- The Promise user guide has been removed. Please instead refer to the OpenStack Blazar
+documentation `Blazar docs`_.
 
-The Euphrates implementation of Promise is built with the YangForge data modeling
-framework [#f2]_ , using a shim-layer on top of OpenStack to provide
-the Promise features.
-
-In the OPNFV Euphrates release cycle most efforts have been spent to progress the upstream
-implementation of a native resource reservation system for OpenStack as part of the Blazar project
-[#f3]_.
-
-Detailed information about Promise use cases, features, interface
-specifications, work flows, and the underlying Promise YANG schema can be found
-in the Promise requirement document [#f1]_ .
-
-.. [#f1]_ :ref:`<promise-requirements>`
-.. [#f2]_ https://github.com/opnfv/yangforge
-.. [#f3]_ https://launchpad.net/blazar/+milestone/0.3.0
+- The Promise config guide has been updated accordingly.
 
 
-Installer support and verification status
+Known Limitations, Issues and Workarounds
 =========================================
 
-Promise project is integrated in OPNFV through the Functest project (`FUNCTEST`_).
+Please refer to the Blazar features page `Blazar features`_ for features that
+are planned for upcoming releases of the OpenStack Blazar project.
 
-+-----------+----------------------------------------------+--------------+
-| Installer | CI Job                                       | Status       |
-+===========+==============================================+==============+
-| Fuel      | functest-fuel-baremetal-daily-master         |              |
-|           | functest-fuel-virtual-daily-master           |              |
-|           | functest-fuel-armband-baremetal-daily-master |              |
-+-----------+----------------------------------------------+--------------+
-| Joid      | functest-joid-baremetal-daily-master         |              |
-+-----------+----------------------------------------------+--------------+
-
-.. _FUNCTEST: https://wiki.opnfv.org/display/functest
+Refer to the Blazar bug tracker `Blazar bugs`_ for known issues with the current
+OpenStack Blazar implementation.
 
 
-Thereby, the following test cases (`TEST_CASES`_) are executed:
-
- - Add a new OpenStack provider to the reservation service
- - Allocation of resources without prior reservation
- - Reservation of a VM for immediate use followed by allocation
- - Reservation of a VM for future use
- - Update reservation
- - Query reservation
- - Cancel reservation
- - Error case: try to create reservation with a conflict
- - Capacity management - increase/decrease available capacity of a provider
- - Capacity Management - query for available and used capacity
+.. _`Blazar docs`: https://docs.openstack.org/blazar/latest/
+.. _`Blazar features`: https://blueprints.launchpad.net/blazar
+.. _`Blazar bugs`: https://bugs.launchpad.net/blazar
 
 
-.. _TEST_CASES: https://git.opnfv.org/promise/tree/source/test/promise-intents.coffee
-
-
-Open JIRA tickets
-=================
-
-+------------------+-----------------------------------------------+
-|   JIRA           |         Description                           |
-+==================+===============================================+
-|                  |                                               |
-|                  |                                               |
-+------------------+-----------------------------------------------+
-
-All the tickets that are not blocking have been fixed or postponed
-the next release.
-
-Promise Euphrates 1.0 is released without known bugs.
-
-
+References
+==========
 
 Useful links
-============
+^^^^^^^^^^^^
 
  - Promise project page: https://wiki.opnfv.org/display/promise
  - :ref:`Promise requirements: <promise-requirements>`
-
-Related Projects
-----------------
-
  - OpenStack Blazar (Resource reservation for OpenStack): https://docs.openstack.org/blazar/latest/
- - YangForge data modeling framework: - https://github.com/opnfv/yangforge
 
 Related ETSI NFV specifications
 -------------------------------
