@@ -1,63 +1,52 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
 
-Promise installation
-====================
+Blazar installation with OpenStack Ansible
+==========================================
+.. note::
+   This guide provides steps for manual installation of Blazar using OpenStack
+   Ansible. These instructions are valid for Ubuntu 18.04 All-in-one (AIO)
 
-Install nodejs, npm and promise
+Install and bootstrap Ansible (master branch) as the root user
 
-.. code-block:: bash
+.. code:: bash
 
-    curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-    sudo apt-get install -y nodejs
-    sudo npm -g install npm@latest
-    git clone https://gerrit.opnfv.org/gerrit/promise
-    cd promise/source
-    npm install
-    npm ls
+   # git clone https://git.openstack.org/openstack/openstack-ansible /opt/openstack-ansible
+   # cd /opt/openstack-ansible
+    
+.. note::
+   At the time of writing, this is highly experimental and work is still
+   ongoing upstream in OpenStack. Therefore, it is recommended to set
+   ANSIBLE_ROLE_FETCH_MODE to git-clone
 
-Please note that the last command 'npm ls' will list all needed dependencies
-for promise (including yangforge and mocha)
+.. code:: bash
 
-.. figure:: images/screenshot_promise_install.png
-   :name: figure1
-      :width: 90%
+   # export ANSIBLE_ROLE_FETCH_MODE=git-clone
+   # scripts/bootstrap-ansible.sh
+   # scripts/bootstrap-aio.sh
 
+Enable Blazar
 
-Validation
-==========
-Please perform the following preparation steps:
+.. code:: bash
 
-1. Set OpenStack environment parameters properly (e.g. source openrc admin demo
-   in DevStack)
-2. Create OpenStack project (e.g. promise) and user (e.g. myuser) in e.g. the
-   default domain
-3. Create a flavor in Nova with 1 vCPU and 512 MB RAM
-4. Create a private network, subnet and router in Neutron
-5. Create an image in Glance
+   # cp etc/openstack_deploy/conf.d/blazar.yml.aio /etc/openstack_deploy/conf.d/
+   # cd /etc/openstack_deploy/conf.d
+   # mv blazar.yml.aio blazar.yml
 
-Once done, the promise test script can be invoked as follows:
+Run playbooks
 
-.. code-block:: bash
+.. code:: bash
 
-   export OS_PROJECT_NAME=promise
-   export OS_TENANT_NAME=promise
-   export OS_PROJECT_DOMAIN_NAME=Default
-   export OS_USERNAME=myuser
-   export OS_USER_DOMAIN_NAME=Default
-   export OS_PASSWORD=<user password from Step 2>
-   export OS_TEST_FLAVOR=<flavor ID from Step 3>
-   export OS_TEST_NETWORK=<network ID from Step 4>
-   export OS_TEST_IMAGE=<image ID from Step 5>
-   npm run -s test -- --reporter json > promise-results.json
+   # cd /opt/openstack-ansible/playbooks
+   # openstack-ansible setup-hosts.yml
+   # openstack-ansible setup-infrastructure.yaml
+   # openstack-ansible setup-openstack.yml
 
-The results of the tests will be stored in the promise-results.json file.
+Once the playbooks have successfully executed, it is possible to make some 
+modifications to the Blazar Ansible role in /etc/ansible/roles/os_blazar 
+and re-install the Blazar service by executing:
 
-The results can also be seen in the console ("npm run -s test")
+.. code:: bash
 
-.. figure:: images/screenshot_promise.png
-   :name: figure2
-   :width: 90%
-
-All 33 tests passing?!
-Congratulations, Promise has been successfully installed and configured.
+   # cd /opt/openstack-ansible/playbooks
+   # openstack-ansible os-blazar-install.yml
