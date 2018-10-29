@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a682502_0978342a",
+        "filename": "docs/release/release-notes/releasenotes.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2018-10-29T10:50:07Z",
+      "side": 1,
+      "message": "I suggest you to use `Blazar features`_",
+      "range": {
+        "startLine": 61,
+        "startChar": 41,
+        "endLine": 61,
+        "endChar": 59
+      },
+      "revId": "39185e8704d5371a33dcc859cb2d074706242e3e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_6977283b",
+        "filename": "docs/release/release-notes/releasenotes.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2018-10-29T10:50:07Z",
+      "side": 1,
+      "message": "_`Blazar features`:",
+      "range": {
+        "startLine": 70,
+        "startChar": 3,
+        "endLine": 70,
+        "endChar": 22
+      },
+      "revId": "39185e8704d5371a33dcc859cb2d074706242e3e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
