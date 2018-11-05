@@ -13,4 +13,5 @@ Promise
    :maxdepth: 2
 
    release/release-notes/index
+   release/configguide/index
    development/requirements/index
