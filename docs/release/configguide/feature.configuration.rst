@@ -14,12 +14,6 @@ Install and bootstrap Ansible (master branch) as the root user:
    # git clone https://git.openstack.org/openstack/openstack-ansible /opt/openstack-ansible
    # cd /opt/openstack-ansible
 
-Get the Blazar extra code:
-
-.. code:: bash
-
-  # git pull https://git.openstack.org/openstack/openstack-ansible refs/changes/56/549956/31
-
 .. note::
    At the time of writing, work is still ongoing upstream in OpenStack.
    Therefore, it is recommended to set ANSIBLE_ROLE_FETCH_MODE to git-clone.
