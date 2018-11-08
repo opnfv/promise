@@ -4,20 +4,6 @@
 
 This document provides the release notes for Gambia of Promise.
 
-.. contents::
-   :depth: 3
-   :local:
-
-
-Version history
----------------
-
-+------------+---------------+-----------------+-------------+
-| **Date**   | **Ver.**      | **Author**      | **Comment** |
-+============+===============+=================+=============+
-| 2018-10-24 | Gambia 1.0    | Gerald Kunzmann |             |
-+------------+---------------+-----------------+-------------+
-
 Important notes
 ===============
 
